@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :charities
+  resources :pets
   resources :places
   resources :people
   resources :memories
