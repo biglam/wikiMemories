@@ -3,9 +3,9 @@
 one:
   name: MyString
   dob: 2016-01-13
-  dod: 2016-01-13
+  died: 2016-01-13
 
 two:
   name: MyString
   dob: 2016-01-13
-  dod: 2016-01-13
+  died: 2016-01-13
