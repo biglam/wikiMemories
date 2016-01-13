@@ -1,5 +1,6 @@
 class Person < ActiveRecord::Base
 	belongs_to :charity
+	has_and_belongs_to_many :memories
 
 	def fullname
 		if middlenames == nil 

@@ -1,5 +1,6 @@
 class Place < ActiveRecord::Base
 	belongs_to :placetype
+	has_and_belongs_to_many :memories
 	# PLACETYPES = ["Home", "Town", "Restaurant or Bar", "Areena", "Sports Hall or Stadium", "Landmark", "Countryside"]
 
 	# def get_place_type
