@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @memory.title %>
+</p>
+
+<p>
+  <strong>Story:</strong>
+  <%= @memory.story %>
+</p>
+
+<p>
+  <strong>Ranking:</strong>
+  <%= @memory.ranking %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @memory.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_memory_path(@memory) %> |
+<%= link_to 'Back', memories_path %>
