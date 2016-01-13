@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :occasions
   resources :charities
   resources :pets
   resources :places
