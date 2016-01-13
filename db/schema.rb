@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113193137) do
+ActiveRecord::Schema.define(version: 20160113194652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,38 @@ ActiveRecord::Schema.define(version: 20160113193137) do
     t.integer  "justgiving_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.string   "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups_memories", id: false, force: :cascade do |t|
+    t.integer "group_id",  null: false
+    t.integer "memory_id", null: false
+  end
+
+  create_table "groups_occasions", id: false, force: :cascade do |t|
+    t.integer "group_id",    null: false
+    t.integer "occasion_id", null: false
+  end
+
+  create_table "groups_people", id: false, force: :cascade do |t|
+    t.integer "group_id",  null: false
+    t.integer "person_id", null: false
+  end
+
+  create_table "groups_pets", id: false, force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "pet_id",   null: false
+  end
+
+  create_table "groups_places", id: false, force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "place_id", null: false
   end
 
   create_table "memories", force: :cascade do |t|
