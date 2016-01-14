@@ -35,5 +35,32 @@
   <%= @person.charity.name unless !@person.charity %>
 </p>
 
+<% if @person.memories.count > 0 %>
+  <h2>Memories of <%= @person.fullname %>  </h2>
+  <table>
+  <tr>
+    <th>Rank</th>
+    <th>Story</th>
+  </tr>
+  <% @person.memories.each do |memory| %>
+  <tr>
+    <td><%=link_to("&#x25B2;", rank_up_memories_path(memory.id), remote: true)%><br>
+    <%= memory.ranking %>
+    <br>&#x25BC;</td>
+    <td><%= memory.story %></td>
+  </tr>
+  <% end %>
+  </table>
+<% end %>
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
+
+<script type="text/javascript">
+
+
+    $(document).on('ajax:success', 'a[data-remote].watching', function(e, data, status, xhr){
+
+      console.log(data);
+    });
+
+</script>
