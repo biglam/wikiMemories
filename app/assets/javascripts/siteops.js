@@ -3,4 +3,9 @@ $(document).ready(function(){
 		$('.topmenu').slideToggle();
 	});
 
+  $('#diedcheckbox').click(function() {
+     $('#diedfield').toggle();
+    // alert("clicked");
+  })
+
 });

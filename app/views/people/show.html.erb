@@ -26,8 +26,13 @@
 </p>
 
 <p>
+  <strong>Age:</strong>
+  <%= @person.age %>
+</p>
+
+<p>
   <strong>Charity:</strong>
-  <%= @person.charity_id %>
+  <%= @person.charity.name unless !@person.charity %>
 </p>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |

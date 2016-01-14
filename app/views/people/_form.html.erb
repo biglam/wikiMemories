@@ -25,11 +25,12 @@
   </div>
   <div class="field">
     <%= f.label :dob %><br>
-    <%= f.date_select :dob %>
+    <%= f.date_field :dob %>
   </div>
-  <div class="field">
+  <input type="checkbox" value="died" id="diedcheckbox"> Died </input>
+  <div class="field" id='diedfield'>
     <%= f.label :died %><br>
-    <%= f.date_select :died %>
+    <%= f.date_field :died %>
   </div>
   <div class="field">
     <%= f.label :charity_id %><br>
