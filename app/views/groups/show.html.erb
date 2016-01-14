@@ -10,5 +10,49 @@
   <%= @group.about %>
 </p>
 
+<% if @group.people.count != 0 %>
+	<p>Associated People:</p>
+	<ul>
+		<% @group.people.each do |person| %>
+		<li><%= link_to(person.fullname, person_path(person.id)) %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @group.places.count != 0 %>
+	<p>Associated Places:</p>
+	<ul>
+		<% @group.places.each do |place| %>
+		<li><%= link_to(place.name, place_path(place.id)) %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @group.occasions.count != 0 %>
+	<p>Associated Occasions:</p>
+	<table>
+		<tr>
+			<th>Date</th>
+			<th>Event</th>
+		</tr>
+		<% @group.occasions.each do |occasion| %>
+		<tr>
+			<td><%= occasion.date %></td>
+			<td><%= occasion.name %></td>
+		</tr>
+		<% end %>
+	</table>
+<% end %>
+
+<% if @group.pets.count != 0 %>
+	<p>Associated Pets:</p>
+	<ul>
+		<% @group.pets.each do |pet| %>
+		<li><%= link_to(pet.name, pet_path(pet.id)) %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
