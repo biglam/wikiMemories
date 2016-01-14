@@ -5,4 +5,14 @@ class Memory < ActiveRecord::Base
 	has_and_belongs_to_many :places
 	has_and_belongs_to_many :occasions
 	has_and_belongs_to_many :groups
+
+  def rank_up
+    self.ranking += 1
+    self.save
+  end
+
+  def rank_down
+    self.ranking -= 1
+    self.save
+  end
 end
