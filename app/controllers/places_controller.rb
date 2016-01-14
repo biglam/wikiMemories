@@ -25,7 +25,10 @@ class PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(place_params)
-
+    # binding.pry;''
+    if !(@place.lat) || (@place.lng) 
+      @place.get_lat_lng_from_address
+    end
     respond_to do |format|
       if @place.save
         format.html { redirect_to @place, notice: 'Place was successfully created.' }
@@ -69,6 +72,6 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :placetype, :lat, :lng)
+      params.require(:place).permit(:name, :placetype, :placetype_id, :lat, :lng, :address)
     end
 end

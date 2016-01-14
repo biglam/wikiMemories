@@ -17,7 +17,8 @@
   </div>
   <div class="field">
     <%= f.label :placetype %><br>
-    <%= f.number_field :placetype %>
+    <%#= f.number_field :placetype %>
+    <%= f.collection_select :placetype_id, Placetype.all,:id,:placetype, :selected => params['placetype_id'] %>
   </div>
   <div class="field">
     <%= f.label :address %><br>

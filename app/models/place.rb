@@ -5,10 +5,12 @@ class Place < ActiveRecord::Base
 
 	def get_lat_lng_from_address
 		locationobj = Geocoder.search(self.address)
-		latlng = locationobj[0].data['geometry']['location']
-		self.lat = latlng['lat']
-		self.lng = latlng['lng']
-		self.save
+		if locationobj != []
+			latlng = locationobj[0].data['geometry']['location']
+			self.lat = latlng['lat']
+			self.lng = latlng['lng']
+			self.save
+		end
 	end
 	# PLACETYPES = ["Home", "Town", "Restaurant or Bar", "Areena", "Sports Hall or Stadium", "Landmark", "Countryside"]
 

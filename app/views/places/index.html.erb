@@ -17,7 +17,7 @@
     <% @places.each do |place| %>
       <tr>
         <td><%= place.name %></td>
-        <td><%= place.placetype %></td>
+        <td><%= place.placetype.placetype unless place.placetype == nil %></td>
         <td><%= place.lat %></td>
         <td><%= place.lng %></td>
         <td><%= link_to 'Show', place %></td>
