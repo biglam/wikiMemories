@@ -31,3 +31,13 @@ h1.header {
 .topmenu {
 	display: none;
 }
+
+.eventstable {
+	background-color: #eee;
+	position: relative;
+	width: 100%;
+}
+
+.eventstable td, .eventstable th {
+	border: 1px solid #ddd;
+}

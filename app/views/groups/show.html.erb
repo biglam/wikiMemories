@@ -30,14 +30,16 @@
 
 <% if @group.occasions.count != 0 %>
 	<p>Associated Occasions:</p>
-	<table>
+	<table class="eventstable">
 		<tr>
 			<th>Date</th>
+			<th>Time</th>
 			<th>Event</th>
 		</tr>
 		<% @group.occasions.each do |occasion| %>
 		<tr>
 			<td><%= occasion.date %></td>
+			<td><%= occasion.time %></td>
 			<td><%= occasion.name %></td>
 		</tr>
 		<% end %>
