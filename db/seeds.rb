@@ -32,3 +32,14 @@ Pet.create(name: "Bob")
 pub = Place.create(name: "The Pub")
 pub.placetype = Placetype.first
 pub.save
+
+50.times do |i|
+  if rand(10) >= 5 
+    Person.create(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name, dob: Faker::Date.between(200.years.ago, Date.today))
+  else
+    born = Faker::Date.between(200.years.ago, Date.today)
+    Person.create(firstname: Faker::Name.first_name, middlenames: "The #{Faker::Name.title}", lastname: Faker::Name.last_name, dob: born, died: Faker::Date.between(born, Date.today))
+  end
+
+  Memory.create(title: Faker::App.name, story: Faker::Lorem.paragraph(2, false, 4), ranking: 1, user_id: admin.id)
+end
