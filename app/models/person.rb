@@ -1,5 +1,7 @@
 class Person < ActiveRecord::Base
 	belongs_to :charity
+	has_many :people_adminstrations
+	has_many :adminstrators, through: :people_adminstrations
 	has_and_belongs_to_many :memories
 	has_and_belongs_to_many :groups
 

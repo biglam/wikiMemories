@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114091735) do
+ActiveRecord::Schema.define(version: 20160115112845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,12 +104,20 @@ ActiveRecord::Schema.define(version: 20160114091735) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "people_adminstrations", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "adminstrator_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "pets", force: :cascade do |t|
     t.string   "name"
     t.date     "dob"
     t.date     "died"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "species_id"
   end
 
   create_table "places", force: :cascade do |t|
@@ -124,6 +132,12 @@ ActiveRecord::Schema.define(version: 20160114091735) do
 
   create_table "placetypes", force: :cascade do |t|
     t.string   "placetype"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "species", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

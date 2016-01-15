@@ -12,6 +12,8 @@ Place.delete_all
 Placetype.delete_all
 Pet.delete_all
 Charity.delete_all
+Species.delete_all
+
 
 admin = User.create(email: "admin@admin.example", username: "admin", password: "password", role: "admin")
 normaluser = User.create(email: "user@user.example", username: "user", password: "password")
@@ -42,4 +44,10 @@ pub.save
   end
 
   Memory.create(title: Faker::App.name, story: Faker::Lorem.paragraph(2, false, 4), ranking: 1, user_id: admin.id)
+end
+
+
+spec = ['dog', 'cat', 'bird', 'rodent','fish', 'reptile', 'other']
+spec.each do |species|
+  Species.create(name: species)
 end
