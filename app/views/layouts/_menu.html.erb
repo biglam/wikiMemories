@@ -1,10 +1,12 @@
 <div class="topmenu">
-<%= form_tag memories_path, :method => :get, :id => 'searchform', :remote => true do %>
+<%= form_tag people_path, :method => :get, :id => 'searchform', :remote => true do %>
   <%= text_field_tag :search, params[:search], :id => 'search-field' %>
   <%= submit_tag 'Go' %>
 <% end %>
 	<ul class="sidemenu">
-	<%= render @memories %>
+	<div id="side_memories">
+	<%= render @people_search_result if @people_search_result %>
+	</div>
 		<% if !current_user %>
 		<li><%= link_to("Log In", new_user_session_path) %></li>
 		<% end %>

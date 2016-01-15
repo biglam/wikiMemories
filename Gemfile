@@ -4,6 +4,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'geocoder'
 gem 'jquery-turbolinks'
+gem 'faker'
 
 gem 'rails_12factor', group: :production
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

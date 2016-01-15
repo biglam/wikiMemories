@@ -4,7 +4,13 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    if params[:search]
+      @people_search_result = Person.where("lastname like ?", "%#{params[:search]}%") if params[:search] > ""
+    else
+      @people = Person.all
+    end
+    render @people_search_result, layout: false if request.xhr?
+    # @people = Person.all
   end
 
   # GET /people/1
