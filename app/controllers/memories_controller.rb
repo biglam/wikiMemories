@@ -4,7 +4,12 @@ class MemoriesController < ApplicationController
   # GET /memories
   # GET /memories.json
   def index
-    @memories = Memory.all
+    if params[:search]
+      @memories = Memory.where("lastname like ?", "%#{params[:search]}%")
+    else
+      @memories = Memory.all
+    end
+    # @memories = Memory.all
   end
 
   # GET /memories/1
