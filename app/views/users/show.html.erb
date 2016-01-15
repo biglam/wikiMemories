@@ -1,1 +1,22 @@
-<%= @user.username %>
+<h1><%= @user.username %>'s page</h1>
+
+<ul>
+<li><strong>Username:</strong> <%= @user.username %></li>
+<li><strong>Site Role: </strong> <%= @user.role %></li>
+<li><strong>Email:</strong> <%= @user.email %></li>
+<li><strong>Member since: </strong> <%= @user.created_at %></li>
+<li><strong>Memories Posted: </strong> <%= @user.memories.count %></li>
+<li><strong>Average Ranking: </strong> <%= @user.average_ranking %></li>
+</ul>
+
+<% if @user.memories.count > 0 %>
+  <h2>Memories</h2>
+  <% @user.memories.each do |memory| %>
+    <strong><%= memory.title %></strong> - Ranking: <%= memory.ranking %><br>
+    <p><%= memory.story %></p>
+    <% if memory.user == current_user %>
+      <%= link_to 'Edit', edit_memory_path(memory) %>
+      <%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+    <% end %>
+  <% end %>
+<% end %>
