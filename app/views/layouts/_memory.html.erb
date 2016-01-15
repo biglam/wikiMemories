@@ -1,0 +1,20 @@
+
+ <div class="memorydiv">
+ <div class="row">
+ 	<div class="memoryleftpanel">
+ 		<div class="rankdiv">up</div>
+ 		<div class="rankdiv">1</div>
+ 		<div class="rankdiv">down</div>
+ 	</div>
+
+ 	<div class="memoryrightpanel">
+ 		 <strong><%= memory.title %></strong> - Ranking: <%= memory.ranking %><br>
+    <p><%= memory.story %></p>
+    <% if memory.user == current_user %>
+      <%= link_to 'Edit', edit_memory_path(memory) %>
+      <%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+      <% end %>
+
+ 	</div>
+ </div>
+ </div>

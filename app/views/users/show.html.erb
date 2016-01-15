@@ -11,12 +11,8 @@
 
 <% if @user.memories.count > 0 %>
   <h2>Memories</h2>
-  <% @user.memories.each do |memory| %>
-    <strong><%= memory.title %></strong> - Ranking: <%= memory.ranking %><br>
-    <p><%= memory.story %></p>
-    <% if memory.user == current_user %>
-      <%= link_to 'Edit', edit_memory_path(memory) %>
-      <%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-    <% end %>
-  <% end %>
+  <%# @user.memories.each do |memory| %>
+   	<%= render partial: 'layouts/memory', collection: @user.memories, locals: {frompage: "userpage"} %>
+    
+  <%# end %>
 <% end %>
