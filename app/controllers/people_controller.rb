@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
   # GET /people.json
   def index
     if params[:search]
-      @people_search_result = Person.where("lastname like ?", "%#{params[:search]}%") if params[:search] > ""
+      @people_search_result = Person.where("lastname like ?", "%#{params[:search]}%").limit(5) if params[:search] > ""
     else
       @people = Person.all
     end
