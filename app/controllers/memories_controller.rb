@@ -70,12 +70,13 @@ class MemoriesController < ApplicationController
   def rank_up
      Memory.find(params['format']).rank_up
      @memory = Memory.find(params['format'])
-     # render @memory, layout: false if request.xhr?
      render :json =>  Memory.find(params['format']).to_json
-    #   respond_to do |format|
-    #     format.html 
-    #     format.json { render json: @memory }
-    # end
+  end
+
+  def rank_down
+     Memory.find(params['format']).rank_down
+     @memory = Memory.find(params['format'])
+     render :json =>  Memory.find(params['format']).to_json
   end
 
   private

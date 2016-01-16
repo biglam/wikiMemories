@@ -4,7 +4,7 @@
  	<div class="memoryleftpanel">
  		<div class="rankdiv"><%= link_to("up", rank_up_memories_path(memory.id), remote: true) %></div>
  		<div class="rankdiv"><span id="rank_<%= memory.id %>"><%= memory.ranking %></span></div>
- 		<div class="rankdiv">down</div>
+ 		<div class="rankdiv"><%= link_to("down", rank_down_memories_path(memory.id), remote: true) %></div>
  	</div>
 
  	<div class="memoryrightpanel">

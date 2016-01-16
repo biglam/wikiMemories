@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :memories do
     collection do
       get 'rank_up'
+      get 'rank_down'
     end
   end
   # devise_for :users
