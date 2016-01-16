@@ -32,4 +32,14 @@ $(document).ready(function(){
     console.log('failed: ' + error);
   });
 
+   $('.flaglist').on('ajax:success', function(evt, data, status, xhr) {
+    console.log(data);
+    var ajaxdata = data;
+    // console.log();
+    $('#fc_' + ajaxdata.id).text(ajaxdata.flagcount);
+  }).
+  on('ajax:error', function(xhr, status, error) {
+    console.log('failed: ' + error);
+  });
+
 });

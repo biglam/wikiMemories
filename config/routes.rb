@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'rank_up'
       get 'rank_down'
       get 'list_flagged'
+      get 'reset_flag_count'
     end
   end
   # devise_for :users

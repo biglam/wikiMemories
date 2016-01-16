@@ -16,4 +16,11 @@ class Memory < ActiveRecord::Base
     self.ranking -= 1
     self.save
   end
+
+  def reset_flag_count
+    # binding.pry;''
+    Flag.create(memory_id: self.id, user_id: user.id, message: "Flagcount Reset by administrator #{user.username}")
+    self.flagcount = 0
+    self.save
+  end
 end

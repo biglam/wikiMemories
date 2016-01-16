@@ -88,6 +88,13 @@ class MemoriesController < ApplicationController
     end
   end
 
+  def reset_flag_count
+     Memory.find(params['format']).reset_flag_count
+     # binding.pry;''
+     @memory = Memory.find(params['format'])
+     render :json =>  Memory.find(params['format']).to_json
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_memory
