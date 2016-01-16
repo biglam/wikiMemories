@@ -75,7 +75,8 @@ and (min-device-width: 768px) {
 
 	.topmenu {
 		display: inline-block;
-		background-color: #eee;
+		// background-color: #eee;
+		background: linear-gradient(to bottom, #eee, white);
 		width: 200px;
 		height: 100vh;
 		position: relative;
