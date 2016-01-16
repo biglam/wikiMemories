@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115112845) do
+ActiveRecord::Schema.define(version: 20160116115128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20160115112845) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  create_table "flags", force: :cascade do |t|
+    t.integer  "memory_id"
+    t.text     "message"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "flags", ["memory_id"], name: "index_flags_on_memory_id", using: :btree
+  add_index "flags", ["user_id"], name: "index_flags_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -162,4 +173,6 @@ ActiveRecord::Schema.define(version: 20160115112845) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "flags", "memories"
+  add_foreign_key "flags", "users"
 end
