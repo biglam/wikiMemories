@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       get 'rank_up'
       get 'rank_down'
+      get 'list_flagged'
     end
   end
   # devise_for :users

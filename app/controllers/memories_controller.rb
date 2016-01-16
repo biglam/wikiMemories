@@ -79,6 +79,15 @@ class MemoriesController < ApplicationController
      render :json =>  Memory.find(params['format']).to_json
   end
 
+  def list_flagged
+    if (current_user != nil)  && (current_user.role == "admin")
+      @memories = Memory.where("flagcount > 0")
+    else
+      @memories = {}
+      raise "No memories are flagged, or you have no right to view this page!"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_memory
