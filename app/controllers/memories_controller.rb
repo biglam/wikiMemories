@@ -83,6 +83,12 @@ class MemoriesController < ApplicationController
      render :json =>  Memory.find(params['format']).to_json
   end
 
+  def flag_memory
+    # binding.pry;''
+    Memory.find(params['format']).flag_memory(params)
+    render :json => current_user.flags.last
+  end
+
   def list_flagged
     if (current_user != nil)  && (current_user.role == "admin")
       @memories = Memory.where("flagcount > 0")

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       get 'rank_up'
       get 'rank_down'
+      get 'flag_memory'
       get 'list_flagged'
       get 'reset_flag_count'
     end

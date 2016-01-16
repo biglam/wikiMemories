@@ -31,4 +31,16 @@ class Memory < ActiveRecord::Base
       self.people << Person.find(pid)
     end
   end
+
+  def flag_memory(params)
+
+    flag = Flag.new
+    flag.memory_id = params[:flag][:memory_id]
+    flag.user_id = params[:flag][:user_id]
+    flag.message = params[:flag][:message]
+    flag.save
+    self.flagcount += 1
+    self.save
+  end
+
 end

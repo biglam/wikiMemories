@@ -65,3 +65,25 @@ postMemory = function(title, story, userid, reciever_type, reciever_id) {
       }
     });
 }
+
+
+// postFlag
+
+postFlag = function(message, userid, memory_id) {
+  $.ajax({
+      type: "GET",
+      url: '/memories/flag_memory.' + memory_id,
+      data: { 
+        flag: { 
+          memory_id: memory_id,
+          message: message,
+          user_id: userid,
+        } 
+      },
+      dataType: 'json',
+      success: function(msg) {
+        console.log(msg);
+        $('.flag_' + memory_id).html('<strong>Your flag has been noted and will be reviewed. Thanks for your feedback.</strong>')
+      }
+    });
+}
