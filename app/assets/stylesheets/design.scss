@@ -95,28 +95,34 @@ and (min-device-width: 768px) {
 	}
 
 	div.memorydiv {
-		background-color: grey;
+		// background-color: grey;
 		// position: relative;
-		display: block;
+		display: table;
 		// padding: 5px;
-		// width: 50%;
+		width: 70%;
 		// vertical-align: middle;
+		padding: 5px;
+
 	}
 
+
 	.memoryleftpanel {
-		background-color: green;
-		width: 150px;
-		// vertical-align: middle;
-		display: inline-block;
+		// background-color: green;
+		width: 100px;
+		vertical-align: middle;
+		display: table-cell;
 	}
 
 	.memoryrightpanel {
-		background-color: blue;
+		// background-color: blue;
 		width: 400px;
-		display: inline-block;
+		display: table-cell;
+		vertical-align: middle;
 	}
 
 	.rankdiv {
-		// padding: 5px;
+		padding: 5px;
+		margin:  0 auto;
+		text-align: center;
 	}
 }

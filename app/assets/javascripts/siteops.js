@@ -22,6 +22,14 @@ $(document).ready(function(){
     $('#searchform').submit();
   });
 
-
+ $('.rankdiv').on('ajax:success', function(evt, data, status, xhr) {
+    console.log(data);
+    var ajaxdata = data;
+    // console.log();
+    $('#rank_' + ajaxdata.id).text(ajaxdata.ranking);
+  }).
+  on('ajax:error', function(xhr, status, error) {
+    console.log('failed: ' + error);
+  });
 
 });
