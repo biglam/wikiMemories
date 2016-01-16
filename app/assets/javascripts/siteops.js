@@ -29,7 +29,8 @@ $(document).ready(function(){
     $('#rank_' + ajaxdata.id).text(ajaxdata.ranking);
   }).
   on('ajax:error', function(xhr, status, error) {
-    console.log('failed: ' + error);
+    console.log(error);
+    console.log(status);
   });
 
    $('.flaglist').on('ajax:success', function(evt, data, status, xhr) {
