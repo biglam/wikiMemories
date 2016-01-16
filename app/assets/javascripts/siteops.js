@@ -61,6 +61,7 @@ postMemory = function(title, story, userid, reciever_type, reciever_id) {
       dataType: 'json',
       success: function(msg) {
         console.log(msg);
+        $('.postmemory').append(msg);
       }
     });
 }

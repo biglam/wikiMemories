@@ -67,8 +67,7 @@
 <!-- Start Memory Feed -->
 <h3>Other users' memories</h3>
 <% if @person.memories.count > 0 %>
-  
-  <%= render partial: 'layouts/memory', collection: @person.memories, locals: {frompage: "personpage"} %>
+  <%= render partial: 'layouts/memory', collection: @person.memories.order(ranking: :desc), locals: {frompage: "personpage"} %>
 <% end %>
 
 
