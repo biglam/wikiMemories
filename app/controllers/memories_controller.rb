@@ -31,7 +31,10 @@ class MemoriesController < ApplicationController
   # POST /memories.json
   def create
     @memory = Memory.new(memory_params)
-
+    # binding.pry;''
+    if (params[:memory][:reciever_type] != nil)
+      @memory.add_associate(params[:memory][:reciever_type], params[:memory][:reciever_id])
+    end
     respond_to do |format|
       if @memory.save
         format.html { redirect_to @memory, notice: 'Memory was successfully created.' }

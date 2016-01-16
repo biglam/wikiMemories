@@ -19,7 +19,7 @@
   <strong>Dob:</strong>
   <%= @person.dob %>
 </p>
-
+<% if @person.died %>
 <p>
   <strong>Died:</strong>
   <%= @person.died %>
@@ -30,37 +30,47 @@
   <%= @person.age %>
 </p>
 
+<% end %>
+<% if @person.charity %>
 <p>
   <strong>Charity:</strong>
   <%= @person.charity.name unless !@person.charity %>
 </p>
-
-<% if @person.memories.count > 0 %>
-  <h2>Memories of <%= @person.fullname %>  </h2>
-  <table>
-  <tr>
-    <th>Rank</th>
-    <th>Story</th>
-  </tr>
-  <% @person.memories.each do |memory| %>
-  <tr>
-    <td><%=link_to("&#x25B2;", rank_up_memories_path(memory.id), remote: true)%><br>
-    <%= memory.ranking %>
-    <br>&#x25BC;</td>
-    <td><%= memory.story %></td>
-  </tr>
-  <% end %>
-  </table>
 <% end %>
+
+<!-- Start Memory Post -->
+<h2>Memories of <%= @person.fullname %>  </h2>
+<div class="postmemory">
+<h3>Share your memories of <%= @person.fullname %></h3>
+<% if current_user %>
+  Title: <input id="mem_title"></input>
+  Story: <textarea id="mem_story"></textarea>
+
+  <button id="mem_submit">Go</button>
+
+  <script>
+   $('#mem_submit').click(function() {
+  var title = $('#mem_title').val();
+  var story = $('#mem_story').val();
+  var userid = <%= current_user.id %>;
+  var reciever_type = "Person";
+  var reciever_id = <%= @person.id %>;
+
+  postMemory(title, story, userid, reciever_type, reciever_id);
+ })
+</script>
+
+<% else %>
+  You must be logged in to post
+<% end %>
+</div>
+<!-- Start Memory Feed -->
+<h3>Other users' memories</h3>
+<% if @person.memories.count > 0 %>
+  
+  <%= render partial: 'layouts/memory', collection: @person.memories, locals: {frompage: "personpage"} %>
+<% end %>
+
+
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
-
-<script type="text/javascript">
-
-
-    $(document).on('ajax:success', 'a[data-remote].watching', function(e, data, status, xhr){
-
-      console.log(data);
-    });
-
-</script>

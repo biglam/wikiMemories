@@ -42,4 +42,25 @@ $(document).ready(function(){
     console.log('failed: ' + error);
   });
 
+
 });
+
+postMemory = function(title, story, userid, reciever_type, reciever_id) {
+  $.ajax({
+      type: "POST",
+      url: '/memories.json',
+      data: { 
+        memory: { 
+          title: title,
+          story: story,
+          user_id: userid,
+          reciever_type: reciever_type,
+          reciever_id: reciever_id
+        } 
+      },
+      dataType: 'json',
+      success: function(msg) {
+        console.log(msg);
+      }
+    });
+}

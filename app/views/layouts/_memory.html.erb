@@ -15,12 +15,12 @@
     	  <%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %><br>
     	   <%# binding.pry;''%>
      	<% end %>
+
+     	<% if frompage == "flagpage" %>
      	<% if memory.flagcount > 0 %>
      		<div class="flaglist">
      		<strong>Current Flag Count</strong> - <span id="fc_<%=memory.id%>"><%= memory.flagcount %></span> <%= link_to("Reset", reset_flag_count_memories_path(memory), remote: true)  %><br>
      		<strong>Total Flag Count</strong> - <%= memory.flags.count %><br>
-
-
      			<% memory.flags.each do |flag| %>
      			<div class="flaginfo">
 					<strong>Flagged by </strong> <%= flag.user.username %> <strong>on</strong>	<%= flag.created_at %>
@@ -28,6 +28,7 @@
 				</div>
 				<% end %>
 				</div>
+     	<% end %>
      	<% end %>
  	</div>
  </div>

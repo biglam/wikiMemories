@@ -23,4 +23,12 @@ class Memory < ActiveRecord::Base
     self.flagcount = 0
     self.save
   end
+
+  def add_associate(ptype, pid)
+    # binding.pry;''
+    case ptype
+    when "Person"
+      self.people << Person.find(pid)
+    end
+  end
 end
