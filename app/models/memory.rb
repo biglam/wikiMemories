@@ -7,6 +7,8 @@ class Memory < ActiveRecord::Base
 	has_and_belongs_to_many :occasions
 	has_and_belongs_to_many :groups
 
+  mount_uploader :memory_image, MemoryImageUploader
+
   def rank_up
     # if user.id != self.user.id
       self.ranking += 1
