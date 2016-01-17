@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%= image_tag(@person.get_top_image.preview.url) if @person.images.count > 0 %>
 <p>
   <strong>Firstname:</strong>
   <%= @person.firstname %>

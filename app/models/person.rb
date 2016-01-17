@@ -23,4 +23,8 @@ class Person < ActiveRecord::Base
  		end
   		from.year - dob.year - (dob.to_date.change(:year => from.year) > from ? 1 : 0)
 	end
+
+	def get_top_image
+		self.images.order('ranking DESC')[0].image
+	end
 end
