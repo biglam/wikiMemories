@@ -8,21 +8,21 @@ class Memory < ActiveRecord::Base
 	has_and_belongs_to_many :groups
 
   def rank_up
-    if user.id != self.user.id
+    # if user.id != self.user.id
       self.ranking += 1
       self.save
-    else
-      raise "You can't vote up your own memory"
-    end
+    # else
+    #   raise "You can't vote up your own memory"
+    # end
   end
 
   def rank_down
-    if user.id != self.user.id
+    # if user.id != self.user.id
       self.ranking -= 1
       self.save
-    else
-      raise "You can't vote down your own memory"
-    end
+    # else
+    #   raise "You can't vote down your own memory"
+    # end
   end
 
   def reset_flag_count

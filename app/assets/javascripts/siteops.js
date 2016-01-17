@@ -18,7 +18,6 @@ $(document).ready(function(){
   });
 
   $('#search-field').on('keyup', function() {
-    // alert('hi)');
     $('#searchform').submit();
   });
 
