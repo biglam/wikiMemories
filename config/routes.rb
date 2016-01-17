@@ -14,6 +14,10 @@ Rails.application.routes.draw do
       get 'reset_flag_count'
     end
   end
+
+  get '/admin_tools' => 'pages#admin_tools'
+  get '/faq' => 'pages#faq'
+  get '/welcome' => 'pages#welcome'
   # devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
