@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>Surname</th>
+      <th class='onlyscreen'>First Name</th>
+      <th class='onlymob'>Full Name</th>
+      <th class='onlyscreen'>Dob</th>
+      <th class='onlyscreen'>Died</th>
+      <th class='onlyscreen'>Charity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% people.each_with_index do |person, i| %>
+      <tr class="<%= "even" if i%2==0 %>">
+        <td><%= person.lastname %></td>
+        <td class='onlyscreen'><%= person.firstname %></td>
+        <td class='onlymob'><%= person.fullname %></td>
+        <td class='onlyscreen'><%= person.dob %></td>
+        <td class='onlyscreen'><%= person.died %></td>
+        <td class='onlyscreen'><%= person.charity.name unless !person.charity %></td>
+        <td><%= link_to 'Show', person %></td>
+        <td><%= link_to 'Edit', edit_person_path(person) %></td>
+        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

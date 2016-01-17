@@ -8,11 +8,19 @@
 <li><strong>Memories Posted: </strong> <%= @user.memories.count %></li>
 <li><strong>Average Ranking: </strong> <%= @user.average_ranking %></li>
 </ul>
-
+Click to expand -
 <% if @user.memories.count > 0 %>
-  <h2>Memories</h2>
-  <%# @user.memories.each do |memory| %>
+  <h2 id='memlink'>Memories - <%= @user.memories.count %></h2>
+  <%= render partial: 'layouts/showhide', locals: {trig: '#memlink', tog: '#memlist'} %>
+  	<div id="memlist">
    	<%= render partial: 'layouts/memory', collection: @user.memories, locals: {frompage: "userpage"} %>
-    
-  <%# end %>
+   	</div>
+<% end %>
+
+<% if @user.adminstered_people.count > 0 %>
+	<h2 id="peoplink">People Adminstered - <%= @user.adminstered_people.count %></h2>
+	<%= render partial: 'layouts/showhide', locals: {trig: '#peoplink', tog: '#peoplist'} %>
+	<div id="peoplist">
+	<%= render partial: 'people/peoplelist', locals: {people: @user.adminstered_people} %>
+	</div>
 <% end %>
