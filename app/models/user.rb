@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :memories
   has_many :flags
+  has_many :images
   has_many :people_adminstrations, foreign_key: "adminstrator_id"
   has_many :adminstered_people, through: :people_adminstrations, source: :person
 

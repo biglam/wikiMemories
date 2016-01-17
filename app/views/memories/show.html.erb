@@ -20,10 +20,6 @@
   <%= @memory.user.username %>
 </p>
 
-  <p>
-    <b>Image:</b>
-    <%= image_tag @memory.memory_image.url %>
-</p>
 
 <%= link_to 'Edit', edit_memory_path(@memory) %> |
 <%= link_to 'Back', memories_path %>
