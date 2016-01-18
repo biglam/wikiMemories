@@ -8,9 +8,7 @@
         <div class="memoryrightpanel">
             <%= render partial: 'layouts/memory_details', locals: {memory: memory} %>
             <%= render partial: 'layouts/memory_options', locals: {memory: memory} %>
-
             <%= render partial: 'layouts/memory_flag', locals: {memory: memory} %>
-
             <% if frompage == "flagpage" %>
                 <%= render partial: 'layouts/memory_flag_details', locals: {memory: memory, frompage: frompage} %>
             <% end %>
