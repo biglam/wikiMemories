@@ -4,12 +4,12 @@
   <strong>Firstname:</strong>
   <%= @person.firstname %>
 </p>
-
+<% if @person.middlenames != nil %>
 <p>
   <strong>Middlenames:</strong>
   <%= @person.middlenames %>
 </p>
-
+<% end %>
 <p>
   <strong>Lastname:</strong>
   <%= @person.lastname %>
