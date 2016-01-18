@@ -10,6 +10,10 @@ class ImagesController < ApplicationController
 
 def create
     @image = Image.new(image_params)
+    # binding.pry;''
+    if params[:image][:person_id]
+      @image.people << Person.find(params[:image][:person_id])
+    end
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
