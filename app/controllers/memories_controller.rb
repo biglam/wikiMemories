@@ -38,7 +38,10 @@ class MemoriesController < ApplicationController
     respond_to do |format|
       if @memory.save
         format.html { redirect_to @memory, notice: 'Memory was successfully created.' }
-        format.json { render :show, status: :created, location: @memory }
+        format.json { 
+          # render :show, status: :created, location: @memory 
+          render json: {div: render_to_string(partial: 'layouts/memory.html.erb', object: @memory, locals: {frompage: "personpage"})}
+        }
         # format.json {render 'layouts/memory'}
       else
         format.html { render :new }
