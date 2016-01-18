@@ -1,65 +1,19 @@
 
 <div class="memorydiv">
-   <div class="row">
-      <div class="memoryleftpanel">
-         <%= render partial: 'layouts/memory_rank', locals: {memory: memory} %>
-     </div>
+    <div class="row">
+        <div class="memoryleftpanel">
+            <%= render partial: 'layouts/memory_rank', locals: {memory: memory} %>
+        </div>
 
-     <div class="memoryrightpanel">
-         <strong><%= memory.title %></strong><br>
-         <p><%= memory.story %></p>
-         <span id='flink_<%= memory.id %>'>flag</span>
-         <% if memory.user == current_user %>
-         <%= link_to 'Edit', edit_memory_path(memory) %>
-         <%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-         <% end %>
+        <div class="memoryrightpanel">
+            <%= render partial: 'layouts/memory_details', locals: {memory: memory} %>
+            <%= render partial: 'layouts/memory_options', locals: {memory: memory} %>
 
+            <%= render partial: 'layouts/memory_flag', locals: {memory: memory} %>
 
-         <!-- start flag -->
-         <div class="flag_<%= memory.id %> inithid"> 
-         <% if current_user %>
-         Please explain briefly why you have flagged this post: <textarea id="flag_<%= memory.id %>_message"></textarea>
-         <button id="flag_<%= memory.id %>_submit">Go</button>
-
-         <script>
-
-         $('#flink_<%= memory.id %>').click(function() {
-            $('.inithid').hide();
-            $('.flag_<%= memory.id %>').show();
-         })
-            $('#flag_<%= memory.id %>_submit').click(function() {
-              var message = $('#flag_<%= memory.id %>_message').val();
-              var userid = <%= current_user.id %>;;
-              var memory_id = <%= memory.id %>;
-
-              postFlag(message, userid, memory_id);
-            })
-         </script>
-
-         <% else %>
-         You must be logged in to flag
-         <% end %>
-         </div>
-         <!-- end flag -->
-
-
-
-
-
-        <% if frompage == "flagpage" %>
-            <% if memory.flagcount > 0 %>
-                <div class="flaglist">
-                    <strong>Current Flag Count</strong> - <span id="fc_<%=memory.id%>"><%= memory.flagcount %></span> <%= link_to("Reset", reset_flag_count_memories_path(memory), remote: true)  %><br>
-                    <strong>Total Flag Count</strong> - <%= memory.flags.count %><br>
-                        <% memory.flags.each do |flag| %>
-                            <div class="flaginfo">
-                                <strong>Flagged by </strong> <%= flag.user.username %> <strong>on</strong>   <%= flag.created_at %>
-                                <strong>Message</strong>  - <%= flag.message %>
-                            </div>
-                        <% end %>
-                </div>
+            <% if frompage == "flagpage" %>
+                <%= render partial: 'layouts/memory_flag_details', locals: {memory: memory, frompage: frompage} %>
             <% end %>
-        <% end %>
-   </div>
-</div>
+        </div>
+    </div>
 </div>
