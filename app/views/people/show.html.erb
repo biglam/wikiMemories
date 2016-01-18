@@ -72,6 +72,9 @@
   <% end %>
 </div>
 
-
+<div class="images">
+  <h2>Images of <%= @person.fullname %></h2>
+  <%= render partial: 'layouts/thumbnails'%>
+</div>
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>

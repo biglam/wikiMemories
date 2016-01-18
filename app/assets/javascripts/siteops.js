@@ -43,6 +43,15 @@ $(document).ready(function(){
   });
 
 
+  // image clickers
+
+// $('.thumbnail').click(function(event) {
+//   var clicked = (event.target.id);
+//   alert(clicked + " clicked");
+//   console.log(event.target)
+// });
+
+
 });
 
 postMemory = function(title, story, userid, reciever_type, reciever_id) {
@@ -87,3 +96,4 @@ postFlag = function(message, userid, memory_id) {
       }
     });
 }
+
