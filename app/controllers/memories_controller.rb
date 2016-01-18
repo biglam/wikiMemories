@@ -75,14 +75,20 @@ class MemoriesController < ApplicationController
   end
 
   def rank_up
-     Memory.find(params['format']).rank_up
+     # Memory.find(params['format']).rank_up
+     # binding.pry;''
      @memory = Memory.find(params['format'])
+     vote = Vote.new
+     vote.add_vote_to_item(@memory, current_user, 1)
+     @memory.update_ranking_from_votes
      render :json =>  Memory.find(params['format']).to_json
   end
 
   def rank_down
-     Memory.find(params['format']).rank_down
      @memory = Memory.find(params['format'])
+     vote = Vote.new
+     vote.add_vote_to_item(@memory, current_user, -1)
+     @memory.update_ranking_from_votes
      render :json =>  Memory.find(params['format']).to_json
   end
 

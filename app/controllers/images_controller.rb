@@ -25,6 +25,22 @@ def create
   	@image = Image.find(params[:id])
   end
 
+  def rank_up
+     @image = Image.find(params['format'])
+     vote = Vote.new
+     vote.add_vote_to_item(@image, current_user, 1)
+     @image.update_ranking_from_votes
+     render :json =>  Image.find(params['format']).to_json
+  end
+
+  def rank_down
+     @image = Image.find(params['format'])
+     vote = Vote.new
+     vote.add_vote_to_item(@image, current_user, -1)
+     @image.update_ranking_from_votes
+     render :json =>  Image.find(params['format']).to_json
+  end
+
     private
 
     # Never trust parameters from the scary internet, only allow the white list through.

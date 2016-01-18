@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :pets
   resources :places
   resources :people
-  resources :images
+  resources :images do
+    collection do
+      get 'rank_up'
+      get 'rank_down'
+    end
+  end
   resources :memories do
     collection do
       get 'rank_up'

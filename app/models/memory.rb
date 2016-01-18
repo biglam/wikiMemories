@@ -6,18 +6,19 @@ class Memory < ActiveRecord::Base
 	has_and_belongs_to_many :places
 	has_and_belongs_to_many :occasions
 	has_and_belongs_to_many :groups
+  has_many :votes
 
   # mount_uploader :memory_image, MemoryImageUploader
 
-  def rank_up
-      self.ranking += 1
-      self.save
-  end
+  # def rank_up
+  #     self.ranking += 1
+  #     self.save
+  # end
 
-  def rank_down
-      self.ranking -= 1
-      self.save
-  end
+  # def rank_down
+  #     self.ranking -= 1
+  #     self.save
+  # end
 
   def reset_flag_count
     Flag.create(memory_id: self.id, user_id: user.id, message: "Flagcount Reset by administrator #{user.username}")
@@ -40,6 +41,11 @@ class Memory < ActiveRecord::Base
     flag.message = params[:flag][:message]
     flag.save
     self.flagcount += 1
+    self.save
+  end
+
+  def update_ranking_from_votes
+    self.ranking = self.votes.map {|vote| vote.value }.reduce {|sum, num| sum+num}
     self.save
   end
 
