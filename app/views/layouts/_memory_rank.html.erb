@@ -1,3 +1,3 @@
          <div class="rankdiv"><%= link_to("up", rank_up_memories_path(memory.id), remote: true) unless memory.user_id == current_user.id %></div>
-         <div class="rankdiv"><span id="rank_<%= memory.id %>"><%= memory.ranking %></span></div>
+         <div class="rankdiv">Raking: <span id="rank_<%= memory.id %>"><%= memory.ranking %></span></div>
          <div class="rankdiv"><%= link_to("down", rank_down_memories_path(memory.id), remote: true) unless memory.user_id == current_user.id %></div>
