@@ -2,5 +2,28 @@
 
 <%= render 'form' %>
 
+Edit Memories
+
+<table id='editmemstable'>
+	<tr>
+		<th>Memory Id</th>
+		<th>Title</th>
+		<th>Story</th>
+		<th>Ranking</th>
+		<th>Remove</th>
+	</tr>
+	<% @person.memories.each do |memory| %>
+	<tr id='mem_<%= memory.id %>'> 
+		<td><%= memory.id %></td>
+		<td><%= memory.title %></td>
+		<td><%= memory.story %></td>
+		<td><%= memory.ranking %></td>
+		<td><%= link_to("Delete", remove_item_memories_path(memory: memory.id, person: @person.id), remote: true, :confirm => "Are you sure?") %></td>
+	</tr>
+	<% end %>
+</table>
+
+Edit Images
+
 <%= link_to 'Show', @person %> |
 <%= link_to 'Back', people_path %>

@@ -27,4 +27,9 @@ class Person < ActiveRecord::Base
 	def get_top_image
 		self.images.order('ranking DESC')[0].image
 	end
+
+	def can_admin(user)
+		list = self.adminstrators.map {|admin| admin.id}
+		list.include?(user.id)
+	end
 end

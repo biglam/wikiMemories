@@ -51,6 +51,11 @@ $(document).ready(function(){
 //   console.log(event.target)
 // });
 
+$('#editmemstable').on('ajax:success', function(data) {
+  var searchstring= (data.target.search);
+  var memoryid = parseInt(searchstring.replace('?memory=', ''));
+  $('#mem_' + memoryid).hide();
+});
 
 });
 

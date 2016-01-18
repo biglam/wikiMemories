@@ -27,14 +27,14 @@
     <%= f.label :dob %><br>
     <%= f.date_field :dob %>
   </div>
-  <input type="checkbox" value="died" id="diedcheckbox"> Died </input>
+  <input type="checkbox" value="died" id="diedcheckbox">Date of death known</input>
   <div class="field" id='diedfield'>
     <%= f.label :died %><br>
     <%= f.date_field :died %>
   </div>
   <div class="field">
     <%= f.label :charity_id %><br>
-    <%= f.number_field :charity_id %>
+    <%= f.collection_select :charity_id, Charity.all.order(:name),:id,:name, :selected => params['charity_id'] %>
   </div>
   <div class="actions">
     <%= f.submit %>

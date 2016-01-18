@@ -114,6 +114,13 @@ class MemoriesController < ApplicationController
      render :json =>  Memory.find(params['format']).to_json
   end
 
+  def remove_item
+    @memory = Memory.find(params[:memory])
+    item = Person.find(params[:person])
+    @memory.remove_item(item)
+    render 'remove_item', layout: false if request.xhr?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_memory

@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <%= image_tag(@person.get_top_image.preview.url) if @person.images.count > 0 %>
+
 <p>
   <strong>Firstname:</strong>
   <%= @person.firstname %>
@@ -38,11 +39,20 @@
 </p>
 <% end %>
 
+
+
 <!-- Start Memory Post -->
 <h2>Memories of <%= @person.fullname %>  </h2>
 <div class="postmemory">
 <h3>Share your memories of <%= @person.fullname %></h3>
 <% if current_user %>
+<!-- Edit -->
+<% if @person.can_admin(current_user) %>
+You are an admistrator. <%= link_to("Edit", edit_person_path(@person)) %>
+<% end %>
+<!-- Story -->
+
+
   Title: <input id="mem_title"></input>
   Story: <textarea id="mem_story"></textarea>
 

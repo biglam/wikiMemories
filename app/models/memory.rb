@@ -34,6 +34,13 @@ class Memory < ActiveRecord::Base
     end
   end
 
+  def remove_item(item)
+    # binding.pry;''
+    self.people.delete(item) if item.class==Person
+    self.images.delete(item) if item.class==Image
+    self.save
+  end
+
   def flag_memory(params)
     flag = Flag.new
     flag.memory_id = params[:flag][:memory_id]
