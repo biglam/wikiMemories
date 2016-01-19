@@ -51,23 +51,24 @@
 You are an admistrator. <%= link_to("Edit", edit_person_path(@person)) %>
 <% end %>
 <!-- Story -->
+<% @memory = Memory.new %>
+<%= render partial: 'memories/form' %>
 
-
-  Title: <input id="mem_title"></input>
+<!--   Title: <input id="mem_title"></input>
   Story: <textarea id="mem_story"></textarea>
 
-  <button id="mem_submit">Go</button>
+  <button id="mem_submit">Go</button> -->
 
   <script>
-   $('#mem_submit').click(function() {
-  var title = $('#mem_title').val();
-  var story = $('#mem_story').val();
-  var userid = <%= current_user.id %>;
-  var reciever_type = "Person";
-  var reciever_id = <%= @person.id %>;
+  //  $('#mem_submit').click(function() {
+  // var title = $('#mem_title').val();
+  // var story = $('#mem_story').val();
+  // var userid = <%= current_user.id %>;
+  // var reciever_type = "Person";
+  // var reciever_id = <%= @person.id %>;
 
-  postMemory(title, story, userid, reciever_type, reciever_id);
- })
+  // postMemory(title, story, userid, reciever_type, reciever_id);
+ // })
 </script>
   <%= render partial: 'images/form' %>
   <div id="linkform"><%= render partial: 'links/form' %></div>  

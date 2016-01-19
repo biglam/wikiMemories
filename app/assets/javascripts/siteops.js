@@ -5,7 +5,6 @@ $(document).ready(function(){
 
   $('#diedcheckbox').click(function() {
      $('#diedfield').toggle();
-    // alert("clicked");
   })
 
   $('#searchform').on('ajax:success', function(evt, data, status, xhr) {
@@ -62,6 +61,10 @@ $('#linkform').on('ajax:success', function(ev, data) {
   $('#linkslist').html(data['div']);
 });
 
+$('.new_memory').on('ajax:success', function(ev, data) {
+  $('#other_peoples_memories').prepend(data['div']);
+});
+
 
 
 
@@ -75,26 +78,26 @@ $('#linkform').on('ajax:success', function(ev, data) {
   // }
 
 
-postMemory = function(title, story, userid, reciever_type, reciever_id) {
-  $.ajax({
-      type: "POST",
-      url: '/memories.json',
-      data: { 
-        memory: { 
-          title: title,
-          story: story,
-          user_id: userid,
-          reciever_type: reciever_type,
-          reciever_id: reciever_id
-        } 
-      },
-      dataType: 'json',
-      success: function(msg) {
-        console.log(msg);
-        $('#other_peoples_memories').prepend(msg['div']);
-      }
-    });
-}
+// postMemory = function(title, story, userid, reciever_type, reciever_id) {
+//   $.ajax({
+//       type: "POST",
+//       url: '/memories.json',
+//       data: { 
+//         memory: { 
+//           title: title,
+//           story: story,
+//           user_id: userid,
+//           reciever_type: reciever_type,
+//           reciever_id: reciever_id
+//         } 
+//       },
+//       dataType: 'json',
+//       success: function(msg) {
+//         console.log(msg);
+//         $('#other_peoples_memories').prepend(msg['div']);
+//       }
+//     });
+// }
 
 
 // postFlag

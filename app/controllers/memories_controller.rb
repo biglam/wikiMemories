@@ -32,12 +32,13 @@ class MemoriesController < ApplicationController
   def create
     @memory = Memory.new(memory_params)
     # binding.pry;''
-    if (params[:memory][:reciever_type] != nil)
-      @memory.add_associate(params[:memory][:reciever_type], params[:memory][:reciever_id])
-    end
+    # if (params[:memory][:reciever_type] != nil)
+    #   @memory.add_associate(params[:memory][:reciever_type], params[:memory][:reciever_id])
+    # end
+    @memory.link_with(Person.find(params[:memory][:person_id])) if params[:memory][:person_id]
     respond_to do |format|
       if @memory.save
-        format.html { redirect_to @memory, notice: 'Memory was successfully created.' }
+        # format.html { redirect_to @memory, notice: 'Memory was successfully created.' }
         format.json { 
           # render :show, status: :created, location: @memory 
           render json: {div: render_to_string(partial: 'layouts/memory.html.erb', object: @memory, locals: {frompage: "personpage"})}
