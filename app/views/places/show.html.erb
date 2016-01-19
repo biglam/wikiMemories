@@ -19,21 +19,14 @@
   <strong>Lng:</strong>
   <%= @place.lng %>
 </p>
-<div id="map">
-  
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
+<div id="map"><script>
+<%= "initMap(#{@place.lat}, #{@place.lng})" if @place.lat != nil %></script>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+
 <script>
-  var map;
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: <%= @place.lat %>, lng: <%= @place.lng %>},
-      zoom: 16
-    });
-  }
-</script>
-<script>
-  initMap();
+  // initMap();
 </script>
 <%= link_to 'Edit', edit_place_path(@place) %> |
 <%= link_to 'Back', places_path %>

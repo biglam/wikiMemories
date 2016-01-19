@@ -62,7 +62,18 @@ $('#linkform').on('ajax:success', function(ev, data) {
   $('#linkslist').html(data['div']);
 });
 
+
+
+
 });
+
+  function initMap(lat, lng) {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: lat, lng: lng},
+      zoom: 16
+    });
+  }
+
 
 postMemory = function(title, story, userid, reciever_type, reciever_id) {
   $.ajax({
