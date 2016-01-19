@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  address: MyText
+  user_id: 1
+  linktype_id: 1
+  flagcount: 1
+
+two:
+  title: MyString
+  address: MyText
+  user_id: 1
+  linktype_id: 1
+  flagcount: 1
