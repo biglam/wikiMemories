@@ -59,6 +59,12 @@ tr.even {
 	background-color: lightgrey;
 }
 
+.thumbnailview {
+	display: inline-block;
+	max-width: 300px;
+	background-color: lightgrey;
+}
+
 
 @media only screen
 and (max-device-width: 767px) {
