@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :memories
+  has_many :links
   has_many :flags
   has_many :images
   has_many :people_adminstrations, foreign_key: "adminstrator_id"

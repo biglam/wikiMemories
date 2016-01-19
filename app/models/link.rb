@@ -3,5 +3,6 @@ class Link < ActiveRecord::Base
   has_many :links_people
   has_many :people, through: :links_people
   belongs_to :linktype
+  belongs_to :user
 end
   

@@ -1,0 +1,22 @@
+<% @link = Link.new %>
+<h1>New Link</h1>
+<%= form_for((@link), remote: true) do |f| %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :address, "URL:" %><br />
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :linktype_id %><br>
+    <%= f.collection_select :linktype_id, Linktype.all.order(:linktype),:id,:linktype, :selected => params['linktype_id'] %>
+  </div>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :person_id, :value => @person.id %>
+
+  <%= f.submit %>
+<% end %>
+

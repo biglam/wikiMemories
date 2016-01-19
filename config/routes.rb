@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'remove_item'
     end
   end
+  resources :links
 
   get '/admin_tools' => 'pages#admin_tools'
   get '/faq' => 'pages#faq'

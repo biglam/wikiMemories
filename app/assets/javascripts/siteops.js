@@ -43,6 +43,7 @@ $(document).ready(function(){
   });
 
 
+
   // image clickers
 
 // $('.thumbnail').click(function(event) {
@@ -55,6 +56,10 @@ $('#editmemstable').on('ajax:success', function(data) {
   var searchstring= (data.target.search);
   var memoryid = parseInt(searchstring.replace('?memory=', ''));
   $('#mem_' + memoryid).hide();
+});
+
+$('#linkform').on('ajax:success', function(ev, data) {
+  $('#linkslist').html(data['div']);
 });
 
 });
