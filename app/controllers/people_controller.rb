@@ -32,7 +32,8 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(person_params)
-
+    # binding.pry;''
+    @person.adminstrators << current_user
     respond_to do |format|
       if @person.save
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
