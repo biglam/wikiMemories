@@ -2,43 +2,7 @@
 
 <div class="row">
 <div class="col-md-8"><p>
-<h1><%= @person.fullname %></h1>
-  <strong>Firstname:</strong>
-  <%= @person.firstname %>
-</p>
-<% if @person.middlenames != nil %>
-<p>
-  <strong>Middlenames:</strong>
-  <%= @person.middlenames %>
-</p>
-<% end %>
-<p>
-  <strong>Lastname:</strong>
-  <%= @person.lastname %>
-</p>
-
-<p>
-  <strong>Dob:</strong>
-  <%= @person.dob %>
-</p>
-<% if @person.died %>
-<p>
-  <strong>Died:</strong>
-  <%= @person.died %>
-</p>
-
-<p>
-  <strong>Age:</strong>
-  <%= @person.age %>
-</p>
-
-<% end %>
-<% if @person.charity %>
-<p>
-  <strong>Charity:</strong>
-  <%= @person.charity.name unless !@person.charity %>
-</p>
-<% end %>
+<%= render 'headerdetails' %>
 </div>
 <div class="col-md-4"><%= image_tag(@person.get_top_image.preview.url) if @person.images.count > 0 %></div>
 </div>
@@ -47,35 +11,36 @@
 
 <!-- Start Memory Post -->
 <h2>Memories of <%= @person.fullname %>  </h2>
+
+<div id='myTabs'>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#post1">Memory</a></li>
+    <li><a data-toggle="tab" href="#post2">Image</a></li>
+    <li><a data-toggle="tab" href="#post3">Link</a></li>
+  </ul>
+</div>
+<div class="tab-content">
+    <div id="post1" class="tab-pane fade in active">
+<% @memory = Memory.new %>
+<%= render partial: 'memories/form' %>
+    </div>
+    <div id="post2" class="tab-pane fade">
+  <%= render partial: 'images/form' %>
+    </div>
+    <div id="post3" class="tab-pane fade">
+  <%= render partial: 'links/form' %>
+    </div>
+  </div>
+
 <div class="postmemory">
-<h3>Share your memories of <%= @person.fullname %></h3>
 <% if current_user %>
 <!-- Edit -->
 <% if @person.can_admin(current_user) %>
 You are an admistrator. <%= link_to("Edit", edit_person_path(@person)) %>
 <% end %>
 <!-- Story -->
-<% @memory = Memory.new %>
-<%= render partial: 'memories/form' %>
 
-<!--   Title: <input id="mem_title"></input>
-  Story: <textarea id="mem_story"></textarea>
-
-  <button id="mem_submit">Go</button> -->
-
-  <script>
-  //  $('#mem_submit').click(function() {
-  // var title = $('#mem_title').val();
-  // var story = $('#mem_story').val();
-  // var userid = <%= current_user.id %>;
-  // var reciever_type = "Person";
-  // var reciever_id = <%= @person.id %>;
-
-  // postMemory(title, story, userid, reciever_type, reciever_id);
- // })
-</script>
-  <%= render partial: 'images/form' %>
-  <div id="linkform"><%= render partial: 'links/form' %></div>  
+  <div id="linkform"></div>  
 <% else %>
   You must be logged in to post
 <% end %>

@@ -66,7 +66,10 @@ $('.new_memory').on('ajax:success', function(ev, data) {
 });
 
 
-
+$('.nav-tabs a').click(function(e){
+    $(this).tab('show');
+    console.log(this)
+})
 
 });
 

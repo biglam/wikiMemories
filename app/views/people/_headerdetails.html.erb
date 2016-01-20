@@ -1,0 +1,37 @@
+<h1><%= @person.fullname %></h1>
+  <strong>Firstname:</strong>
+  <%= @person.firstname %>
+</p>
+<% if @person.middlenames != nil %>
+<p>
+  <strong>Middlenames:</strong>
+  <%= @person.middlenames %>
+</p>
+<% end %>
+<p>
+  <strong>Lastname:</strong>
+  <%= @person.lastname %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @person.dob %>
+</p>
+<% if @person.died %>
+<p>
+  <strong>Died:</strong>
+  <%= @person.died %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @person.age %>
+</p>
+
+<% end %>
+<% if @person.charity %>
+<p>
+  <strong>Charity:</strong>
+  <%= @person.charity.name unless !@person.charity %>
+</p>
+<% end %>
