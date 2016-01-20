@@ -5,9 +5,9 @@ class Image < ActiveRecord::Base
   has_many :people, through: :images_people
   mount_uploader :image, ImageUploader
  
-  validates :title, presence: true
-  validates :url, presence: true
-  validates :user_id, presence: true
+  # validates :title, presence: true
+  # validates :url, presence: true
+  # validates :user_id, presence: true
 
    def rank_up
    	# binding.pry;''

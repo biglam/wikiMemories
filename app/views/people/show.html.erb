@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
-<%= image_tag(@person.get_top_image.preview.url) if @person.images.count > 0 %>
 
-<p>
+<div class="row">
+<div class="col-md-8"><p>
+<h1><%= @person.fullname %></h1>
   <strong>Firstname:</strong>
   <%= @person.firstname %>
 </p>
@@ -38,6 +39,9 @@
   <%= @person.charity.name unless !@person.charity %>
 </p>
 <% end %>
+</div>
+<div class="col-md-4"><%= image_tag(@person.get_top_image.preview.url) if @person.images.count > 0 %></div>
+</div>
 
 
 
