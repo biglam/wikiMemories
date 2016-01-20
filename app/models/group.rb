@@ -6,4 +6,6 @@ class Group < ActiveRecord::Base
 	has_and_belongs_to_many :occasions
 	has_and_belongs_to_many :memories
 
+  validates :name, presence: true
+
 end

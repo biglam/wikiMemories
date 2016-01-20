@@ -12,6 +12,7 @@ class Memory < ActiveRecord::Base
   validates :title, presence: true
   validates :story, length: { minimum: 2 } 
   validates :story, length: { maximum: 1000 }
+  validates :user_id, presence: true
 
   # mount_uploader :memory_image, MemoryImageUploader
 

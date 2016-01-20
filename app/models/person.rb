@@ -10,6 +10,8 @@ class Person < ActiveRecord::Base
 	has_and_belongs_to_many :memories
 	has_and_belongs_to_many :groups
 
+
+	validates :lastname, presence: true
 	def fullname
 		if middlenames == nil 
 			"#{firstname} #{lastname}"

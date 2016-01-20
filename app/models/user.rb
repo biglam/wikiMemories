@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   has_many :people_adminstrations, foreign_key: "adminstrator_id"
   has_many :adminstered_people, through: :people_adminstrations, source: :person
 
+  validates :username, presence: true
+  validates :email, presence: true
+
   def average_ranking
     if memories.count > 0
       rankings = memories.map {|m| m.ranking }
