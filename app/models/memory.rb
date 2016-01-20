@@ -52,6 +52,7 @@ class Memory < ActiveRecord::Base
     # binding.pry;''
     self.people.delete(item) if item.class==Person
     self.images.delete(item) if item.class==Image
+    # self.adminstrator.delete(item) if item.class==User
     self.save
   end
 

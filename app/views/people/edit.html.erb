@@ -12,6 +12,21 @@ Edit Memories
 		<th>Ranking</th>
 		<th>Remove</th>
 	</tr>
+
+	Administrators:
+	<table class="table">
+		<tr>
+			<th>Username</th>
+			<th>Delete (if owner)</th>
+		</tr>
+		<% @person.adminstrators.each do |admin| %>
+			<tr>
+				<td>admin.username</td>
+				<td><%#= link_to("Delete", remove_item_memories_path(memory: memory.id, admin: admin.id), remote: true) %></td>
+			</tr>
+		<% end %>
+	</table>
+
 	<% @person.memories.each do |memory| %>
 	<tr id='mem_<%= memory.id %>'> 
 		<td><%= memory.id %></td>

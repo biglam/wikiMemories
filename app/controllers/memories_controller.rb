@@ -143,6 +143,8 @@ class MemoriesController < ApplicationController
   def remove_item
     @memory = Memory.find(params[:memory])
     item = Person.find(params[:person])
+    # item = User.find(params[:admin]) if params[:admin]
+    binding.pry;''
     @memory.remove_item(item)
     render 'remove_item', layout: false if request.xhr?
   end
