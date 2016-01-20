@@ -108,6 +108,31 @@ class MemoriesController < ApplicationController
     end
   end
 
+  def list_orphaned
+    if (current_user != nil)  && (current_user.role == "admin")
+    @memories = []
+    Memory.all.each do |memory|
+      @memories << memory if memory.count_items == 0
+    end
+  else
+      @memories = {}
+      raise "No memories are orphaned, or you have no right to view this page!"
+    end
+
+  end
+
+   def delete_all_orphans
+    if (current_user != nil)  && (current_user.role == "admin")
+    Memory.all.each do |memory|
+      memory.delete if memory.count_items == 0
+    end
+  else
+      @memories = {}
+      raise "No memories are orphaned, or you have no right to view this page!"
+    end
+    redirect_to list_orphaned_memories_path
+  end
+
   def reset_flag_count
      Memory.find(params['format']).reset_flag_count
      # binding.pry;''

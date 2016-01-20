@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       get 'rank_down'
       get 'flag_memory'
       get 'list_flagged'
+      get 'list_orphaned'
+      get 'delete_all_orphans'
       get 'reset_flag_count'
       get 'remove_item'
     end

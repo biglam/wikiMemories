@@ -70,4 +70,19 @@ class Memory < ActiveRecord::Base
     self.save
   end
 
+  def count_items
+    # associations = Memory.reflect_on_all_associations.map{ |assoc| [assoc.macro, assoc.name] }
+    # list = associations.map { |ass| ass[1].to_s }
+    # list.shift
+    # list.map { |item| Memory.first.send(item).count }.sum
+    i = 0
+    i += self.people.count
+    i += self.pets.count
+    i += self.places.count
+    i += self.occasions.count
+    i += self.groups.count
+    i += self.flags.count
+    i
+  end
+
 end
