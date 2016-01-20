@@ -1,4 +1,5 @@
 class Memory < ActiveRecord::Base
+
 	belongs_to :user
   has_many :flags
 	has_and_belongs_to_many :people
@@ -7,6 +8,10 @@ class Memory < ActiveRecord::Base
 	has_and_belongs_to_many :occasions
 	has_and_belongs_to_many :groups
   has_many :votes
+
+  validates :title, presence: true
+  validates :story, length: { minimum: 2 } 
+  validates :story, length: { maximum: 1000 }
 
   # mount_uploader :memory_image, MemoryImageUploader
 
@@ -19,6 +24,10 @@ class Memory < ActiveRecord::Base
   #     self.ranking -= 1
   #     self.save
   # end
+
+  def test
+    puts "ok"
+  end
 
   def reset_flag_count
     Flag.create(memory_id: self.id, user_id: user.id, message: "Flagcount Reset by administrator #{user.username}")
