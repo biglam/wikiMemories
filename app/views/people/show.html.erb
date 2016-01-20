@@ -6,7 +6,7 @@
 </div>
 <div class="col-md-4"><%= image_tag(@person.get_top_image.preview.url) if @person.images.count > 0 %></div>
 </div>
-
+<%= render_shareable %>
 
 
 <!-- Start Memory Post -->
