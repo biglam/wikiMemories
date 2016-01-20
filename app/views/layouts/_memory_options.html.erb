@@ -1,4 +1,4 @@
             <% if memory.user == current_user %>
                 <%= link_to 'Edit', edit_memory_path(memory) %>
-                <%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+                <%= link_to 'Delete', memory, method: :delete, data: { confirm: 'Are you sure?' } %><br>
             <% end %>
