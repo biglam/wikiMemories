@@ -1,0 +1,7 @@
+<% if @memories.count > 0 %>
+  <h2>Orphaned Memories</h2>
+  <%# @user.memories.each do |memory| %>
+   	<%= render partial: 'layouts/memory', collection: @memories, locals: {frompage: "orphanpage"} %>
+    
+  <%# end %>
+<% end %>

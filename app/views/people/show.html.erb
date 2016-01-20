@@ -11,7 +11,7 @@
 
 <!-- Start Memory Post -->
 <h2>Memories of <%= @person.fullname %>  </h2>
-
+<% if current_user %>
 <div id='myTabs'>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#post1">Memory</a></li>
@@ -31,7 +31,7 @@
   <%= render partial: 'links/form' %>
     </div>
   </div>
-
+<% end %>
 <div class="postmemory">
 <% if current_user %>
 <!-- Edit -->

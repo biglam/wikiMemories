@@ -17,7 +17,7 @@
 
   <tbody>
     <% @people.each_with_index do |person, i| %>
-      <tr class="<%= "even" if i%2==0 %>">
+      <tr class="<%#= "even" if i%2==0 %>">
         <td><%= person.lastname %></td>
         <td class='onlyscreen'><%= person.firstname %></td>
         <td class='onlymob'><%= person.fullname %></td>
