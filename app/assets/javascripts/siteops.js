@@ -57,8 +57,9 @@ $('#editmemstable').on('ajax:success', function(data) {
   $('#mem_' + memoryid).hide();
 });
 
-$('#linkform').on('ajax:success', function(ev, data) {
-  $('#linkslist').html(data['div']);
+$('#new_link').on('ajax:success', function(ev, data) {
+  console.log(data);
+  $('#linkslist').prepend(data['div']);
 });
 
 $('.new_memory').on('ajax:success', function(ev, data) {
