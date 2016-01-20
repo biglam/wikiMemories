@@ -1,24 +1,32 @@
          <div class="flag_<%= memory.id %> inithid"> 
-         <% if current_user %>
-         Please explain briefly why you have flagged this post: <textarea id="flag_<%= memory.id %>_message"></textarea>
-         <button id="flag_<%= memory.id %>_submit">Go</button>
+         
+         </div>
 
-         <script>
 
-         $('#flink_<%= memory.id %>').click(function() {
-            $('.inithid').hide();
-            $('.flag_<%= memory.id %>').show();
-         })
-            $('#flag_<%= memory.id %>_submit').click(function() {
-              var message = $('#flag_<%= memory.id %>_message').val();
-              var userid = <%= current_user.id %>;;
-              var memory_id = <%= memory.id %>;
 
-              postFlag(message, userid, memory_id);
-            })
-         </script>
+         <div class="collapse" id="collapseMem<%= memory.id %>">
+           <div class="well">
+             <% if current_user %>
+             Please explain briefly why you have flagged this post: <textarea id="flag_<%= memory.id %>_message"></textarea>
+             <button id="flag_<%= memory.id %>_submit">Go</button>
 
-         <% else %>
-         You must be logged in to flag
-         <% end %>
+             <script>
+
+             $('#flink_<%= memory.id %>').click(function() {
+                $('.inithid').hide();
+                $('.flag_<%= memory.id %>').show();
+             })
+                $('#flag_<%= memory.id %>_submit').click(function() {
+                  var message = $('#flag_<%= memory.id %>_message').val();
+                  var userid = <%= current_user.id %>;;
+                  var memory_id = <%= memory.id %>;
+
+                  postFlag(message, userid, memory_id);
+                })
+             </script>
+
+             <% else %>
+             You must be logged in to flag
+             <% end %>
+           </div>
          </div>

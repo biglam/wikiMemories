@@ -116,7 +116,8 @@ postFlag = function(message, userid, memory_id) {
       dataType: 'json',
       success: function(msg) {
         console.log(msg);
-        $('.flag_' + memory_id).html('<strong>Your flag has been noted and will be reviewed. Thanks for your feedback.</strong>')
+        $('#collapseMem' + memory_id).html('<strong>Your flag has been noted and will be reviewed. Thanks for your feedback.</strong>');
+        // $('.flag_' + memory_id).html('<strong>Your flag has been noted and will be reviewed. Thanks for your feedback.</strong>')
       }
     });
 }
