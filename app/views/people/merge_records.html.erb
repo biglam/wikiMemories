@@ -1,0 +1,47 @@
+<h1>Merde</h1>
+
+<table class="table table-hover">
+
+  <tr>
+    <th></th>
+    <th>Person 1</th>
+    <th>Merged Person</th>
+    <th>Person 2</th>
+  </tr>
+  <tr>
+    <td>Firstname:</td>
+    <td><%= @person1.firstname %></td>
+    <td></td>
+    <td><%= @person2.firstname %></td>
+  </tr>
+  <tr>
+    <td>Middlenames:</td>
+    <td><%= @person1.middlenames %></td>
+    <td></td>
+    <td><%= @person2.middlenames %></td>
+  </tr>
+  <tr>
+    <td>Lastnames:</td>
+    <td><%= @person1.lastname %></td>
+    <td></td>
+    <td><%= @person2.lastname %></td>
+  </tr>
+  <tr>
+    <td>DOB:</td>
+    <td><%= @person1.dob %></td>
+    <td></td>
+    <td><%= @person2.dob %></td>
+  </tr>
+  <tr>
+    <td>Died:</td>
+    <td><%= @person1.died %></td>
+    <td></td>
+    <td><%= @person2.died %></td>
+  </tr>
+  <tr>
+    <td>Charity:</td>
+    <td><%= @person1.charity.name if @person1.charity %></td>
+    <td></td>
+    <td><%= @person2.charity.name if @person2.charity %></td>
+  </tr>
+</table>

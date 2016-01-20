@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   resources :charities
   resources :pets
   resources :places
-  resources :people
+  resources :people do
+    collection do
+      get 'merge_records'
+      get 'select_to_merge'
+    end
+  end
   resources :images do
     collection do
       get 'rank_up'

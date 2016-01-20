@@ -69,6 +69,16 @@ class PeopleController < ApplicationController
     end
   end
 
+  def merge_records
+    @person1 = Person.find(params[:person][:p1_id])
+    @person2 = Person.find(params[:person][:p2_id])
+    @merged = Person.new
+  end
+
+  def select_to_merge
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
