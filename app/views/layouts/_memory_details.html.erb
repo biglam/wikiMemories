@@ -1,3 +1,4 @@
-            <strong><%= memory.title %></strong><br>
-            <p><%= memory.story %></p>
+<strong><%= memory.title %></strong><br>
+<p><%= memory.story %></p>
+<p><strong>Posted by </strong> <%= link_to(memory.user.username, user_path(memory.user.id)) %></p>
 

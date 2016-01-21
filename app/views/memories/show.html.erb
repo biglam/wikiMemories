@@ -1,25 +1,38 @@
 <p id="notice"><%= notice %></p>
+<h2>Memory</h2>
 
-<p>
-  <strong>Title:</strong>
-  <%= @memory.title %>
-</p>
+<%= render partial: 'layouts/memory', object: @memory, locals: {frompage: "memorypage"} %>
+<h2>Memory in</h2>
 
-<p>
-  <strong>Story:</strong>
-  <%= @memory.story %>
-</p>
-
-<p>
-  <strong>Ranking:</strong>
-  <%= @memory.ranking %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @memory.user.username %>
-</p>
-
-
-<%= link_to 'Edit', edit_memory_path(@memory) %> |
-<%= link_to 'Back', memories_path %>
+<ul>
+<li>People</li>
+<% if @memory.people.count > 0 %>
+  <ul><% @memory.people.each do |person| %>
+   <li><%= link_to person.fullname, person_path(person) %></li> 
+   <% end %></ul>
+<% end %>
+<li>Places</li>
+<% if @memory.places.count > 0 %>
+  <ul><% @memory.places.each do |place| %>
+   <li><%= link_to place.name, place_path(place) %></li> 
+   <% end %></ul>
+<% end %>
+<li>Pets</li>
+<% if @memory.pets.count > 0 %>
+  <ul><% @memory.pets.each do |pet| %>
+   <li><%= link_to pet.name, pet_path(pet) %></li> 
+   <% end %></ul>
+<% end %>
+<li>Occasions</li>
+<% if @memory.occasions.count > 0 %>
+  <ul><% @memory.occasions.each do |occasion| %>
+   <li><%= link_to occasion.name, occasion_path(occasion) %></li> 
+   <% end %></ul>
+<% end %>
+<li>Group</li>
+<% if @memory.groups.count > 0 %>
+  <ul><% @memory.groups.each do |group| %>
+   <li><%= link_to group.name, group_path(group) %></li> 
+   <% end %></ul>
+<% end %>
+</ul>
