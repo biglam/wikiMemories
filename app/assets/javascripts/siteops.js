@@ -41,7 +41,16 @@ $(document).ready(function(){
     console.log('failed: ' + error);
   });
 
-
+  $('#adminlist').on('ajax:success', function(evt, data, status, xhr) {
+     // console.log(evt.target.id);
+     // console.log(data);
+     var user_id = parseInt(data);
+     $('#adminrow_' + user_id).hide();
+   }).
+   on('ajax:error', function(xhr, status, error) {
+     console.log(error);
+     console.log(status);
+   });
 
   // image clickers
 

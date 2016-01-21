@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     collection do
       get 'merge_records'
       get 'select_to_merge'
+      get 'remove_administrator'
     end
   end
   resources :images do

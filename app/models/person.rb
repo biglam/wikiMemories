@@ -37,4 +37,11 @@ class Person < ActiveRecord::Base
 		list = self.adminstrators.map {|admin| admin.id}
 		list.include?(user.id)
 	end
+
+	def remove_item(item)
+		# binding.pry;''
+	  self.adminstrators.delete(item) if item.class == User
+	  self.save
+	end
+
 end

@@ -79,6 +79,15 @@ class PeopleController < ApplicationController
     
   end
 
+  def remove_administrator
+   
+    # person = Person.find(params[:id])
+    person = Person.find(params[:person])
+    admin = User.find(params[:admin])
+    person.remove_item(admin)
+    render admin, layout: false if request.xhr?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person

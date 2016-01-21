@@ -14,15 +14,15 @@ Edit Memories
 	</tr>
 
 	Administrators:
-	<table class="table">
+	<table class="table" id='adminlist'>
 		<tr>
 			<th>Username</th>
 			<th>Delete (if owner)</th>
-		</tr>
+		</tr> 
 		<% @person.adminstrators.each do |admin| %>
-			<tr>
-				<td>admin.username</td>
-				<td><%#= link_to("Delete", remove_item_memories_path(memory: memory.id, admin: admin.id), remote: true) %></td>
+			<tr id='adminrow_<%= admin.id %>'>
+				<td><%= admin.username %></td>
+				<td><%= link_to("Delete", remove_administrator_people_path(person: @person.id, admin: admin.id), remote: true) %></td>
 			</tr>
 		<% end %>
 	</table>
