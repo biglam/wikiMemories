@@ -1,12 +1,36 @@
 <div class="frontpagesearch">
+<!-- people -->
   <h2>Search...</h2>
   <div id='peoplesearchdiv'>
   <%= form_tag people_path, :method => :get, :id => 'peoplesearchform', :remote => true do %>
-    <%= text_field_tag :search, params[:search], :id => 'peopleinput' %>
+    <%= text_field_tag :search, params[:search], :id => 'peopleinput', :placeholder => "Search People" %>
     <%= submit_tag 'Go' %>
     <% end %>
     <div id='peopleresultsdiv'></div>
-    <%= link_to "ha", new_person_path(:name => "bob smith") %>
+  </div> 
+
+  <div id='placessearchdiv'>
+  <%= form_tag places_path, :method => :get, :id => 'placessearchform', :remote => true do %>
+    <%= text_field_tag :search, params[:search], :id => 'placesinput', :placeholder => "Search Places" %>
+    <%= submit_tag 'Go' %>
+    <% end %>
+    <div id='placesresultsdiv'></div>
+  </div> 
+
+  <div id='petssearchdiv'>
+  <%= form_tag pets_path, :method => :get, :id => 'petssearchform', :remote => true do %>
+    <%= text_field_tag :search, params[:search], :id => 'petsinput', :placeholder => "Search Pets" %>
+    <%= submit_tag 'Go' %>
+    <% end %>
+    <div id='petsresultsdiv'></div>
+  </div> 
+
+  <div id='occasionssearchdiv'>
+  <%= form_tag occasions_path, :method => :get, :id => 'occasionssearchform', :remote => true do %>
+    <%= text_field_tag :search, params[:search], :id => 'occasionsinput', :placeholder => "Search Occasions" %>
+    <%= submit_tag 'Go' %>
+    <% end %>
+    <div id='occasionsresultsdiv'></div>
   </div> 
 
 </div>

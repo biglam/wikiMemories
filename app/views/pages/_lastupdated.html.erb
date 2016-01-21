@@ -1,0 +1,20 @@
+Recently Posted
+
+
+<table class="table table-condensed">
+<% @lastfive.each do |memory| %>
+  <tr>
+    <th>Title</th>
+    <th><%= memory.title %></th>
+  </tr>
+  <tr>
+    <td>Rank: <%= memory.ranking %></td>
+    <td><%= memory.story %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Written by <%= link_to(memory.user.username, user_path(memory.user.id)) %></td>
+  </tr>
+<% end %>
+
+</table>

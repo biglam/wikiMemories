@@ -7,18 +7,7 @@ $(document).ready(function(){
      $('#diedfield').toggle();
   })
 
-  $('#searchform').on('ajax:success', function(evt, data, status, xhr) {
-    console.log('success: ' + data);
-    $('#side_memories').html(data);
 
-  }).
-  on('ajax:error', function(xhr, status, error) {
-    console.log('failed: ' + error);
-  });
-
-  $('#search-field').on('keyup', function() {
-    $('#searchform').submit();
-  });
 
  $('.rankdiv').on('ajax:success', function(evt, data, status, xhr) {
     console.log(data);

@@ -93,4 +93,10 @@ class Memory < ActiveRecord::Base
     i
   end
 
+  # def memory_of
+    
+  # end
+
+  # end
+
 end
