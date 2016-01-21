@@ -29,4 +29,19 @@ $(function() {
     console.log('failed: ' + error);
   });
 
+
+  //new adminsitrator search
+  $('#adminusername').keyup(function() {
+    value = $('#adminusername').val();
+    $('#usersearchform').submit();
+  })
+  $('#adminrow_last').on('ajax:success', function(evt, data, status, xhr) {
+    console.log('success: ' + data);
+    // $('#side_memories').html(data);
+    console.log(data)
+  }).
+  on('ajax:error', function(xhr, status, error) {
+    console.log('failed: ' + error);
+  });
+
 });
