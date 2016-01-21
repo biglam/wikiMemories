@@ -23,6 +23,7 @@ Note: personal details can only be edited by site owner. If you feel something s
 			<th>Username</th>
 			<th>Options</th>
 		</tr> 
+		<tbody id="adminsuggestions">
 		<% @person.adminstrators.each do |admin| %>
 			<tr id='adminrow_<%= admin.id %>'>
 				<td><%= admin.username %></td>
@@ -31,12 +32,15 @@ Note: personal details can only be edited by site owner. If you feel something s
 		<% end %>
 			<tr id='adminrow_last'>
 				<td>Select a new administrator
- 				<%= form_tag user_path, :method => :get, :id => 'usersearchform', :remote => true do %>
-				<%= text_field_tag :username, params[:search], :id => 'adminusername', :placeholder => "Enter Username" %>
+ 				<%#= form_tag user_path, :method => :get, :id => 'usersearchform', :remote => true do %>
+ 				<%#= form_tag search_users_path, method => :get, :id => 'usersearchform', :remote => true do %>
+ 				<%= form_tag("/search/user", method: "get", :id => 'usersearchform', :remote => true) do %>
+				<%= text_field_tag :q, params[:search], :id => 'adminusername', :placeholder => "Enter Username" %>
 				<% end %>
 				</td>
 				<td>Add</td>
 			</tr>
+</tbody>
 	</table>
 
 

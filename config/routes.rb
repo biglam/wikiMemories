@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   end
   resources :links
 
+  get 'search/:action' => 'search#:action'
+
   get '/admin_tools' => 'pages#admin_tools'
   get '/faq' => 'pages#faq'
   get '/welcome' => 'pages#welcome'
@@ -41,7 +43,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#welcome'
   devise_for :users, :controllers => { registrations: 'registrations' }
-resources :users, :only => [:show]
+  resources :users, :only => [:show]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

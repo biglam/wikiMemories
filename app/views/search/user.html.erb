@@ -1,0 +1,6 @@
+<% if @results.count > 0 %>
+	<% @results.each do |user| %>
+	<%= user.id %><%= user.username %>
+	<br>
+	<% end %>
+<% end %>

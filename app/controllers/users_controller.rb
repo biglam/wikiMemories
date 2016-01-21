@@ -14,10 +14,10 @@ class UsersController < ApplicationController
  #    render @people_search_result, layout: false if request.xhr?
 	# end
 
-	def search
-		@search_result = User.where("username like ?", "%#{params[:search]}%").limit(5) if params[:search] > ""
-		render @search_result, layout: false if request.xhr?
-	end
+	# def search
+	# 	@search_result = User.where("username like ?", "%#{params[:search]}%").limit(5) if params[:search] > ""
+	# 	render @search_result, layout: false if request.xhr?
+	# end
 
 	def show
 		@user = User.find(params[:id])
