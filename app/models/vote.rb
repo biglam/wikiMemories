@@ -1,5 +1,7 @@
 class Vote < ActiveRecord::Base
-  validates_inclusion_of :value, in: -2..2
+  # validates_inclusion_of :value, in: -2..2
+  belongs_to :memory
+  belongs_to :image
 
   def vote_is_eligable(item, user)
     if item.votes.where("created_at >= ?", Time.zone.now-3600).count == 0

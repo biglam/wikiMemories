@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-
+  load_and_authorize_resource
 	def index
 		@images = Image.all
 	end

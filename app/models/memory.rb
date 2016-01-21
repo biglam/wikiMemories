@@ -68,6 +68,13 @@ class Memory < ActiveRecord::Base
 
   def update_ranking_from_votes
     self.ranking = self.votes.map {|vote| vote.value }.reduce {|sum, num| sum+num}
+
+    # i = 0
+    # self.votes.each do |vote|
+    #   i += vote.value
+    # end
+    # self.ranking = i
+    # binding.pry;''
     self.save
   end
 

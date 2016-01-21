@@ -1,5 +1,6 @@
 class CharitiesController < ApplicationController
   before_action :set_charity, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /charities
   # GET /charities.json
