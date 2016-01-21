@@ -7,6 +7,8 @@ class PeopleController < ApplicationController
   def index
     if params[:search]
       @people_search_result = Person.where("lastname like ?", "%#{params[:search]}%").limit(5) if params[:search] > ""
+      # @people_search_result = Person.where('lastname LIKE :search OR firstname LIKE :search OR middlenames LIKE :search', search: "params[:search]");
+
     else
       @people = Person.all
     end
@@ -22,7 +24,15 @@ class PeopleController < ApplicationController
 
   # GET /people/new
   def new
-    @person = Person.new
+    if params[:name]
+      name = params[:name].split
+      firstname = name.shift
+      lastname = name.join(' ')
+      @person = Person.new(firstname: firstname, lastname: lastname)
+    else
+      @person = Person.new
+    end
+    # binding.pry;''
   end
 
   # GET /people/1/edit

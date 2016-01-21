@@ -1,0 +1,12 @@
+<div class="frontpagesearch">
+  <h2>Search...</h2>
+  <div id='peoplesearchdiv'>
+  <%= form_tag people_path, :method => :get, :id => 'peoplesearchform', :remote => true do %>
+    <%= text_field_tag :search, params[:search], :id => 'peopleinput' %>
+    <%= submit_tag 'Go' %>
+    <% end %>
+    <div id='peopleresultsdiv'></div>
+    <%= link_to "ha", new_person_path(:name => "bob smith") %>
+  </div> 
+
+</div>
