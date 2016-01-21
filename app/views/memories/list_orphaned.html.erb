@@ -1,5 +1,5 @@
 <% if @memories.count > 0 %>
-  <h2>Orphaned Memories</h2>
+  <h2>Orphaned Memories <%= @memories.count %></h2>
   <%= button_to delete_all_orphans_memories_path, class: "btn btn-danger", id: 'delete_all_orphans', method: :get,  remote: true do %>
   	<i class="glyphicon glyphicon-remove"></i>Delete all
   <% end %>

@@ -1,4 +1,8 @@
-            <% if memory.user == current_user %>
-                <%= link_to 'Edit', edit_memory_path(memory) %>
-                <%= link_to 'Delete', memory, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-            <% end %>
+<%= link_to 'More', memory_path(memory.id), class: "btn btn-primary" %>
+         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseMem<%= memory.id %>" aria-expanded="false" aria-controls="collapseMem<%= memory.id %>">
+  Flag
+</button>
+<% if memory.user == current_user %>
+  <%= link_to 'Edit', edit_memory_path(memory), class: "btn btn-primary" %>
+  <%= link_to 'Delete', memory, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %><br>
+<% end %>
