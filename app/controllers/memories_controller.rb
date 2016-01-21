@@ -82,6 +82,7 @@ class MemoriesController < ApplicationController
      vote = Vote.new
      vote.add_vote_to_item(@memory, current_user, 1)
      @memory.update_ranking_from_votes
+     # binding.pry;
      render :json =>  Memory.find(params['format']).to_json
   end
 
