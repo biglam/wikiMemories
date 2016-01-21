@@ -2,22 +2,17 @@
 
 <%= render 'form' %>
 
-Edit Memories
 
-<table id='editmemstable'>
-	<tr>
-		<th>Memory Id</th>
-		<th>Title</th>
-		<th>Story</th>
-		<th>Ranking</th>
-		<th>Remove</th>
-	</tr>
+
+
+
+	<br>
 
 	Administrators:
 	<table class="table" id='adminlist'>
 		<tr>
 			<th>Username</th>
-			<th>Delete (if owner)</th>
+			<th><%= "Delete"%></th>
 		</tr> 
 		<% @person.adminstrators.each do |admin| %>
 			<tr id='adminrow_<%= admin.id %>'>
@@ -27,6 +22,16 @@ Edit Memories
 		<% end %>
 	</table>
 
+
+
+	<table id='editmemstable' class="table table-striped">
+		<tr>
+			<th>Memory Id</th>
+			<th>Title</th>
+			<th>Story</th>
+			<th>Ranking</th>
+			<th>Remove</th>
+		</tr>
 	<% @person.memories.each do |memory| %>
 	<tr id='mem_<%= memory.id %>'> 
 		<td><%= memory.id %></td>
