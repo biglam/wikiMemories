@@ -45,7 +45,7 @@ class MemoriesController < ApplicationController
         }
         # format.json {render 'layouts/memory'}
       else
-        format.html {render :json =>  @memory.errors.to_json, status: :unprocessable_entity}
+        format.html {render :json =>  @memory.errors.to_a, status: :unprocessable_entity}
         # format.html { render :new }
         # format.json { render json: @memory.errors, status: :unprocessable_entity }
       end

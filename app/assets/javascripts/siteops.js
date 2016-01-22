@@ -65,7 +65,7 @@ $('.new_memory').on('ajax:success', function(ev, data) {
 });
 
 $('.new_memory').on('ajax:error', function(ev, data) {
-  console.log(ev);
+  console.log(data);
   // $.each(data, function(i, result) {
       // console.log(result);
       // htmlstring += "<div id='adminusername_" + result.id + "'>" + result.username + "</div>";

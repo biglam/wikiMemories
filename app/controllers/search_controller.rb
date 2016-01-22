@@ -3,25 +3,33 @@ class SearchController < ApplicationController
 	def user
       @results = User.where("lower(username) like ?", "%#{params[:q]}%".downcase).limit(5)
       render :json => @results
-  	end
+  end
 
-  # def bars
-  #   search do
-  #     Bar.where :title => params[:q]
-  #   end
-  # end
+  def person
+    # @results = Person.where("lower(lastname) like ? OR lower(firstname) like ?", "%#{params[:q]}%", "%#{params[:q]}%" )
+    # render :json => @results
+    search do
+      Person.where("lower(lastname) like ? OR lower(firstname) like ?", "%#{params[:q]}%", "%#{params[:q]}%" )
+    end
+  end
+
+  def bars
+    search do
+      Memory.where :title => params[:q]
+    end
+  end
 
   private
 
   def search(&block)    
     if params[:q]
     	# binding.pry;''
-      # @results = yield if block_given?
-      # render @results, layout: false if request.xhr?
-      # respond_to do |format|
-      #   format.html # resources.html.erb
-      #   format.json { render json: @results }
-      # end
+      @results = yield if block_given?
+      render @results, layout: false if request.xhr?
+      respond_to do |format|
+        format.html {render @results }#search.html.erb}
+        format.json { render json: @results }
+      end
     else
 
       # redirect_to root_url, :notice => 'No search query was specified.'
