@@ -4,7 +4,7 @@
 <div id="imgranking">          
     <div class="rankdiv">
     <% if can? :update, image  %>
-    	<%= link_to rank_up_images_path(image.id),  class: 'btn btn-success', remote: true do %>
+    	<%= link_to rank_up_image_path(image),  class: 'btn btn-success', remote: true, method: :post do %>
   		<i class="glyphicon glyphicon-plus"></i>
   		<% end %>
   	<% end %>
@@ -13,7 +13,7 @@
 
 <div class="rankdiv">
 	<% if can? :update, image  %>
-	<%= link_to rank_down_images_path(image.id), class: 'btn btn-warning', remote: true do %>
+	<%= link_to rank_down_image_path(image), class: 'btn btn-warning', remote: true, method: :post do %>
 	<i class="glyphicon glyphicon-minus"></i>
 	<% end %>
 	<% end %>

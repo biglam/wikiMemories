@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     end
   end
   resources :images do
-    collection do
-      get 'rank_up'
-      get 'rank_down'
+    member do
+      post 'rank_up'
+      post 'rank_down'
     end
   end
   resources :memories do

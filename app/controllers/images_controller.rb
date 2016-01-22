@@ -30,20 +30,38 @@ def create
   end
 
   def rank_up
-     @image = Image.find(params['format'])
-     vote = Vote.new
-     vote.add_vote_to_item(@image, current_user, 1)
-     @image.update_ranking_from_votes
-     render :json =>  Image.find(params['format']).to_json
+     @image = Image.find(params[:id])
+     vote = Vote.new_for_item(@image, current_user, 1)
+     if vote.save
+        @image.update_ranking_from_votes
+        render :json =>  @image.to_json
+      else
+        render :json => vote.errors.to_json, status: :unprocessable_entity
+      end
   end
 
   def rank_down
-     @image = Image.find(params['format'])
-     vote = Vote.new
-     vote.add_vote_to_item(@image, current_user, -1)
-     @image.update_ranking_from_votes
-     render :json =>  Image.find(params['format']).to_json
+     @image = Image.find(params[:id])
+     vote = Vote.new_for_item(@image, current_user, -1)
+     if vote.save
+        @image.update_ranking_from_votes
+        render :json =>  @image.to_json
+      else
+        render :json => vote.errors.to_json, status: :unprocessable_entity
+      end
   end
+
+   #   def rank_down
+   #   @memory = Memory.find(params[:id])
+   #   vote = Vote.new_for_item(@memory, current_user, -1)
+   #   # vote.add_vote_to_item(@memory, current_user, -1)
+   #   if vote.save
+   #     @memory.update_ranking_from_votes
+   #     render :json => @memory.to_json
+   #   else
+   #      render :json => vote.errors.to_json, status: :unprocessable_entity
+   #   end
+   # end
 
     private
 
