@@ -39,7 +39,7 @@ $(function() {
     $.each(data, function(i, result) {
       console.log(result);
       var htmlstring = "<tr><td>"+result.username+"</td><td>Add</td></tr>";
-      $('#adminsuggestions').append(htmlstring);
+      $('#adminsuggestions').html(htmlstring);
     });
   }).
   on('ajax:error', function(xhr, status, error) {

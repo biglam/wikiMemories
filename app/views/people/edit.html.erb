@@ -23,13 +23,14 @@ Note: personal details can only be edited by site owner. If you feel something s
 			<th>Username</th>
 			<th>Options</th>
 		</tr> 
-		<tbody id="adminsuggestions">
+		<tbody>
 		<% @person.adminstrators.each do |admin| %>
 			<tr id='adminrow_<%= admin.id %>'>
 				<td><%= admin.username %></td>
 				<td><%= link_to("Delete", remove_administrator_people_path(person: @person.id, admin: admin.id), remote: true) %></td>
 			</tr>
 		<% end %>
+		
 			<tr id='adminrow_last'>
 				<td>Select a new administrator
  				<%#= form_tag user_path, :method => :get, :id => 'usersearchform', :remote => true do %>
@@ -39,7 +40,7 @@ Note: personal details can only be edited by site owner. If you feel something s
 				<% end %>
 				</td>
 				<td>Add</td>
-			</tr>
+			</tr></tbody><tbody  id="adminsuggestions">
 </tbody>
 	</table>
 
