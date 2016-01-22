@@ -117,10 +117,27 @@ postFlag = function(message, userid, memory_id) {
       },
       dataType: 'json',
       success: function(msg) {
-        console.log(msg);
+        // console.log(msg);
         $('#collapseMem' + memory_id).html('<strong>Your flag has been noted and will be reviewed. Thanks for your feedback.</strong>');
-        // $('.flag_' + memory_id).html('<strong>Your flag has been noted and will be reviewed. Thanks for your feedback.</strong>')
+        $('.flag_' + memory_id).html('<strong>Your flag has been noted and will be reviewed. Thanks for your feedback.</strong>')
       }
     });
 }
 
+addAdmin = function(itemid, adminid) {
+  $.ajax({
+        type: "PATCH",
+        url: '/people/'+ itemid + '.json',
+        data: { 
+          person: { 
+            adminstrator: adminid,
+          } 
+        },
+        dataType: 'json',
+        success: function(msg, data) {
+          console.log(msg);
+          console.log(data);
+          alert("New admin added");
+        }
+      });
+}

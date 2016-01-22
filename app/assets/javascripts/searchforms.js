@@ -36,14 +36,19 @@ $(function() {
     $('#usersearchform').submit();
   })
   $('#adminrow_last').on('ajax:success', function(evt, data, status, xhr) {
+    var htmlstring = "";
     $.each(data, function(i, result) {
       console.log(result);
-      var htmlstring = "<tr><td>"+result.username+"</td><td>Add</td></tr>";
-      $('#adminsuggestions').html(htmlstring);
+      // htmlstring += "<div id='adminusername_" + result.id + "'>" + result.username + "</div>";
+      htmlstring += "<tr><td>"+result.username+"</td><td><button class='btn btn-primary addadmin' id='"+ result.id +"add_admin'>Add</button></td></tr>";
     });
+    $('#adminsuggestions').html(htmlstring);
+    $('.addadmin').click(function(e) {
+      // console.log(parseInt(e.target.id));
+      addAdmin(itemid, parseInt(e.target.id));
+    })
   }).
   on('ajax:error', function(xhr, status, error) {
     console.log('failed: ' + error);
   });
-
 });

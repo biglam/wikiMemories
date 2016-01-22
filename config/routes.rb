@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get 'merge_records'
       get 'select_to_merge'
       get 'remove_administrator'
+      # get 'peopleadmin'
     end
   end
   resources :images do

@@ -12,7 +12,7 @@ Note: personal details can only be edited by site owner. If you feel something s
     <%= f.collection_select :charity_id, Charity.all.order(:name),:id,:name, :selected => params['charity_id'] %>
   </div>
   <div class="actions">
-    <%= f.submit "Change"%>
+    <%= f.submit "Change", class: "btn btn-primary" %>
   </div>
 <% end %>
 	<br>
@@ -27,7 +27,7 @@ Note: personal details can only be edited by site owner. If you feel something s
 		<% @person.adminstrators.each do |admin| %>
 			<tr id='adminrow_<%= admin.id %>'>
 				<td><%= admin.username %></td>
-				<td><%= link_to("Delete", remove_administrator_people_path(person: @person.id, admin: admin.id), remote: true) %></td>
+				<td><%= link_to("Remove", remove_administrator_people_path(person: @person.id, admin: admin.id), class: "btn btn-danger", remote: true) %></td>
 			</tr>
 		<% end %>
 		
@@ -38,9 +38,10 @@ Note: personal details can only be edited by site owner. If you feel something s
  				<%= form_tag("/search/user", method: "get", :id => 'usersearchform', :remote => true) do %>
 				<%= text_field_tag :q, params[:search], :id => 'adminusername', :placeholder => "Enter Username" %>
 				<% end %>
+        <script>var itemid = <%= @person.id %></script>
 				</td>
-				<td>Add</td>
-			</tr></tbody><tbody  id="adminsuggestions">
+				<td></td>
+			</tr></tbody><tbody id="adminsuggestions">
 </tbody>
 	</table>
 
@@ -60,7 +61,7 @@ Note: personal details can only be edited by site owner. If you feel something s
 		<td><%= memory.title %></td>
 		<td><%= memory.story %></td>
 		<td><%= memory.ranking %></td>
-		<td><%= link_to("Delete", remove_item_memories_path(memory: memory.id, person: @person.id), remote: true, :confirm => "Are you sure?") %></td>
+		<td><%= link_to("Remove", remove_item_memories_path(memory: memory.id, person: @person.id), remote: true, class: "btn btn-danger", :confirm => "Are you sure?") %></td>
 	</tr>
 	<% end %>
 </table>

@@ -44,7 +44,9 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(person_params)
     # binding.pry;''
+
     @person.adminstrators << current_user
+    # binding.pry;''
     respond_to do |format|
       if @person.save
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
@@ -56,9 +58,16 @@ class PeopleController < ApplicationController
     end
   end
 
+  # POST /peopleadmin.json
+  # def add_admin
+  #   binding.pry;''
+  # end
+
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json
   def update
+    # binding.pry;''
+    @person.adminstrators << User.find(params[:person][:adminstrator])
     respond_to do |format|
       if @person.update(person_params)
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }

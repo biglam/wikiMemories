@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
 	def user
-      @results = User.where("username like ?", "%#{params[:q]}%").limit(5)
+      @results = User.where("lower(username) like ?", "%#{params[:q]}%".downcase).limit(5)
       render :json => @results
   	end
 
