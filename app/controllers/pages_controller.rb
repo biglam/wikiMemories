@@ -11,4 +11,12 @@ class PagesController < ApplicationController
       @yourmems = current_user.memories.order('updated_at DESC').first(5)
     end
 	end
+
+  def faq
+
+  end
+
+  def contact
+
+  end
 end
