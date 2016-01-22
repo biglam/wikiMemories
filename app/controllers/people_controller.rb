@@ -19,7 +19,7 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
-    @image = Image.new
+    # @image = Image.new
   end
 
   # GET /people/new

@@ -64,6 +64,18 @@ $('.new_memory').on('ajax:success', function(ev, data) {
   $('#other_peoples_memories').prepend(data['div']);
 });
 
+$('.new_memory').on('ajax:error', function(ev, data) {
+  console.log(ev);
+  // $.each(data, function(i, result) {
+      // console.log(result);
+      // htmlstring += "<div id='adminusername_" + result.id + "'>" + result.username + "</div>";
+      // htmlstring += "<tr><td>"+result.username+"</td><td><button class='btn btn-primary addadmin' id='"+ result.id +"add_admin'>Add</button></td></tr>";
+    // });
+  $('#other_peoples_memories').prepend(data.responseText);
+  // var info = data.responseText;
+  // console.log(info);
+});
+
 
 $('.nav-tabs a').click(function(e){
     $(this).tab('show');

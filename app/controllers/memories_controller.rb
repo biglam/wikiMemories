@@ -45,8 +45,9 @@ class MemoriesController < ApplicationController
         }
         # format.json {render 'layouts/memory'}
       else
-        format.html { render :new }
-        format.json { render json: @memory.errors, status: :unprocessable_entity }
+        format.html {render :json =>  @memory.errors.to_json, status: :unprocessable_entity}
+        # format.html { render :new }
+        # format.json { render json: @memory.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -85,15 +86,16 @@ class MemoriesController < ApplicationController
        render :json =>  @memory.to_json
      else
        render :json =>  vote.errors.to_json, status: :unprocessable_entity
-
      end
      # binding.pry;
    end
 
    def rank_down
+
      @memory = Memory.find(params[:id])
      vote = Vote.new_for_item(@memory, current_user, -1)
      # vote.add_vote_to_item(@memory, current_user, -1)
+     # binding.pry;''
      if vote.save
        @memory.update_ranking_from_votes
        render :json => @memory.to_json
