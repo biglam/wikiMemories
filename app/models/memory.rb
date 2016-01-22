@@ -13,6 +13,8 @@ class Memory < ActiveRecord::Base
   validates :story, length: { minimum: 2 } 
   validates :story, length: { maximum: 1000 }
   validates :user_id, presence: true
+  validates :story, uniqueness: {scope: :user_id}
+
 
   # mount_uploader :memory_image, MemoryImageUploader
 
