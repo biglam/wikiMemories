@@ -147,8 +147,8 @@ addAdmin = function(itemid, adminid) {
         },
         dataType: 'json',
         success: function(msg, data) {
-          console.log(msg);
-          console.log(data);
+          // console.log(msg);
+          // console.log(data);
           alert("New admin added");
         }
       });

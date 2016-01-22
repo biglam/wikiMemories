@@ -35,7 +35,7 @@ Note: personal details can only be edited by site owner. If you feel something s
 				<td>Select a new administrator
  				<%#= form_tag user_path, :method => :get, :id => 'usersearchform', :remote => true do %>
  				<%#= form_tag search_users_path, method => :get, :id => 'usersearchform', :remote => true do %>
- 				<%= form_tag("/search/user", method: "get", :id => 'usersearchform', :remote => true) do %>
+ 				<%= form_tag("/search/user.json", method: "get", :id => 'usersearchform', :remote => true) do %>
 				<%= text_field_tag :q, params[:search], :id => 'adminusername', :placeholder => "Enter Username" %>
 				<% end %>
         <script>var itemid = <%= @person.id %></script>

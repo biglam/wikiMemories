@@ -18,7 +18,7 @@ $(function() {
     $('#peoplesearchform').submit();
   })
   $('#peoplesearchform').on('ajax:success', function(evt, data, status, xhr) {
-    console.log('success: ' + data);
+    console.log(data);
     // $('#side_memories').html(data);
     var name = $('#peopleinput').val();
     var newperson = '<div id="searchresult">Not here? <a href="/people/new?name='+name+'">Create '+name+'</a></div>'
@@ -38,13 +38,14 @@ $(function() {
   $('#adminrow_last').on('ajax:success', function(evt, data, status, xhr) {
     var htmlstring = "";
     $.each(data, function(i, result) {
-      console.log(result);
+      // console.log(result);
       // htmlstring += "<div id='adminusername_" + result.id + "'>" + result.username + "</div>";
       htmlstring += "<tr><td>"+result.username+"</td><td><button class='btn btn-primary addadmin' id='"+ result.id +"add_admin'>Add</button></td></tr>";
     });
     $('#adminsuggestions').html(htmlstring);
     $('.addadmin').click(function(e) {
       // console.log(parseInt(e.target.id));
+      console.log(e);
       addAdmin(itemid, parseInt(e.target.id));
     })
   }).

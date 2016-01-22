@@ -2,8 +2,8 @@
 <!-- people -->
   <h2>Search...</h2>
   <div id='peoplesearchdiv'>
-  <%= form_tag people_path, :method => :get, :id => 'peoplesearchform', :remote => true do %>
-    <%= text_field_tag :search, params[:search], :id => 'peopleinput', :placeholder => "Search People" %>
+  <%= form_tag "/search/person.json", :method => :get, :id => 'peoplesearchform', :format => :json, :remote => true do %>
+    <%= text_field_tag :q, params[:q], :id => 'peopleinput', :placeholder => "Search People" %>
     <%= submit_tag 'Go' %>
     <% end %>
     <div id='peopleresultsdiv'></div>
