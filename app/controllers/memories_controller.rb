@@ -78,23 +78,31 @@ class MemoriesController < ApplicationController
   def rank_up
      # Memory.find(params['format']).rank_up
      # binding.pry;''
-     @memory = Memory.find(params['format'])
-     vote = Vote.new
-     vote.add_vote_to_item(@memory, current_user, 1)
-     @memory.update_ranking_from_votes
+     @memory = Memory.find(params[:id])
+     vote = Vote.new_for_item(@memory, current_user, 1)
+     if vote.save 
+       @memory.update_ranking_from_votes
+       render :json =>  @memory.to_json
+     else
+       render :json =>  vote.errors.to_json, status: :unprocessable_entity
+
+     end
      # binding.pry;
-     render :json =>  Memory.find(params['format']).to_json
-  end
+   end
 
-  def rank_down
-     @memory = Memory.find(params['format'])
-     vote = Vote.new
-     vote.add_vote_to_item(@memory, current_user, -1)
-     @memory.update_ranking_from_votes
-     render :json =>  Memory.find(params['format']).to_json
-  end
+   def rank_down
+     @memory = Memory.find(params[:id])
+     vote = Vote.new_for_item(@memory, current_user, -1)
+     # vote.add_vote_to_item(@memory, current_user, -1)
+     if vote.save
+       @memory.update_ranking_from_votes
+       render :json => @memory.to_json
+     else
+        render :json => vote.errors.to_json, status: :unprocessable_entity
+     end
+   end
 
-  def flag_memory
+     def flag_memory
     # binding.pry;''
     Memory.find(params['format']).flag_memory(params)
     render :json => current_user.flags.last
@@ -111,23 +119,23 @@ class MemoriesController < ApplicationController
 
   def list_orphaned
     if (current_user != nil)  && (current_user.role == "admin")
-    @memories = []
-    Memory.all.each do |memory|
-      @memories << memory if memory.count_items == 0
-    end
-  else
+      @memories = []
+      Memory.all.each do |memory|
+        @memories << memory if memory.count_items == 0
+      end
+    else
       @memories = {}
       raise "No memories are orphaned, or you have no right to view this page!"
     end
 
   end
 
-   def delete_all_orphans
+  def delete_all_orphans
     if (current_user != nil)  && (current_user.role == "admin")
-    Memory.all.each do |memory|
-      memory.delete if memory.count_items == 0
-    end
-  else
+      Memory.all.each do |memory|
+        memory.delete if memory.count_items == 0
+      end
+    else
       @memories = {}
       raise "No memories are orphaned, or you have no right to view this page!"
     end
@@ -135,13 +143,13 @@ class MemoriesController < ApplicationController
   end
 
   def reset_flag_count
-     Memory.find(params['format']).reset_flag_count
+   Memory.find(params['format']).reset_flag_count
      # binding.pry;''
      @memory = Memory.find(params['format'])
      render :json =>  Memory.find(params['format']).to_json
-  end
+   end
 
-  def remove_item
+   def remove_item
     @memory = Memory.find(params[:memory])
     item = Person.find(params[:person])
     # item = User.find(params[:admin]) if params[:admin]
@@ -160,4 +168,4 @@ class MemoriesController < ApplicationController
     def memory_params
       params.require(:memory).permit(:title, :story, :ranking, :user_id)
     end
-end
+  end

@@ -1,6 +1,6 @@
 <div class="rankdiv"><%#= link_to("up", rank_up_memories_path(memory.id), class: 'btn btn-success', remote: true) unless memory.user_id == current_user.id %>
   <% if can? :create, Vote %>
-  <%= link_to rank_up_memories_path(memory.id), class: 'btn btn-success', remote: true do %>
+  <%= link_to rank_up_memory_path(memory), class: 'btn btn-success', remote: true, method: :post do %>
   <i class="glyphicon glyphicon-plus"></i>
   <% end %>
   <% end %>
@@ -13,7 +13,7 @@
 <div class="rankdiv">Raking: <span id="rank_<%= memory.id %>"><%= memory.ranking %></span></div>
 <div class="rankdiv">
   <% if can? :create, Vote %>
-  <%= link_to rank_down_memories_path(memory.id), class: 'btn btn-warning', remote: true do %>
+  <%= link_to rank_down_memory_path(memory), class: 'btn btn-warning', remote: true, method: :post do %>
   <i class="glyphicon glyphicon-minus"></i>
   <% end %>
   <% end %>

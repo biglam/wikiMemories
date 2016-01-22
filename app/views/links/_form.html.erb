@@ -1,6 +1,5 @@
-<% @link = Link.new %>
 <h3>Share a link</h3>
-<%= form_for((@link), remote: true) do |f| %>
+<%= form_for(Link.new, remote: true) do |f| %>
 
   <div class="field">
     <%= f.label :title %><br>

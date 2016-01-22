@@ -2,31 +2,17 @@ class Vote < ActiveRecord::Base
   # validates_inclusion_of :value, in: -2..2
   belongs_to :memory
   belongs_to :image
+  # belongs_to :voted_item, polymorphic: true ## needs `voted_item_id` and `voted_item_type` fields
+  belongs_to :user
 
-  def vote_is_eligable(item, user)
+  validate :vote_is_eligable
+
+  def self.new_for_item(item, user, value)
     # binding.pry;''
-    if user_has_voted(item, user) && user_last_voted_less_than_an_hour_ago(item, user)
-      false
-    else
-      true
-    end
-
-    # if item.votes.where("created_at >= ?", Time.zone.now-3600).count == 0
-    #   true
-    # end
-  end
-
-  def add_vote_to_item(item, user, value)
-    # binding.pry;''
-    if vote_is_eligable(item, user)
-      self.memory_id = item.id if item.class==Memory
-      self.image_id = item.id if item.class==Image
-      self.user_id = user.id
-      self.value = value
-      self.save
-    else
-      "You are not eligable to vote"
-    end
+    vote = new(user: user, value: value)
+    vote.memory = item if item.is_a? Memory
+    vote.image = item if item.is_a? Image
+    vote
   end
 
   def user_has_voted(item, user)
@@ -35,6 +21,15 @@ class Vote < ActiveRecord::Base
 
   def user_last_voted_less_than_an_hour_ago(item, user)
     item.votes.where(user_id: user.id).order(:created_at).last.created_at > 1.hour.ago
+  end
+
+
+  private
+  def vote_is_eligable
+    item = memory || image
+    if user_has_voted(item, user) && user_last_voted_less_than_an_hour_ago(item, user)
+      errors.add :base, "You are not eligable to vote"
+    end
   end
 
 end

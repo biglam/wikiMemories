@@ -20,8 +20,6 @@ Rails.application.routes.draw do
   end
   resources :memories do
     collection do
-      get 'rank_up'
-      get 'rank_down'
       get 'flag_memory'
       get 'list_flagged'
       get 'list_orphaned'
@@ -29,6 +27,11 @@ Rails.application.routes.draw do
       get 'reset_flag_count'
       get 'remove_item'
     end
+    member do
+      post 'rank_up'
+      post 'rank_down'
+    end
+
   end
   resources :links
 
