@@ -1,8 +1,8 @@
-<h2>Your Memories</h2>
+<h2>Top Ranking</h2>
 
 
 <table class="table table-condensed">
-<% @yourmems.each do |memory| %>
+<% @topranked.each do |memory| %>
   <tr>
     <th>Title</th>
     <th><%= memory.title %></th>
@@ -18,5 +18,3 @@
 <% end %>
 
 </table>
-
-<%= link_to("See all", user_path(current_user)) if user_signed_in? %>

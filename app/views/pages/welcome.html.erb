@@ -4,8 +4,13 @@
 
 <div class="row">
   <div class="row">
-    <div class="col-xs-12 col-md-6"><%= render partial: 'searchinputdiv' %><%= render partial: 'yourmemories' %></div>
-    <div class="col-xs-6 col-md-6"><%= render partial: 'lastupdated' %>In your area
+    <div class="col-xs-12 col-md-6"><%= render partial: 'searchinputdiv' %><%= render partial: 'highestranked' %><%= render partial: 'justadded' %></div>
+    <div class="col-xs-12 col-md-6"><%= render partial: 'lastupdated' %><%= render partial: 'yourmemories' %></div>
+  </div>
+</div>
+
+
+In your area
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
     <div id="map">
       
@@ -24,6 +29,4 @@
       <li>Dead dude 1</li>
       <li>Dead dude 2</li>
       <li>Dead dude 3</li>
-    </ul></div>
-  </div>
-</div>
+    </ul>

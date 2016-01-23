@@ -1,0 +1,17 @@
+<h2>Recently Added</h2>
+
+<table class="table table-condensed">
+<tr>
+	<th>Name</th>
+	<th>Born</th>
+	<th>Died</th>
+</tr>
+<% @justadded.each do |person| %>
+<tr>
+	<td><%= person.fullname %></td>
+	<td><%= person.dob %></td>
+	<td><%= person.died if person.died %></td>
+</tr>
+<% end %>
+
+</table>
