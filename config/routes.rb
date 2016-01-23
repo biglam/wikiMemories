@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :charities
   resources :pets
   resources :places
+resources :messages
   resources :people do
     collection do
       get 'merge_records'

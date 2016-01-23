@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :images
   has_many :people_adminstrations, foreign_key: "adminstrator_id"
   has_many :adminstered_people, through: :people_adminstrations, source: :person
+  has_and_belongs_to_many :messages
 
   validates :username, presence: true
   validates :email, presence: true
@@ -24,6 +25,10 @@ class User < ActiveRecord::Base
 
   def role?(role_to_compare)
     self.role.to_s == role_to_compare.to_s
+  end
+
+  def messages
+    Message.where("messages.sender_id = :id OR messages.reciever_id = :id", id: id).order(:created_at)
   end
 
 end

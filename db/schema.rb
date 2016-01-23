@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119113936) do
+ActiveRecord::Schema.define(version: 20160123151826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,14 @@ ActiveRecord::Schema.define(version: 20160119113936) do
   create_table "memories_places", id: false, force: :cascade do |t|
     t.integer "memory_id", null: false
     t.integer "place_id",  null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "reciever_id"
+    t.text     "message"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "occasions", force: :cascade do |t|
