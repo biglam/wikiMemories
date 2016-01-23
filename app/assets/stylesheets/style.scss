@@ -76,6 +76,14 @@ tr.even {
   background-color: lightgrey;
 }
 
+.msgcount {
+  background-color: red;
+  margin: 1px;
+  border-radius: 100%;
+  color: white;
+  // width: 25px;
+  // height: 25px;
+}
 
 @media only screen
 and (max-device-width: 767px) {

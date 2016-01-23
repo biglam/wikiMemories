@@ -1,0 +1,15 @@
+<%= form_for(Message.new, remote: true) do |f| %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :message%><br />
+    <%= f.text_area :message %>
+  </div>
+  <%= f.hidden_field :sender_id, :value => current_user.id %>
+  <%= f.hidden_field :reciever_id, :value => @message.sender_id %>
+
+  <%= f.submit %>
+<% end %>

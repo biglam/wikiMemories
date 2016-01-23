@@ -1,0 +1,22 @@
+<h1 id='msgpage'>Messages</h1>
+
+<%= render partial: 'message', object: @message, :locals => {:reply => true} %>
+<button class="btn btn-info" id='replybut'>Reply</button>
+<div class="reply panel panel-info">
+ <div class="panel-heading">
+    <h3 class="panel-title">Reply</h3>
+  </div>
+  <div class="panel-body">
+    <%= render partial: 'form' %>
+  </div>
+
+</div>
+<div class="conversation">
+
+
+
+<% @conversation.each do |chatmessage| %>	
+<%= render partial: 'message', object: chatmessage, :locals => {:reply => false} %>
+<% end %>
+
+</div>

@@ -82,6 +82,18 @@ $('.nav-tabs a').click(function(e){
     console.log(this)
 })
 
+
+$('.new_message').on('ajax:success', function(ev, data) {
+  console.log(data);
+  $('.conversation').prepend(data);
+});
+
+$('.reply').hide();
+$('#replybut').click(function() {
+  console.log('clicked')
+  $('.reply').slideToggle();
+});
+
 });
 
   // function initMap(lat, lng) {

@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
     Message.where("messages.sender_id = :id OR messages.reciever_id = :id", id: id).order(:created_at)
   end
 
+  def unread_message_count
+    Message.where("messages.reciever_id = :id AND messages.read = false", id: id).count
+  end
+
 end

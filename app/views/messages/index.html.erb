@@ -1,0 +1,21 @@
+<h1>Messages</h1>
+
+<div class="msglist">
+	<table class="table">
+	<tr>
+		<th>Title</th>
+		<th>From</th>
+		<th>Date</th>
+		<th>Delete</th>
+	</tr>
+
+	<% @messages.each do |message| %>
+	<tr <%= "class=info" if message.read == false %>>
+		<td><%= message.title %></td>
+		<td><%= message.sender.username %></td>
+		<td><%= message.created_at %></td>
+		<td><%= link_to("Show", message_path(message)) %></td>
+	</tr>
+	<% end %>
+	</table>
+</div>
