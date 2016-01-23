@@ -1,5 +1,23 @@
 <h1>New Person</h1>
 
-<%= render 'form' %>
+<div class="row">
+	 <div class="col-xs-6"><%= render 'form' %></div>
+  <div class="col-xs-6">
+
+  <div class="panel panel-info">
+  	  <div class="panel-heading">
+    <h3 class="panel-title">Similar People</h3>
+  </div>
+  <div class="panel-body">
+    Looking for anyone here? If not, please continue filling out the form.
+
+    <ul id='suggestedpeoplelist'>
+    	
+    </ul>
+  </div>
+  </div>
+  </div>
+</div>
+
 
 <%= link_to 'Back', people_path %>

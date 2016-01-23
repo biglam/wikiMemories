@@ -16,6 +16,15 @@ class SearchController < ApplicationController
     end
   end
 
+  def new_person_suggestion
+    # binding.pry;''
+        search do
+   Person.where("lower(firstname) like ? AND lower(middlenames) like ? AND lower(lastname) like ?", "%#{params[:q]}%".downcase, "%#{params[:middlenames]}%".downcase, "%#{params[:lastname]}%".downcase)
+
+    end
+  end
+
+
   def bars
     search do
       Memory.where :title => params[:q]
@@ -30,7 +39,14 @@ class SearchController < ApplicationController
       @results = yield if block_given?
       # render @results, layout: false if request.xhr?
       respond_to do |format|
-        format.html { render @results }#search.html.erb}
+        format.html { 
+          if request.xhr?
+            render @results.first(5)
+          else
+            render @results 
+            # render :template => "person/index"
+            end
+            }#search.html.erb}
         format.json { render json: @results.first(5) }
       end
     else

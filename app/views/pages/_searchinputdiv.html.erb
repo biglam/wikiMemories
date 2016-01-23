@@ -2,10 +2,11 @@
 <!-- people -->
   <h2>Search...</h2>
   <div id='peoplesearchdiv'>
-  <%= form_tag "/search/person.json", :method => :get, :id => 'peoplesearchform', :format => :json, :remote => true do %>
+  <%= form_tag "/search/person", :method => :get, :id => 'peoplesearchform', :format => :json, :remote => true do %>
     <%= text_field_tag :q, params[:q], :id => 'peopleinput', :placeholder => "Search People" %>
-    <%= submit_tag 'Go' %>
+    <%= submit_tag 'Go', id: 'pplgo' %>
     <% end %>
+    <!-- <button id='pplgo'>Go</button> -->
     <div id='peopleresultsdiv'></div>
   </div> 
 
@@ -14,6 +15,7 @@
     <%= text_field_tag :search, params[:search], :id => 'placesinput', :placeholder => "Search Places" %>
     <%= submit_tag 'Go' %>
     <% end %>
+
     <div id='placesresultsdiv'></div>
   </div> 
 
