@@ -1,7 +1,7 @@
 
             <% if memory.flagcount > 0 %>
                 <div class="flaglist">
-                    <strong>Current Flag Count</strong> - <span id="fc_<%=memory.id%>"><%= memory.flagcount %></span> <%= link_to("Reset", reset_flag_count_memories_path(memory), remote: true)  %><br>
+                    <strong>Current Flag Count</strong> - <span id="fc_<%=memory.id%>"><%= memory.flagcount %></span> <%= link_to("Reset", reset_flag_count_memory_path(memory), method: :post,  remote: true)  %><br>
                     <strong>Total Flag Count</strong> - <%= memory.flags.count %><br>
                         <% memory.flags.each do |flag| %>
                             <div class="flaginfo">

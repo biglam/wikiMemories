@@ -1,8 +1,7 @@
 class MemoriesController < ApplicationController
   before_action :set_memory, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
-  # GET /memories
-  # GET /memories.json
+
   def index
     if params[:search]
       @memories = Memory.where("title like ?", "%#{params[:search]}%")
@@ -10,50 +9,32 @@ class MemoriesController < ApplicationController
       @memories = Memory.all
     end
     render @memories, layout: false if request.xhr?
-    # @memories = Memory.all
   end
 
-  # GET /memories/1
-  # GET /memories/1.json
   def show
   end
 
-  # GET /memories/new
   def new
     @memory = Memory.new
   end
 
-  # GET /memories/1/edit
   def edit
   end
 
-  # POST /memories
-  # POST /memories.json
   def create
     @memory = Memory.new(memory_params)
-    # binding.pry;''
-    # if (params[:memory][:reciever_type] != nil)
-    #   @memory.add_associate(params[:memory][:reciever_type], params[:memory][:reciever_id])
-    # end
     @memory.link_with(Person.find(params[:memory][:person_id])) if params[:memory][:person_id]
     respond_to do |format|
       if @memory.save
-        # format.html { redirect_to @memory, notice: 'Memory was successfully created.' }
         format.json { 
-          # render :show, status: :created, location: @memory 
           render json: {div: render_to_string(partial: 'layouts/memory.html.erb', object: @memory, locals: {frompage: "personpage"})}
         }
-        # format.json {render 'layouts/memory'}
       else
         format.html {render :json =>  @memory.errors.to_a, status: :unprocessable_entity}
-        # format.html { render :new }
-        # format.json { render json: @memory.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /memories/1
-  # PATCH/PUT /memories/1.json
   def update
     respond_to do |format|
       if @memory.update(memory_params)
@@ -66,8 +47,6 @@ class MemoriesController < ApplicationController
     end
   end
 
-  # DELETE /memories/1
-  # DELETE /memories/1.json
   def destroy
     @memory.destroy
     respond_to do |format|
@@ -77,8 +56,6 @@ class MemoriesController < ApplicationController
   end
 
   def rank_up
-     # Memory.find(params['format']).rank_up
-     # binding.pry;''
      @memory = Memory.find(params[:id])
      vote = Vote.new_for_item(@memory, current_user, 1)
      if vote.save 
@@ -87,15 +64,12 @@ class MemoriesController < ApplicationController
      else
        render :json =>  vote.errors.to_json, status: :unprocessable_entity
      end
-     # binding.pry;
    end
 
    def rank_down
 
      @memory = Memory.find(params[:id])
      vote = Vote.new_for_item(@memory, current_user, -1)
-     # vote.add_vote_to_item(@memory, current_user, -1)
-     # binding.pry;''
      if vote.save
        @memory.update_ranking_from_votes
        render :json => @memory.to_json
@@ -105,17 +79,11 @@ class MemoriesController < ApplicationController
   end
 
   def flag_memory
-    # binding.pry;''
-    # Memory.find(params['format']).flag_memory(params)
     flag = Flag.new(flag_params)
     memory = Memory.find(params[:flag][:memory_id])
     memory.add_flag
-    # flag.memory_id = params[:flag][:memory_id]
-    # flag.user_id = params[:flag][:user_id]
-    # flag.message = params[:flag][:message]
     flag.save
     memory.save
-    # render :json => current_user.flags.last
     render :json => flag
   end
 
@@ -154,23 +122,21 @@ class MemoriesController < ApplicationController
   end
 
   def reset_flag_count
-   Memory.find(params['format']).reset_flag_count
-     # binding.pry;''
-     @memory = Memory.find(params['format'])
-     render :json =>  Memory.find(params['format']).to_json
+    @memory = Memory.find(params[:id])
+    @memory.reset_flag_count
+    @memory.save
+    render :json =>  @memory
    end
 
    def remove_item
     @memory = Memory.find(params[:memory])
     item = Person.find(params[:person])
-    # item = User.find(params[:admin]) if params[:admin]
     binding.pry;''
     @memory.remove_item(item)
     render 'remove_item', layout: false if request.xhr?
   end
 
   def additem
-    # binding.pry;''
     case params[:type]
     when "people"
       person = Person.find(params[:itemid])

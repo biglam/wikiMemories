@@ -1,12 +1,12 @@
 class Memory < ActiveRecord::Base
 
-	belongs_to :user
+  belongs_to :user
   has_many :flags
-	has_and_belongs_to_many :people
-	has_and_belongs_to_many :pets
-	has_and_belongs_to_many :places
-	has_and_belongs_to_many :occasions
-	has_and_belongs_to_many :groups
+  has_and_belongs_to_many :people
+  has_and_belongs_to_many :pets
+  has_and_belongs_to_many :places
+  has_and_belongs_to_many :occasions
+  has_and_belongs_to_many :groups
   has_many :votes
 
   validates :title, presence: true
@@ -15,18 +15,6 @@ class Memory < ActiveRecord::Base
   validates :user_id, presence: true
   validates :story, uniqueness: {scope: :user_id}
 
-
-  # mount_uploader :memory_image, MemoryImageUploader
-
-  # def rank_up
-  #     self.ranking += 1
-  #     self.save
-  # end
-
-  # def rank_down
-  #     self.ranking -= 1
-  #     self.save
-  # end
 
   def test
     puts "ok"
@@ -39,7 +27,6 @@ class Memory < ActiveRecord::Base
   end
 
   def add_associate(ptype, pid)
-    # binding.pry;''
     case ptype
     when "Person"
       self.people << Person.find(pid)
@@ -51,22 +38,10 @@ class Memory < ActiveRecord::Base
   end
 
   def remove_item(item)
-    # binding.pry;''
     self.people.delete(item) if item.class==Person
     self.images.delete(item) if item.class==Image
-    # self.adminstrator.delete(item) if item.class==User
     self.save
   end
-
-  # def flag_memory(params)
-  #   # flag = Flag.new
-  #   # flag.memory_id = params[:flag][:memory_id]
-  #   # flag.user_id = params[:flag][:user_id]
-  #   # flag.message = params[:flag][:message]
-  #   # flag.save
-  #   self.flagcount += 1
-  #   self.save
-  # end
 
   def add_flag
     self.flagcount += 1
@@ -74,21 +49,10 @@ class Memory < ActiveRecord::Base
 
   def update_ranking_from_votes
     self.ranking = self.votes.map {|vote| vote.value }.reduce {|sum, num| sum+num}
-
-    # i = 0
-    # self.votes.each do |vote|
-    #   i += vote.value
-    # end
-    # self.ranking = i
-    # binding.pry;''
     self.save
   end
 
   def count_items
-    # associations = Memory.reflect_on_all_associations.map{ |assoc| [assoc.macro, assoc.name] }
-    # list = associations.map { |ass| ass[1].to_s }
-    # list.shift
-    # list.map { |item| Memory.first.send(item).count }.sum
     i = 0
     i += self.people.count
     i += self.pets.count
@@ -98,11 +62,5 @@ class Memory < ActiveRecord::Base
     i += self.flags.count
     i
   end
-
-  # def memory_of
-    
-  # end
-
-  # end
 
 end

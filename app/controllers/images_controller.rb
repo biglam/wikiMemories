@@ -51,18 +51,6 @@ def create
       end
   end
 
-   #   def rank_down
-   #   @memory = Memory.find(params[:id])
-   #   vote = Vote.new_for_item(@memory, current_user, -1)
-   #   # vote.add_vote_to_item(@memory, current_user, -1)
-   #   if vote.save
-   #     @memory.update_ranking_from_votes
-   #     render :json => @memory.to_json
-   #   else
-   #      render :json => vote.errors.to_json, status: :unprocessable_entity
-   #   end
-   # end
-
     private
 
     # Never trust parameters from the scary internet, only allow the white list through.
