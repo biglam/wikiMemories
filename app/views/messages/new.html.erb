@@ -1,0 +1,28 @@
+<h1>New Message</h1>
+
+<%= form_tag("/search/user.json", method: "get", :id => 'usersearchform', :remote => true) do %>
+<%= text_field_tag :q, params[:search], :id => 'adminusername', :placeholder => "Enter Username" %>
+<% end %>
+<div class="sugglist">
+  
+</div>
+<%= form_for(Message.new) do |f| %>
+
+  <div class="field">
+  <%= f.label :reciever_id %>
+  <%= f.text_field :reciever_id %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :message%><br />
+    <%= f.text_area :message %>
+  </div>
+  <%= f.hidden_field :sender_id, :value => current_user.id %>
+  
+
+  <%= f.submit %>
+<% end %>
+  <div id="msgstatus"></div>

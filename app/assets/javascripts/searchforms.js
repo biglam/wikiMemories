@@ -35,7 +35,7 @@ $(function() {
   });
 
 
-  //new adminsitrator search
+  //new adminsitrator / username search
   $('#adminusername').keyup(function() {
     value = $('#adminusername').val();
     $('#usersearchform').submit();
@@ -43,21 +43,32 @@ $(function() {
   $('#adminrow_last').on('ajax:success', function(evt, data, status, xhr) {
     var htmlstring = "";
     $.each(data, function(i, result) {
-      // console.log(result);
-      // htmlstring += "<div id='adminusername_" + result.id + "'>" + result.username + "</div>";
       htmlstring += "<tr><td>"+result.username+"</td><td><button class='btn btn-primary addadmin' id='"+ result.id +"add_admin'>Add</button></td></tr>";
     });
     $('#adminsuggestions').html(htmlstring);
     $('.addadmin').click(function(e) {
-      // console.log(parseInt(e.target.id));
-      // console.log(e);
       addAdmin(itemid, parseInt(e.target.id));
     })
   }).
   on('ajax:error', function(xhr, status, error) {
     console.log('failed: ' + error);
   });
-
+  
+  $('#usersearchform').on('ajax:success', function(evt, data, status, xhr) {
+    console.log(data);
+    var htmlstring = "<ul id='suggestionlist'>";
+    $.each(data, function(i, result) {
+      htmlstring += "<li id='" + result.id + "''>" + result.username + "</li>";
+    })
+    htmlstring += "</ul>";
+    $('.sugglist').html(htmlstring);
+    $('#suggestionlist').click(function(e) {
+  $('#message_reciever_id').val(e.target.id);
+  console.log(e.target.id); });
+  }).
+  on('ajax:error', function(xhr, status, error) {
+    console.log('failed: ' + error);
+  });
 
   // new person suggestion search
   $('.new_person #person_firstname').keyup(function() {

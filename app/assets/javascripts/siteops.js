@@ -4,12 +4,12 @@ $(document).ready(function(){
 	});
 
   $('#diedcheckbox').click(function() {
-     $('#diedfield').toggle();
-  })
+   $('#diedfield').toggle();
+ })
 
 
 
- $('.rankdiv').on('ajax:success', function(evt, data, status, xhr) {
+  $('.rankdiv').on('ajax:success', function(evt, data, status, xhr) {
     console.log(data);
     var ajaxdata = data;
     // console.log();
@@ -20,7 +20,7 @@ $(document).ready(function(){
     console.log(status);
   });
 
-   $('.flaglist').on('ajax:success', function(evt, data, status, xhr) {
+  $('.flaglist').on('ajax:success', function(evt, data, status, xhr) {
     console.log(data);
     var ajaxdata = data;
     // console.log();
@@ -36,10 +36,10 @@ $(document).ready(function(){
      var user_id = parseInt(data);
      $('#adminrow_' + user_id).hide();
    }).
-   on('ajax:error', function(xhr, status, error) {
-     console.log(error);
-     console.log(status);
-   });
+  on('ajax:error', function(xhr, status, error) {
+   console.log(error);
+   console.log(status);
+ });
 
   // image clickers
 
@@ -71,15 +71,15 @@ $('.new_memory').on('ajax:error', function(ev, data) {
       // htmlstring += "<div id='adminusername_" + result.id + "'>" + result.username + "</div>";
       // htmlstring += "<tr><td>"+result.username+"</td><td><button class='btn btn-primary addadmin' id='"+ result.id +"add_admin'>Add</button></td></tr>";
     // });
-  $('#other_peoples_memories').prepend(data.responseText);
+$('#other_peoples_memories').prepend(data.responseText);
   // var info = data.responseText;
   // console.log(info);
 });
 
 
 $('.nav-tabs a').click(function(e){
-    $(this).tab('show');
-    console.log(this)
+  $(this).tab('show');
+  console.log(this)
 })
 
 
@@ -97,6 +97,7 @@ $('#replybut').click(function() {
   $('#message_title').val(' ');
   $('#message_message').val(' ');
 });
+
 
 });
 
@@ -134,17 +135,17 @@ $('#replybut').click(function() {
 
 postFlag = function(message, userid, memory_id) {
   $.ajax({
-      type: "POST",
-      url: '/memories/' + memory_id + '/flag_memory.json',
-      data: { 
-        flag: { 
-          memory_id: memory_id,
-          message: message,
-          user_id: userid,
-        } 
-      },
-      dataType: 'json',
-      success: function(msg) {
+    type: "POST",
+    url: '/memories/' + memory_id + '/flag_memory.json',
+    data: { 
+      flag: { 
+        memory_id: memory_id,
+        message: message,
+        user_id: userid,
+      } 
+    },
+    dataType: 'json',
+    success: function(msg) {
         // console.log(msg);
         $('#collapseMem' + memory_id).html('<strong>Your flag has been noted and will be reviewed. Thanks for your feedback.</strong>');
         $('.flag_' + memory_id).html('<strong>Your flag has been noted and will be reviewed. Thanks for your feedback.</strong>')
@@ -154,15 +155,15 @@ postFlag = function(message, userid, memory_id) {
 
 addAdmin = function(itemid, adminid) {
   $.ajax({
-        type: "PATCH",
-        url: '/people/'+ itemid + '.json',
-        data: { 
-          person: { 
-            adminstrator: adminid,
-          } 
-        },
-        dataType: 'json',
-        success: function(msg, data) {
+    type: "PATCH",
+    url: '/people/'+ itemid + '.json',
+    data: { 
+      person: { 
+        adminstrator: adminid,
+      } 
+    },
+    dataType: 'json',
+    success: function(msg, data) {
           // console.log(msg);
           // console.log(data);
           alert("New admin added");

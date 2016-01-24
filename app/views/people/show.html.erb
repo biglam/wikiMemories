@@ -10,7 +10,9 @@
 </div>
 <div class="col-md-4"><%= image_tag(@person.get_top_image.preview.url) if @person.images.count > 0 %></div>
 </div>
-
+<% if @person.can_admin(current_user) %>
+You are an admistrator. <%= link_to("Edit", edit_person_path(@person)) %>
+<% end %>
 <%= render_shareable %>
 
 
@@ -40,9 +42,7 @@
 <div class="postmemory">
 <% if current_user %>
 <!-- Edit -->
-<% if @person.can_admin(current_user) %>
-You are an admistrator. <%= link_to("Edit", edit_person_path(@person)) %>
-<% end %>
+
 <!-- Story -->
 
   <div id="linkform"></div>  
