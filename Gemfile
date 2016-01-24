@@ -13,6 +13,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'shareable'
 gem 'will_paginate', "~> 3.0.6"
+gem 'owlcarousel-rails'
 
 gem 'rails_12factor', group: :production
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

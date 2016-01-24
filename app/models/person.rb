@@ -22,11 +22,11 @@ class Person < ActiveRecord::Base
 
 	def age
 		if died == nil
- 			from = Time.now.utc.to_date
- 		else 
- 			from = died
- 		end
-  		from.year - dob.year - (dob.to_date.change(:year => from.year) > from ? 1 : 0)
+			from = Time.now.utc.to_date
+		else 
+			from = died
+		end
+		from.year - dob.year - (dob.to_date.change(:year => from.year) > from ? 1 : 0)
 	end
 
 	def get_top_image
@@ -34,14 +34,16 @@ class Person < ActiveRecord::Base
 	end
 
 	def can_admin(user)
-		list = self.adminstrators.map {|admin| admin.id}
-		list.include?(user.id)
+		if user
+			list = self.adminstrators.map {|admin| admin.id}
+			list.include?(user.id)
+		end
 	end
 
 	def remove_item(item)
 		# binding.pry;''
-	  self.adminstrators.delete(item) if item.class == User
-	  self.save
+		self.adminstrators.delete(item) if item.class == User
+		self.save
 	end
 
 end

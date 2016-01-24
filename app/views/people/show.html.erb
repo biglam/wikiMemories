@@ -64,6 +64,7 @@ You are an admistrator. <%= link_to("Edit", edit_person_path(@person)) %>
   <h2>Images of <%= @person.fullname %></h2>
   <%= render partial: 'layouts/thumbnails'%>
 </div>
+<%= link_to("Slide Show", slideshow_person_path(@person), class: "btn btn-primary") %>
 <% end %>
 
 
@@ -75,5 +76,5 @@ You are an admistrator. <%= link_to("Edit", edit_person_path(@person)) %>
   <% end %>
   </ul>
 <% end %>
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+<%= link_to('Edit', edit_person_path(@person), class: "btn btn-primary") if @person.can_admin(current_user) %>
+<%= link_to 'Back', people_path, class: "btn btn-primary" %>

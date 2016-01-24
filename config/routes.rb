@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       get 'select_to_merge'
       get 'remove_administrator'
     end
+    member do
+      get 'slideshow'
+    end
   end
   resources :images do
     member do

@@ -108,6 +108,12 @@ class PeopleController < ApplicationController
     render admin, layout: false if request.xhr?
   end
 
+  def slideshow
+    # binding.pry;''
+    @images = @person.images
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person

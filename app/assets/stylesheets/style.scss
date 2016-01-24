@@ -12,6 +12,11 @@
   margin: 5px;
 }
 
+.imgframe img {
+  border: 5px solid black;
+  max-height: 800px;
+}
+
 div.header {
   background-color: black;
   background-image: image-url("m_header.png");
