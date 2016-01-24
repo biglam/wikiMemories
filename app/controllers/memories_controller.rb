@@ -172,11 +172,13 @@ class MemoriesController < ApplicationController
   def additem
     # binding.pry;''
     case params[:type]
-    when "person"
-      @memory.people << Person.find(params[:itemid])
+    when "people"
+      person = Person.find(params[:itemid])
+      @memory.people << person
+      render :json => person.to_json
     end
     @memory.save
-    
+
   end
 
   private
