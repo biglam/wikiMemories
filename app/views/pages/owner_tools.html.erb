@@ -1,0 +1,13 @@
+<% if !current_user || current_user.role != 'admin' %>
+You are not authorised to view this page.
+<% else %>
+
+	<h1>Owner Tools</h1>
+
+	<ul>
+		<li><%= link_to("List flagged memories", list_flagged_memories_path) %></li>
+		<li><%= link_to("List orphaned memories", list_orphaned_memories_path) %></li>
+		
+	</ul>
+
+<% end %>
