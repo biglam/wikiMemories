@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
 
 	load_and_authorize_resource
 	def index
-		@messages = current_user.messages
+		@messages = current_user.messages.order(created_at: :DESC)
 	end
 
 	def show

@@ -1,6 +1,8 @@
 <h1><%= @user.username %>'s page</h1>
 
-<ul>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+  <ul>
 <li><strong>Username:</strong> <%= @user.username %></li>
 <li><strong>Site Role: </strong> <%= @user.role %></li>
 <li><strong>Email:</strong> <%= @user.email %></li>
@@ -8,6 +10,7 @@
 <li><strong>Memories Posted: </strong> <%= @user.memories.count %></li>
 <li><strong>Average Ranking: </strong> <%= @user.average_ranking %></li>
 </ul>
+
 Click to expand -
 <% if @user.memories.count > 0 %>
   <h2 id='memlink'>Memories - <%= @user.memories.count %></h2>
@@ -24,3 +27,16 @@ Click to expand -
 	<%= render partial: 'people/peoplelist', locals: {people: @user.adminstered_people} %>
 	</div>
 <% end %>
+
+</div>
+  <div class="col-xs-6 col-md-4">  <div class="panel panel-info">
+  	  <div class="panel-heading">
+    <h3 class="panel-title">Message <%= @user.username %></h3>
+  </div>
+  <div class="panel-body">
+<%= render partial: 'messages/form', object: @message, :locals => {:to => @user.id} %>
+  </div>
+  </div>
+</div>
+</div>
+

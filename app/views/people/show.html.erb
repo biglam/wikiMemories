@@ -3,9 +3,14 @@
 <div class="row">
 <div class="col-md-8"><p>
 <%= render 'headerdetails' %>
+<strong>Administrators</strong>
+<% @person.adminstrators.each do |username| %>
+  <%= link_to username.username, user_path(username) %>
+<% end %>
 </div>
 <div class="col-md-4"><%= image_tag(@person.get_top_image.preview.url) if @person.images.count > 0 %></div>
 </div>
+
 <%= render_shareable %>
 
 

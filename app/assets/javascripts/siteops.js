@@ -86,12 +86,16 @@ $('.nav-tabs a').click(function(e){
 $('.new_message').on('ajax:success', function(ev, data) {
   console.log(data);
   $('.conversation').prepend(data);
+  $('#msgstatus').text('Your message has been sent.');
+
 });
 
 $('.reply').hide();
 $('#replybut').click(function() {
   console.log('clicked')
   $('.reply').slideToggle();
+  $('#message_title').val(' ');
+  $('#message_message').val(' ');
 });
 
 });
