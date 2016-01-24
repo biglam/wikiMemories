@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :charities
   resources :pets
   resources :places
-resources :messages
+  resources :messages
   resources :people do
     collection do
       get 'merge_records'
@@ -21,7 +21,7 @@ resources :messages
   end
   resources :memories do
     collection do
-      get 'flag_memory'
+      # get 'flag_memory'
       get 'list_flagged'
       get 'list_orphaned'
       get 'delete_all_orphans'
@@ -29,6 +29,7 @@ resources :messages
       get 'remove_item'
     end
     member do
+      post 'flag_memory'
       post 'rank_up'
       post 'rank_down'
     end

@@ -134,8 +134,8 @@ $('#replybut').click(function() {
 
 postFlag = function(message, userid, memory_id) {
   $.ajax({
-      type: "GET",
-      url: '/memories/flag_memory.' + memory_id,
+      type: "POST",
+      url: '/memories/' + memory_id + '/flag_memory.json',
       data: { 
         flag: { 
           memory_id: memory_id,

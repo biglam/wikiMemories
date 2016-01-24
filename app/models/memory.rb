@@ -58,14 +58,18 @@ class Memory < ActiveRecord::Base
     self.save
   end
 
-  def flag_memory(params)
-    flag = Flag.new
-    flag.memory_id = params[:flag][:memory_id]
-    flag.user_id = params[:flag][:user_id]
-    flag.message = params[:flag][:message]
-    flag.save
+  # def flag_memory(params)
+  #   # flag = Flag.new
+  #   # flag.memory_id = params[:flag][:memory_id]
+  #   # flag.user_id = params[:flag][:user_id]
+  #   # flag.message = params[:flag][:message]
+  #   # flag.save
+  #   self.flagcount += 1
+  #   self.save
+  # end
+
+  def add_flag
     self.flagcount += 1
-    self.save
   end
 
   def update_ranking_from_votes

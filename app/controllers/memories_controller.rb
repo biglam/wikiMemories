@@ -100,14 +100,23 @@ class MemoriesController < ApplicationController
        @memory.update_ranking_from_votes
        render :json => @memory.to_json
      else
-        render :json => vote.errors.to_json, status: :unprocessable_entity
-     end
-   end
+      render :json => vote.errors.to_json, status: :unprocessable_entity
+    end
+  end
 
-     def flag_memory
+  def flag_memory
     # binding.pry;''
-    Memory.find(params['format']).flag_memory(params)
-    render :json => current_user.flags.last
+    # Memory.find(params['format']).flag_memory(params)
+    flag = Flag.new(flag_params)
+    memory = Memory.find(params[:flag][:memory_id])
+    memory.add_flag
+    # flag.memory_id = params[:flag][:memory_id]
+    # flag.user_id = params[:flag][:user_id]
+    # flag.message = params[:flag][:message]
+    flag.save
+    memory.save
+    # render :json => current_user.flags.last
+    render :json => flag
   end
 
   def list_flagged
@@ -169,5 +178,9 @@ class MemoriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def memory_params
       params.require(:memory).permit(:title, :story, :ranking, :user_id)
+    end
+
+    def flag_params
+      params.require(:flag).permit(:memory_id, :user_id, :message)
     end
   end
