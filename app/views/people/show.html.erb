@@ -54,8 +54,9 @@ You are an admistrator. <%= link_to("Edit", edit_person_path(@person)) %>
 <h3>Other users' memories</h3>
 <div id='other_peoples_memories'>    
   <% if @person.memories.count > 0 %>
-    <%= render partial: 'layouts/memory', collection: @person.memories.order(ranking: :desc), locals: {frompage: "personpage"} %>
+    <%= render partial: 'layouts/memory', collection: @memories.order(ranking: :desc), locals: {frompage: "personpage"} %>
   <% end %>
+  <%= will_paginate @memories %>
 </div>
 
 <% if @person.images.count > 0 %>

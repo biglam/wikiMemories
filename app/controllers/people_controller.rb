@@ -8,9 +8,8 @@ class PeopleController < ApplicationController
     if params[:search]
       @people_search_result = Person.where("lastname like ?", "%#{params[:search]}%").limit(5) if params[:search] > ""
       # @people_search_result = Person.where('lastname LIKE :search OR firstname LIKE :search OR middlenames LIKE :search', search: "params[:search]");
-
     else
-      @people = Person.all
+      @people = Person.all.paginate(:page => params[:page], :per_page => 10)
     end
     render @people_search_result, layout: false if request.xhr?
     # @people = Person.all
@@ -20,6 +19,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     # @image = Image.new
+    @memories = @person.memories.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /people/new
