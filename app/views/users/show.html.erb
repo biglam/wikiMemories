@@ -12,21 +12,62 @@
 </ul>
 
 Click to expand -
-<% if @user.memories.count > 0 %>
-  <h2 id='memlink'>Memories - <%= @user.memories.count %></h2>
-  <%= render partial: 'layouts/showhide', locals: {trig: '#memlink', tog: '#memlist'} %>
-  	<div id="memlist">
-   	<%= render partial: 'layouts/memory', collection: @user.memories, locals: {frompage: "userpage"} %>
-   	</div>
-<% end %>
 
 <% if @user.adminstered_people.count > 0 %>
-	<h2 id="peoplink">People Adminstered - <%= @user.adminstered_people.count %></h2>
-	<%= render partial: 'layouts/showhide', locals: {trig: '#peoplink', tog: '#peoplist'} %>
-	<div id="peoplist">
-	<%= render partial: 'people/peoplelist', locals: {people: @user.adminstered_people} %>
-	</div>
+  <h2 id="peoplink">People Adminstered - <%= @user.adminstered_people.count %></h2>
+  <%#= render partial: 'layouts/showhide', locals: {trig: '#peoplink', tog: '#peoplist'} %>
+  <div id="peoplist">
+  <%= render partial: 'people/peoplelist', locals: {people: @user.adminstered_people} %>
+  </div>
 <% end %>
+
+<% if @user.memories.count > 0 %>
+  <h2 id='memlink'>Memories - <%= @user.memories.count %></h2>
+  <%#= render partial: 'layouts/showhide', locals: {trig: '#memlink', tog: '#memlist'} %>
+  	<div id="memlist">
+   	<%= render partial: 'layouts/memory', collection: @memories, locals: {frompage: "userpage"} %>
+   	</div>
+    <%= will_paginate @memories %>
+<% end %>
+
+<% if @user.images.count > 0 %>
+<div class="images">
+  <% @user.images.each do |image| %>
+<div class="thumbnailview">
+  <%= link_to(image_tag(image.image.thumb.url, :class => "thumbnail", :id => "image_#{image.id}"), image.image.large.url) %>
+<div id="imgranking">          
+    <div class="rankdiv">
+    <% if can? :update, image  %>
+      <%= link_to rank_up_image_path(image),  class: 'btn btn-success', remote: true, method: :post do %>
+      <i class="glyphicon glyphicon-plus"></i>
+      <% end %>
+    <% end %>
+</div>
+<div class="rankdiv">Raking: <span id="rank_<%= image.id %>"><%= image.ranking %></span></div>
+
+<div class="rankdiv">
+  <% if can? :update, image  %>
+  <%= link_to rank_down_image_path(image), class: 'btn btn-warning', remote: true, method: :post do %>
+  <i class="glyphicon glyphicon-minus"></i>
+  <% end %>
+  <% end %>
+</div>
+</div>
+</div>
+<% end %>
+
+
+
+
+
+
+
+
+
+</div>
+<%#= link_to("Slide Show", slideshow_person_path(@person), class: "btn btn-primary") %>
+<% end %>
+
 
 </div>
   <div class="col-xs-6 col-md-4">  <div class="panel panel-info">

@@ -14,7 +14,7 @@
 			<li><%= link_to("Administrate", admin_tools_path) %></li>
 			<li><%= link_to("Log Out", destroy_user_session_path, method: :delete) %></li>
 			<li><%= link_to("User Page", user_path(current_user.id)) %></li>
-			<li><%= link_to("Messages", messages_path) %> <% if current_user.unread_message_count > 0 %><span class="msgcount"> <%= current_user.unread_message_count %> </span><% end %></li>
+			<li><%= link_to("Messages", messages_path) %> <% if current_user.unread_message_count > 0 %><span class="badge"> <%= current_user.unread_message_count %> </span><% end %></li>
 		<% end %>
 		
 		<li>Recent</li>
