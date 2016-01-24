@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       post 'flag_memory'
       post 'rank_up'
       post 'rank_down'
+      post 'additem'
     end
 
   end

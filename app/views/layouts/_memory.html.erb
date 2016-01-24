@@ -6,7 +6,7 @@
 
         <div class="memoryrightpanel">
             <%= render partial: 'layouts/memory_details.html.erb', locals: {memory: memory} %>
-            <%= render partial: 'layouts/memory_options.html.erb', locals: {memory: memory} %>
+            <%= render partial: 'layouts/memory_options.html.erb', locals: {memory: memory, frompage: frompage} %>
             <%= (render partial: 'layouts/memory_flag.html.erb', locals: {memory: memory}) unless (frompage == "flagpage") %>
             <% if frompage == "flagpage" %>
                 <%= render partial: 'layouts/memory_flag_details.html.erb', locals: {memory: memory, frompage: frompage} %>

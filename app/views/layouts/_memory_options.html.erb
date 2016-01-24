@@ -1,8 +1,9 @@
-<%= link_to 'More', memory_path(memory.id), class: "btn btn-primary" %>
+<%= link_to 'More', memory_path(memory.id), class: "btn btn-primary" unless frompage == "memorypage" %>
          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseMem<%= memory.id %>" aria-expanded="false" aria-controls="collapseMem<%= memory.id %>">
   Flag
 </button>
-<% if current_user && current_user.role == "admin" %>
+<%= button_tag "Link Memory", class: "btn btn-primary", id: "linkmemory" if frompage=="memorypage"%>
+<% if current_user && (current_user.role == "admin" || current_user.role == "owner") %>
   <%= link_to'Edit', edit_memory_path(memory), class: "btn btn-primary" %>
   <%= link_to 'Delete', memory, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %><br>
 <% end %>

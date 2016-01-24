@@ -1,7 +1,18 @@
 <p id="notice"><%= notice %></p>
+<script>var memid = <%= @memory.id %></script>
 <h2>Memory</h2>
 
 <%= render partial: 'layouts/memory', object: @memory, locals: {frompage: "memorypage"} %>
+
+<div class="panel panel-primary" id='affiliateform'>
+  <div class="panel-heading">
+    <h3 class="panel-title">Link with</h3>
+  </div>
+  <div class="panel-body">
+    <%= render partial: 'pages/searchinputdiv' %>
+  </div>
+</div>
+
 <h2>Memory in</h2>
 
 <ul>

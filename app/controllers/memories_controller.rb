@@ -169,6 +169,16 @@ class MemoriesController < ApplicationController
     render 'remove_item', layout: false if request.xhr?
   end
 
+  def additem
+    # binding.pry;''
+    case params[:type]
+    when "person"
+      @memory.people << Person.find(params[:itemid])
+    end
+    @memory.save
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_memory

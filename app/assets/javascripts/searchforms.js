@@ -29,6 +29,14 @@ $(function() {
     var newperson = '<div id="searchresult">Not here? <a href="/people/new?name='+name+'">Create '+name+'</a></div>'
     $('#peopleresultsdiv').html(data);
     $('#peopleresultsdiv').append(newperson);
+    $('#affiliateform').click(function (e) {
+    e.preventDefault();
+    // console.log(e.target.id);
+    addItem(memid, "person", e.target.id);
+
+  });
+
+
   }).
   on('ajax:error', function(xhr, status, error) {
     console.log('failed: ' + error);
@@ -108,5 +116,22 @@ $(function() {
       }
     });
   };
+
+
+    addItem = function(memid, itemtype, itemid) {
+  $.ajax({
+      type: "POST",
+      url: memid + '/additem.json',
+      data: { 
+        type: itemtype,
+        itemid: itemid
+      },
+      dataType: 'json',
+      success: function(msg) {
+        console.log(msg);
+      }
+    });
+  };
+
 
 });

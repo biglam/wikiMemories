@@ -169,4 +169,12 @@ addAdmin = function(itemid, adminid) {
           alert("New admin added");
         }
       });
+
+
+  $('#affiliateform').click(function (e) {
+    // e.preventDefault();
+    console.log(e);
+  });
+
+
 }
