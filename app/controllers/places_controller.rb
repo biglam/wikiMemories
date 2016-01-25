@@ -4,21 +4,28 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all
+    if params[:search]
+      @places_search_result = Place.where("name like ?", "%#{params[:search]}%").limit(5) if params[:search] < ""
+    else
+      @places = Place.all.paginate(:page => params[:page], :per_page => 25)
+    end
+    render @places_search_result, layout: false if request.xhr?
   end
 
   # GET /places/1
   # GET /places/1.json
   def show
+    @memories = @place.memories.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /places/new
   def new
-    @place = Place.new
+    @place = Place.new(name: params[:name])
   end
 
   # GET /places/1/edit
   def edit
+
   end
 
   # POST /places
@@ -43,6 +50,7 @@ class PlacesController < ApplicationController
   # PATCH/PUT /places/1
   # PATCH/PUT /places/1.json
   def update
+    @place.adminstrators << User.find(params[:place][:adminstrator])
     respond_to do |format|
       if @place.update(place_params)
         format.html { redirect_to @place, notice: 'Place was successfully updated.' }
@@ -63,6 +71,19 @@ class PlacesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def remove_administrator
+    place = Place.find(params[:place])
+    admin = User.find(params[:admin])
+    place.remove_item(admin)
+    render admin, layout: false if request.xhr?
+  end
+
+  def slideshow
+    @images = @place.images
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :images
   has_many :people_adminstrations, foreign_key: "adminstrator_id"
   has_many :adminstered_people, through: :people_adminstrations, source: :person
+  has_many :place_administrations, foreign_key: "administrator_id"
+  has_many :administered_places, through: :place_administrators, source: :place
   has_and_belongs_to_many :messages
 
   validates :username, presence: true

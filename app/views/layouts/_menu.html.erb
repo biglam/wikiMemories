@@ -7,6 +7,7 @@
 	<div id="side_memories">
 	<%= render @people_search_result if @people_search_result %>
 	</div>
+	<li><%= link_to("Welcome", welcome_path) %></li>
 		<% if !current_user %>
 		<li><%= link_to("Log In", new_user_session_path) %></li>
 		<% end %>
@@ -17,7 +18,7 @@
 			<li><%= link_to("Messages", messages_path) %> <% if current_user.unread_message_count > 0 %><span class="badge"> <%= current_user.unread_message_count %> </span><% end %></li>
 		<% end %>
 		
-		<li>Recent</li>
+		
 		<li><%= link_to("Groups", groups_path) %></li>
 		<li><%= link_to("People", people_path) %></li>
 		<li><%= link_to("Pets", pets_path) %></li>
