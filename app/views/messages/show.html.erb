@@ -7,7 +7,7 @@
     <h3 class="panel-title">Reply</h3>
   </div>
   <div class="panel-body">
-    <%= render partial: 'form' %>
+    <%= render partial: 'form', :locals => {:to => @message.sender_id} %>
   </div>
 
 </div>
