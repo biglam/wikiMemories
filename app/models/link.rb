@@ -4,6 +4,8 @@ class Link < ActiveRecord::Base
   has_many :people, through: :links_people
   has_many :links_places
   has_many :places, through: :links_places
+  has_many :links_pets
+  has_many :pets, through: :links_pets
   belongs_to :linktype
   belongs_to :user
   validates :title, presence: true
