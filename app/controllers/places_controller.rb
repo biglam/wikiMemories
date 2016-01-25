@@ -36,6 +36,7 @@ load_and_authorize_resource
     if !(@place.lat) || (@place.lng) 
       @place.get_lat_lng_from_address
     end
+    @place.administrators << current_user
     respond_to do |format|
       if @place.save
         format.html { redirect_to @place, notice: 'Place was successfully created.' }
