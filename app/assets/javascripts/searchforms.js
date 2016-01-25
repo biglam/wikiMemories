@@ -60,6 +60,30 @@ $(function() {
     console.log(error);
   });
 
+  // front page pets search
+    $('#petgo').click(function() {
+    value = $('#petsinput').val();
+    window.location.href = "/search/pet?q=" + value;
+  });
+  $('#petsinput').keyup(function() {
+    value = $('#petsinput').val();
+    $('#petssearchform').submit();
+  });
+  $('#petssearchform').on('ajax:success', function(evt, data, status, xhr) {
+    console.log(data);
+    var name = $('#petsinput').val();
+    var newplace = '<div id="searchresult">Not here? <a href="/pets/new?name='+name+'">Create '+name+'</a></div>'
+    $('#petsresultsdiv').html(data);
+    $('#petsresultsdiv').append(newplace);
+    $('#affiliateform').click(function (e) {
+    e.preventDefault();
+    addItem(memid, "pets", e.target.id);
+  });
+  }).
+  on('ajax:error', function(xhr, status, error) {
+    console.log(error);
+  });
+
 
 
   //new adminsitrator / username search

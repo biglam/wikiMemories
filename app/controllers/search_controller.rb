@@ -24,6 +24,13 @@ end
     end
   end
 
+  def pet
+    search do
+      Pet.where("lower(name) like ?", "%#{params[:q]}%")
+    end
+  end
+
+
 private
 
 def search(&block)    

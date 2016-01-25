@@ -20,8 +20,8 @@
   </div> 
 
   <div id='petssearchdiv'>
-  <%= form_tag pets_path, :method => :get, :id => 'petssearchform', :remote => true do %>
-    <%= text_field_tag :search, params[:search], :id => 'petsinput', :placeholder => "Search Pets" %>
+  <%= form_tag "/search/pet", :method => :get, :id => 'petssearchform', :format => :json, :remote => true do %>
+    <%= text_field_tag :q, params[:q], :id => 'petsinput', :placeholder => "Search Pets" %>
     <%= submit_tag 'Go', id: 'petgo' %>
     <% end %>
     <div id='petsresultsdiv'></div>
