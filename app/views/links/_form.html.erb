@@ -1,21 +1,22 @@
 <h3>Share a link</h3>
-<%= form_for(Link.new, remote: true) do |f| %>
+<%#= form_for(Link.new, remote: true) do |f| %>
+<%= form_tag "/#{model}/#{id}/add_link", :method => :post, :format => :json, :remote => true do  %>
+<%=  %>
+  <div class="field">
+    <%= label :title, "title" %><br>
+    <%= text_field_tag :title %>
+  </div>
+  <div class="field">
+    <%= label :address, "URL:" %><br />
+    <%= text_field_tag :address %>
+  </div>
+  <div class="field">
+    <%#= label :linktype_id, "linktype" %><br>
+    <%#= collection_select :linktype_id, Linktype.all.order(:linktype),:id,:linktype, :selected => params['linktype_id'] %>
+  </div>
+  <%= hidden_field :user_id, :value => current_user.id %>
+  <%#= hidden_field :person_id, :value => @person.id %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :address, "URL:" %><br />
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :linktype_id %><br>
-    <%= f.collection_select :linktype_id, Linktype.all.order(:linktype),:id,:linktype, :selected => params['linktype_id'] %>
-  </div>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%#= f.hidden_field :person_id, :value => @person.id %>
-
-  <%= f.submit %>
+  <%= submit_tag %>
 <% end %>
 

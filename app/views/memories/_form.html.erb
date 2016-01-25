@@ -21,7 +21,7 @@
   </div>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :person_id, value: @person.id if @person%>
-  
+  <%= f.hidden_field :place_id, value: @place.id if @place%>
   <div class="actions">
     <%= f.submit %>
   </div>

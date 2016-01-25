@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
-
+load_and_authorize_resource
   # GET /places
   # GET /places.json
   def index
@@ -81,6 +81,11 @@ class PlacesController < ApplicationController
 
   def slideshow
     @images = @place.images
+  end
+
+  def add_link
+    @place.links.create(title: params[:title], address: params[:address], user: current_user)
+    @place.save
   end
 
 

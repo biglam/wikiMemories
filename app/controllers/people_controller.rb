@@ -83,7 +83,10 @@ class PeopleController < ApplicationController
   def slideshow
     @images = @person.images
   end
-
+  def add_link
+    @person.links.create(title: params[:title], address: params[:address], user: current_user)
+    @person.save
+  end
 
   private
   def set_person

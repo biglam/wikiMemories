@@ -31,6 +31,7 @@ class Memory < ActiveRecord::Base
 
   def link_with(item)
     self.people << item if item.class==Person
+    self.places << item if item.class==Place
   end
 
   def remove_item(item)

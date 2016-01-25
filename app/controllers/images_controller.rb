@@ -14,6 +14,7 @@ def create
     if params[:image][:person_id]
       @image.image_item = Person.find(params[:image][:person_id])
     end
+    @image.image_item = Place.find(params[:image][:place_id]) if params[:image][:place_id]
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }

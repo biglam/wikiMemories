@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   resources :occasions
   resources :charities
   resources :pets
-  resources :places
+  resources :places do
+    resources :images
+    member do
+      post 'add_link'
+    end
+  end
   resources :messages
   resources :people do
     resources :images
@@ -14,6 +19,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'slideshow'
+      post 'add_link'
     end
   end
   resources :images do

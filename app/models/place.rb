@@ -5,6 +5,8 @@ class Place < ActiveRecord::Base
 	has_many :place_administrations
 	has_many :administrators, through: :place_administrations
 	has_many :images, :as => :image_item
+	has_many :links_places
+	has_many :links, through: :links_places
 	validates :name, presence: true
 
 	def get_lat_lng_from_address

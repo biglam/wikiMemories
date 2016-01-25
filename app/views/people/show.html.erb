@@ -35,7 +35,7 @@ You are an admistrator. <%= link_to("Edit", edit_person_path(@person)) %>
   <%= render partial: 'images/form' %>
     </div>
     <div id="post3" class="tab-pane fade">
-  <%= render partial: 'links/form' %>
+  <%= render partial: 'links/form', locals: {model: "people", id: @person.id} %>
     </div>
   </div>
 <% end %>
@@ -62,7 +62,7 @@ You are an admistrator. <%= link_to("Edit", edit_person_path(@person)) %>
 <% if @person.images.count > 0 %>
 <div class="images">
   <h2>Images of <%= @person.fullname %></h2>
-  <%= render partial: 'layouts/thumbnails'%>
+  <%= render partial: 'layouts/thumbnails', collection: @person.images, as: :image %>
 </div>
 <%= link_to("Slide Show", slideshow_person_path(@person), class: "btn btn-primary") %>
 <% end %>
