@@ -83,6 +83,13 @@ class PeopleController < ApplicationController
   def slideshow
     @images = @person.images
   end
+
+ def add_memory
+    memory = @person.memories.create(title: params[:title], story: params[:story], user: current_user)
+    @person.save
+    render json: {div: render_to_string(partial: 'layouts/memory.html.erb', object: memory, locals: {frompage: "personpage"})}
+  end
+
   def add_link
     link = @person.links.create(title: params[:title], address: params[:address], user: current_user)
     @person.save

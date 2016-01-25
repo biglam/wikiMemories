@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :images
     member do
       post 'add_link'
+      post 'add_memory'
     end
   end
   resources :messages
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
     member do
       get 'slideshow'
       post 'add_link'
+      post 'add_memory'
     end
   end
   resources :images do

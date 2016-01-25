@@ -31,7 +31,7 @@ You are an admistrator. <%= link_to("Edit", edit_place_path(@place)) %>
 <div class="tab-content">
   <div id="post1" class="tab-pane fade in active">
     <% @memory = Memory.new %>
-    <%= render partial: 'memories/form' %>
+    <%= render partial: 'memories/form', locals: {model: "places", id: @place.id} %>
   </div>
   <div id="post2" class="tab-pane fade">
     <%= render partial: 'images/form' %>

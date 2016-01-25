@@ -61,11 +61,12 @@ $('#new_link').on('ajax:success', function(ev, data) {
   $('#linkslist').prepend(htmlstring);
 });
 
-$('.new_memory').on('ajax:success', function(ev, data) {
+$('#new_memory').on('ajax:success', function(ev, data) {
+  console.log(data);
   $('#other_peoples_memories').prepend(data['div']);
 });
 
-$('.new_memory').on('ajax:error', function(ev, data) {
+$('#new_memory').on('ajax:error', function(ev, data) {
   console.log(data);
   // $.each(data, function(i, result) {
       // console.log(result);
