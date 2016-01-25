@@ -110,6 +110,9 @@ $(function() {
           if (name.dob != null) {
             htmlstring += " (born " + name.dob + ")";
           }
+          if (name.brief_description != null) {
+            htmlstring += " (" + name.brief_description + ")";
+          }
           htmlstring += "</a></li>";
         })
         $('#suggestedpeoplelist').html(htmlstring);

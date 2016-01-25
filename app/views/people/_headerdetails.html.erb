@@ -1,4 +1,12 @@
 <h1><%= @person.fullname %></h1>
+<% if @person.brief_description %>
+<p>
+  <!-- <strong>Place of birth:</strong>  -->
+  <%= @person.brief_description %>
+</p>
+<% end %>
+
+
   <strong>Firstname:</strong>
   <%= @person.firstname %>
 </p>
@@ -13,10 +21,22 @@
   <%= @person.lastname %>
 </p>
 
+
+
+
+
 <p>
   <strong>Dob:</strong>
   <%= @person.dob %>
 </p>
+
+<% if @person.place_of_birth %>
+<p>
+  <strong>Place of birth:</strong> 
+  <%= @person.place_of_birth %>
+</p>
+<% end %>
+
 <% if @person.died %>
 <p>
   <strong>Died:</strong>

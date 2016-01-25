@@ -89,6 +89,7 @@ class MemoriesController < ApplicationController
     memory.add_flag
     flag.save
     memory.save
+    Message.create(sender_id: current_user.id, reciever_id: memory.user.id, title: "Memory Flagged", message: "Your memory #{memory.title} has been flagged. Please ensure there is nothing offensive in this message. Admin will review any messages with a high flag count. If there's nothing offensive, this message can be ignored. \n The reason given was: \n #{flag.message}")
     render :json => flag
   end
 
