@@ -48,6 +48,7 @@ class MemoriesController < ApplicationController
   end
 
   def destroy
+    # binding.pry;''
     @memory.destroy
     respond_to do |format|
       format.html { redirect_to memories_url, notice: 'Memory was successfully destroyed.' }
@@ -57,24 +58,28 @@ class MemoriesController < ApplicationController
 
   def rank_up
      @memory = Memory.find(params[:id])
-     vote = Vote.new_for_item(@memory, current_user, 1)
-     if vote.save 
+     @memory.votes.create(user: current_user, value: 1)
+     @memory.update_ranking_from_votes
+     # vote = Vote.new_for_item(@memory, current_user, 1)
+     if @memory.save 
        @memory.update_ranking_from_votes
        render :json =>  @memory.to_json
      else
-       render :json =>  vote.errors.to_json, status: :unprocessable_entity
+       render :json =>  @memory.errors.to_json, status: :unprocessable_entity
      end
    end
 
    def rank_down
 
      @memory = Memory.find(params[:id])
-     vote = Vote.new_for_item(@memory, current_user, -1)
-     if vote.save
+     @memory.votes.create(user: current_user, value: -1)
+     @memory.update_ranking_from_votes
+     # vote = Vote.new_for_item(@memory, current_user, -1)
+     if @memory.save
        @memory.update_ranking_from_votes
        render :json => @memory.to_json
      else
-      render :json => vote.errors.to_json, status: :unprocessable_entity
+      render :json => @memory.errors.to_json, status: :unprocessable_entity
     end
   end
 

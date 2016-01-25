@@ -31,24 +31,28 @@ def create
 
   def rank_up
      @image = Image.find(params[:id])
-     vote = Vote.new_for_item(@image, current_user, 1)
-     if vote.save
+     @image.votes.create(user: current_user, value: 1)
+     # vote = Vote.new_for_item(@image, current_user, 1)
+     # if vote.save
+     if @image.save
         @image.update_ranking_from_votes
         render :json =>  @image.to_json
       else
-        render :json => vote.errors.to_json, status: :unprocessable_entity
+        render :json => @image.errors.to_json, status: :unprocessable_entity
       end
   end
 
   def rank_down
-     @image = Image.find(params[:id])
-     vote = Vote.new_for_item(@image, current_user, -1)
-     if vote.save
-        @image.update_ranking_from_votes
-        render :json =>  @image.to_json
-      else
-        render :json => vote.errors.to_json, status: :unprocessable_entity
-      end
+    @image = Image.find(params[:id])
+    @image.votes.create(user: current_user, value: -1)
+    # vote = Vote.new_for_item(@image, current_user, 1)
+    # if vote.save
+    if @image.save
+       @image.update_ranking_from_votes
+       render :json =>  @image.to_json
+     else
+       render :json => @image.errors.to_json, status: :unprocessable_entity
+     end
   end
 
     private

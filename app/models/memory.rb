@@ -7,7 +7,7 @@ class Memory < ActiveRecord::Base
   has_and_belongs_to_many :places
   has_and_belongs_to_many :occasions
   has_and_belongs_to_many :groups
-  has_many :votes
+  has_many :votes, as: :voted_item
 
   validates :title, presence: true
   validates :story, length: { minimum: 2 } 
@@ -15,10 +15,6 @@ class Memory < ActiveRecord::Base
   validates :user_id, presence: true
   validates :story, uniqueness: {scope: :user_id}
 
-
-  def test
-    puts "ok"
-  end
 
   def reset_flag_count
     Flag.create(memory_id: self.id, user_id: user.id, message: "Flagcount Reset by administrator #{user.username}")

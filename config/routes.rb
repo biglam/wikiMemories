@@ -16,12 +16,14 @@ Rails.application.routes.draw do
     end
   end
   resources :images do
+    resources :votes
     member do
       post 'rank_up'
       post 'rank_down'
     end
   end
   resources :memories do
+    resources :votes
     collection do
       get 'list_flagged'
       get 'list_orphaned'
@@ -45,6 +47,8 @@ Rails.application.routes.draw do
   get '/faq' => 'pages#faq'
   get '/welcome' => 'pages#welcome'
   get '/contact' => 'pages#contact'
+
+
   # devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
