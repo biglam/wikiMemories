@@ -23,6 +23,16 @@
     <%= f.label :lastname %><br>
     <%= f.text_field :lastname %>
   </div>
+
+  <div class="field">
+    <%= f.label :place_of_birth %><br>
+    <%= f.text_field :place_of_birth %>
+  </div>
+  <div class="field">
+    <%= f.label :brief_description %><br>
+    <%= f.text_field :brief_description %>
+  </div> 
+
   <div class="field">
     <%= f.label :dob %><br>
     <%= f.date_field :dob %>
@@ -32,6 +42,9 @@
     <%= f.label :died %><br>
     <%= f.date_field :died %>
   </div>
+
+
+
   <div class="field">
     <%= f.label :charity_id %><br>
     <%= f.collection_select :charity_id, Charity.all.order(:name),:id,:name, :selected => params['charity_id'] %>
