@@ -1,6 +1,6 @@
 <h3>Share a link</h3>
 <%#= form_for(Link.new, remote: true) do |f| %>
-<%= form_tag "/#{model}/#{id}/add_link", :method => :post, :format => :json, :remote => true do  %>
+<%= form_tag "/#{model}/#{id}/add_link", :method => :post, :format => :json, id: "new_link", :remote => true do  %>
 <%=  %>
   <div class="field">
     <%= label :title, "title" %><br>

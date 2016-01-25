@@ -57,7 +57,8 @@ $('#editmemstable').on('ajax:success', function(data) {
 
 $('#new_link').on('ajax:success', function(ev, data) {
   console.log(data);
-  $('#linkslist').prepend(data['div']);
+  var htmlstring = "<li><a href='" + data.address + "'>" + data.title + '</a></li>';
+  $('#linkslist').prepend(htmlstring);
 });
 
 $('.new_memory').on('ajax:success', function(ev, data) {
