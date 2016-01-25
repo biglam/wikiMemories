@@ -2,7 +2,14 @@ Rails.application.routes.draw do
   resources :groups
   resources :occasions
   resources :charities
-  resources :pets
+  resources :pets do
+    resources :images
+      member do
+      post 'add_link'
+      post 'add_memory'
+      delete 'remove_administrator'
+    end
+  end
   resources :places do
     resources :images
     member do

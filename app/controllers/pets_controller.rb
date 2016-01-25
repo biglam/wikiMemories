@@ -16,7 +16,7 @@ load_and_authorize_resource
   # GET /pets/1
   # GET /pets/1.json
   def show
-        @memories = @place.memories.paginate(:page => params[:page], :per_page => 5)
+        @memories = @pet.memories.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /pets/new
@@ -73,24 +73,24 @@ load_and_authorize_resource
   def remove_administrator
     admin = User.find(params[:admin])
     # person.remove_item(admin)
-    @place.administrators.delete(admin)
-    @place.save
+    @pet.administrators.delete(admin)
+    @pet.save
     render json: admin.to_json, layout: false if request.xhr?
   end
 
   def slideshow
-    @images = @place.images
+    @images = @pet.images
   end
 
   def add_memory
-    memory = @place.memories.create(title: params[:title], story: params[:story], user: current_user)
-    @place.save
+    memory = @pet.memories.create(title: params[:title], story: params[:story], user: current_user)
+    @pet.save
     render json: {div: render_to_string(partial: 'layouts/memory.html.erb', object: memory, locals: {frompage: "personpage"})}
   end
 
   def add_link
-    link = @place.links.create(title: params[:title], address: params[:address], user: current_user)
-    @place.save
+    link = @pet.links.create(title: params[:title], address: params[:address], user: current_user)
+    @pet.save
     render :json =>  link.to_json
   end
 
