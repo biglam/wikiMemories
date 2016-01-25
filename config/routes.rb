@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     member do
       post 'add_link'
       post 'add_memory'
+      delete 'remove_administrator'
     end
   end
   resources :messages
@@ -16,12 +17,13 @@ Rails.application.routes.draw do
     collection do
       get 'merge_records'
       get 'select_to_merge'
-      get 'remove_administrator'
+      
     end
     member do
       get 'slideshow'
       post 'add_link'
       post 'add_memory'
+      delete 'remove_administrator'
     end
   end
   resources :images do

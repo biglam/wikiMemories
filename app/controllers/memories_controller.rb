@@ -23,9 +23,6 @@ class MemoriesController < ApplicationController
 
   def create
     @memory = Memory.new(memory_params)
-    @memory.link_with(Person.find(params[:memory][:person_id])) if params[:memory][:person_id]
-    @memory.link_with(Place.find(params[:memory][:place_id])) if params[:memory][:place_id]
-    # binding.pry;''
     respond_to do |format|
       if @memory.save
         format.json { 

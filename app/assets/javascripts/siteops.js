@@ -33,7 +33,7 @@ $(document).ready(function(){
   $('#adminlist').on('ajax:success', function(evt, data, status, xhr) {
      // console.log(evt.target.id);
      // console.log(data);
-     var user_id = parseInt(data);
+     var user_id = parseInt(data.id);
      $('#adminrow_' + user_id).hide();
    }).
   on('ajax:error', function(xhr, status, error) {
@@ -155,14 +155,14 @@ postFlag = function(message, userid, memory_id) {
     });
 }
 
-addAdmin = function(itemid, adminid) {
+addAdmin = function(itemid, adminid, controllername) {
   $.ajax({
     type: "PATCH",
-    url: '/people/'+ itemid + '.json',
-    data: { 
-      person: { 
+    url: '/' + controllername + '/'+ itemid + '.json',
+    data: {
         adminstrator: adminid,
-      } 
+        person: {id: itemid},
+        place: {id: itemid}
     },
     dataType: 'json',
     success: function(msg, data) {

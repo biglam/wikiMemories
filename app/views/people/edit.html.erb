@@ -27,7 +27,7 @@ Note: personal details can only be edited by site owner. If you feel something s
 		<% @person.adminstrators.each do |admin| %>
 			<tr id='adminrow_<%= admin.id %>'>
 				<td><%= admin.username %></td>
-				<td><%= link_to("Remove", remove_administrator_people_path(person: @person.id, admin: admin.id), class: "btn btn-danger", remote: true) %></td>
+				<td><%= link_to("Remove", remove_administrator_person_path(admin: admin.id), class: "btn btn-danger", method: :delete, remote: true) %></td>
 			</tr>
 		<% end %>
 		
@@ -38,7 +38,9 @@ Note: personal details can only be edited by site owner. If you feel something s
  				<%= form_tag("/search/user.json", method: "get", :id => 'usersearchform', :remote => true) do %>
 				<%= text_field_tag :q, params[:search], :id => 'adminusername', :placeholder => "Enter Username" %>
 				<% end %>
-        <script>var itemid = <%= @person.id %></script>
+        <script>var itemid = <%= @person.id %>;
+        var controllername = "people";
+        var itemtype = "person";</script>
 				</td>
 				<td></td>
 			</tr></tbody><tbody id="adminsuggestions">

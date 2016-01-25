@@ -50,7 +50,8 @@ load_and_authorize_resource
   # PATCH/PUT /places/1
   # PATCH/PUT /places/1.json
   def update
-    @place.adminstrators << User.find(params[:place][:adminstrator])
+    # binding.pry;''
+    @place.administrators << User.find(params[:adminstrator])
     respond_to do |format|
       if @place.update(place_params)
         format.html { redirect_to @place, notice: 'Place was successfully updated.' }
@@ -73,10 +74,11 @@ load_and_authorize_resource
   end
 
   def remove_administrator
-    place = Place.find(params[:place])
     admin = User.find(params[:admin])
-    place.remove_item(admin)
-    render admin, layout: false if request.xhr?
+    # person.remove_item(admin)
+    @place.administrators.delete(admin)
+    @place.save
+    render json: admin.to_json, layout: false if request.xhr?
   end
 
   def slideshow

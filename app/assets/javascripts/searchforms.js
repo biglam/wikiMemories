@@ -74,7 +74,7 @@ $(function() {
     });
     $('#adminsuggestions').html(htmlstring);
     $('.addadmin').click(function(e) {
-      addAdmin(itemid, parseInt(e.target.id));
+      addAdmin(itemid, parseInt(e.target.id), controllername);
     })
   }).
   on('ajax:error', function(xhr, status, error) {

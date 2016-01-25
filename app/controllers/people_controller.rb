@@ -46,7 +46,7 @@ class PeopleController < ApplicationController
   end
 
   def update
-    @person.adminstrators << User.find(params[:person][:adminstrator])
+    @person.adminstrators << User.find(params[:adminstrator])
     respond_to do |format|
       if @person.update(person_params)
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
@@ -74,10 +74,13 @@ class PeopleController < ApplicationController
 
 
   def remove_administrator
-    person = Person.find(params[:person])
+    # binding.pry;''
+    # person = Person.find(params[:person])
     admin = User.find(params[:admin])
-    person.remove_item(admin)
-    render admin, layout: false if request.xhr?
+    # person.remove_item(admin)
+    @person.adminstrators.delete(admin)
+    @person.save
+    render json: admin.to_json, layout: false if request.xhr?
   end
 
   def slideshow

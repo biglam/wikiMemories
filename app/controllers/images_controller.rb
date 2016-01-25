@@ -33,8 +33,6 @@ def create
   def rank_up
      @image = Image.find(params[:id])
      @image.votes.create(user: current_user, value: 1)
-     # vote = Vote.new_for_item(@image, current_user, 1)
-     # if vote.save
      if @image.save
         @image.update_ranking_from_votes
         render :json =>  @image.to_json
@@ -46,8 +44,6 @@ def create
   def rank_down
     @image = Image.find(params[:id])
     @image.votes.create(user: current_user, value: -1)
-    # vote = Vote.new_for_item(@image, current_user, 1)
-    # if vote.save
     if @image.save
        @image.update_ranking_from_votes
        render :json =>  @image.to_json
