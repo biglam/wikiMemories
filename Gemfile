@@ -16,6 +16,17 @@ gem 'will_paginate', "~> 3.0.6"
 gem 'owlcarousel-rails'
 gem 'justgiving'
 
+
+
+  group :development, :test do
+    gem 'rspec-rails', '~> 3.3.0'
+    gem 'factory_girl_rails'
+    gem 'capybara'
+    gem 'database_cleaner'
+  end
+
+
+
 gem 'rails_12factor', group: :production
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
