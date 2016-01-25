@@ -84,7 +84,29 @@ $(function() {
     console.log(error);
   });
 
-
+  // front page occasions search
+    $('#occasiongo').click(function() {
+    value = $('#occasionsinput').val();
+    window.location.href = "/search/occasion?q=" + value;
+  });
+  $('#occasionsinput').keyup(function() {
+    value = $('#occasionsinput').val();
+    $('#occasionssearchform').submit();
+  });
+  $('#occasionssearchform').on('ajax:success', function(evt, data, status, xhr) {
+    console.log(data);
+    var name = $('#occasionsinput').val();
+    var newplace = '<div id="searchresult">Not here? <a href="/occasions/new?name='+name+'">Create '+name+'</a></div>'
+    $('#occasionsresultsdiv').html(data);
+    $('#occasionsresultsdiv').append(newplace);
+    $('#affiliateform').click(function (e) {
+    e.preventDefault();
+    addItem(memid, "occasions", e.target.id);
+  });
+  }).
+  on('ajax:error', function(xhr, status, error) {
+    console.log(error);
+  });
 
   //new adminsitrator / username search
   $('#adminusername').keyup(function() {

@@ -163,7 +163,8 @@ addAdmin = function(itemid, adminid, controllername) {
         adminstrator: adminid,
         person: {id: itemid},
         place: {id: itemid},
-        pet: {item: itemid}
+        pet: {item: itemid},
+        occasion: {item: itemid}
     },
     dataType: 'json',
     success: function(msg, data) {

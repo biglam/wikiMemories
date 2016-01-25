@@ -28,8 +28,8 @@
   </div> 
 
   <div id='occasionssearchdiv'>
-  <%= form_tag occasions_path, :method => :get, :id => 'occasionssearchform', :remote => true do %>
-    <%= text_field_tag :search, params[:search], :id => 'occasionsinput', :placeholder => "Search Occasions" %>
+  <%= form_tag "/search/occasion", :method => :get, :id => 'occasionssearchform', :format => :json, :remote => true do %>
+    <%= text_field_tag :q, params[:q], :id => 'occasionsinput', :placeholder => "Search Occasions" %>
     <%= submit_tag 'Go', id: 'occsgo' %>
     <% end %>
     <div id='occasionsresultsdiv'></div>

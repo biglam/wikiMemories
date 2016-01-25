@@ -21,7 +21,7 @@ load_and_authorize_resource
 
   # GET /occasions/new
   def new
-    @occasion = Occasion.new(name: params[:name], species_id: params[:species_id])
+    @occasion = Occasion.new(name: params[:name])
   end
 
   # GET /occasions/1/edit

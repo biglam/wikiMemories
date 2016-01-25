@@ -2,7 +2,7 @@
 
 <h1>Listing Occasions</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -18,14 +18,14 @@
         <td><%= occasion.name %></td>
         <td><%= occasion.date %></td>
         <td><%= occasion.time %></td>
-        <td><%= link_to 'Show', occasion %></td>
-        <td><%= link_to 'Edit', edit_occasion_path(occasion) %></td>
-        <td><%= link_to 'Destroy', occasion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', occasion, class: "btn btn-info" %></td>
+        <td><%#= link_to 'Edit', edit_occasion_path(occasion), class: "btn btn-info" %></td>
+        <td><%= link_to 'Destroy', occasion, method: :delete, data: { confirm: 'Are you sure?' } if current_user && current_user.role == "owner"  %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+  <%= will_paginate @occasions %>
 <br>
 
 <%= link_to 'New Occasion', new_occasion_path %>

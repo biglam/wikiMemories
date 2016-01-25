@@ -1,0 +1,16 @@
+<h1><%= @occasion.name %></h1>
+
+<p>
+  <strong>Date:</strong>
+  <%= @occasion.date %> (<%= time_ago_in_words(@occasion.date) %> ago)
+</p>
+<% if @occasion.time %>
+<p>
+  <strong>Time:</strong>
+  <%= @occasion.time.strftime("%I:%M%p") %>
+</p>
+<% end %>
+<p>
+  <strong>Description:</strong>
+  <%= @occasion.description %>
+</p>

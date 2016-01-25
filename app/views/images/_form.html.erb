@@ -13,6 +13,7 @@
   <%= f.hidden_field :person_id, :value => @person.id if @person %>
   <%= f.hidden_field :place_id, :value => @place.id if @place %>
   <%= f.hidden_field :pet_id, :value => @pet.id if @pet %>
+  <%= f.hidden_field :occasion_id, :value => @occasion.id if @occasion %>
   <%= f.submit %>
 <% end %>
 <%= link_to 'Back', images_path %>
