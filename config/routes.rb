@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :places
   resources :messages
   resources :people do
+    resources :images
     collection do
       get 'merge_records'
       get 'select_to_merge'

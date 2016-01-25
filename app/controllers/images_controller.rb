@@ -12,7 +12,7 @@ def create
     @image = Image.new(image_params)
     # binding.pry;''
     if params[:image][:person_id]
-      @image.people << Person.find(params[:image][:person_id])
+      @image.image_item = Person.find(params[:image][:person_id])
     end
     respond_to do |format|
       if @image.save
@@ -62,5 +62,13 @@ def create
       params.require(:image).permit(:title, :url, :ranking, :user_id, :image)
     end
 
+def find_image_item
+  params.each do |name, value|
+    if name =~ /(.+)_id$/
+      return $1.classify.constantize.find(value)
+    end
+  end
+  nil
+end
 
 end
