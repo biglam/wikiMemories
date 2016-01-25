@@ -18,7 +18,7 @@
       <tr>
         <td><%= place.name %></td>
         <td><%= place.placetype.placetype unless place.placetype == nil %></td>
-        <td><%= link_to 'Show', place %></td>
+        <td><%= link_to 'Show', place, class: "btn btn-info" %></td>
         <td><%#= link_to 'Edit', edit_place_path(place) %></td>
         <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } if current_user && current_user.role == "owner" %></td>
       </tr>

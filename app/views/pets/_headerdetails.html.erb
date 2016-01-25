@@ -1,0 +1,13 @@
+<h1><%= @pet.name %></h1>
+<h2><%= @pet.species.name %></h2>
+<p>
+  <strong>Dob:</strong>
+  <%= @pet.dob %>
+</p>
+
+<% if @pet.died %>
+<p>
+  <strong>died:</strong>
+  <%= @pet.died %> aged: <%= @pet.age %>
+</p>
+<% end %>

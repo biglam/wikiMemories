@@ -2,5 +2,55 @@
 
 <%= render 'form' %>
 
+
+Administrators:
+	<table class="table" id='adminlist'>
+		<tr>
+			<th>Username</th>
+			<th>Options</th>
+		</tr> 
+		<tbody>
+		<% @pet.administrators.each do |admin| %>
+			<tr id='adminrow_<%= admin.id %>'>
+				<td><%= admin.username %></td>
+				<td><%= link_to("Remove", remove_administrator_pet_path(admin: admin.id), class: "btn btn-danger", method: :delete, remote: true) %></td>
+			</tr>
+		<% end %>
+		
+			<tr id='adminrow_last'>
+				<td>Select a new administrator
+ 				<%= form_tag("/search/user.json", method: "get", :id => 'usersearchform', :remote => true) do %>
+				<%= text_field_tag :q, params[:search], :id => 'adminusername', :placeholder => "Enter Username" %>
+				<% end %>
+        <script>var itemid = <%= @pet.id %>;
+        		var controllername = "pets";
+        		var itemtype = "pet"</script>
+				</td>
+				<td></td>
+			</tr></tbody><tbody id="adminsuggestions">
+</tbody>
+	</table>
+
+
+
+	<table id='editmemstable' class="table table-striped">
+		<tr>
+			<th>Memory Id</th>
+			<th>Title</th>
+			<th>Story</th>
+			<th>Ranking</th>
+			<th>Remove</th>
+		</tr>
+	<% @pet.memories.each do |memory| %>
+	<tr id='mem_<%= memory.id %>'> 
+		<td><%= memory.id %></td>
+		<td><%= memory.title %></td>
+		<td><%= memory.story %></td>
+		<td><%= memory.ranking %></td>
+		<td><%= link_to("Remove", remove_item_memories_path(memory: memory.id, pet: @pet.id), remote: true, class: "btn btn-danger", :confirm => "Are you sure?") %></td>
+	</tr>
+	<% end %>
+</table>
+
 <%= link_to 'Show', @pet %> |
 <%= link_to 'Back', pets_path %>

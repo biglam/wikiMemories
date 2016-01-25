@@ -1,19 +1,81 @@
-<p id="notice"><%= notice %></p>
+ <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-8"><p>
+    <%= render 'headerdetails' %>
+    <strong>Administrators</strong>
+    <% @pet.administrators.each do |username| %>
+    <%= link_to username.username, user_path(username) %>
+    <% end %>
+  </div>
+  <div class="col-md-4"><%= image_tag(@pet.get_top_image.preview.url) if @pet.images.count > 0 %></div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @pet.name %>
-</p>
 
-<p>
-  <strong>Dob:</strong>
-  <%= @pet.dob %>
-</p>
+<% if @pet.can_admin(current_user) %>
+You are an admistrator. <%= link_to("Edit", edit_pet_path(@pet)) %>
+<% end %>
+<%= render_shareable %>
 
-<p>
-  <strong>died:</strong>
-  <%= @pet.died %>
-</p>
 
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', pets_path %>
+<!-- Start Memory Post -->
+<h2>Memories of <%= @pet.name %>  </h2>
+<% if current_user %>
+<div id='myTabs'>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#post1">Memory</a></li>
+    <li><a data-toggle="tab" href="#post2">Image</a></li>
+    <li><a data-toggle="tab" href="#post3">Link</a></li>
+  </ul>
+</div>
+<div class="tab-content">
+  <div id="post1" class="tab-pane fade in active">
+    <% @memory = Memory.new %>
+    <%= render partial: 'memories/form', locals: {model: "pets", id: @pet.id} %>
+  </div>
+  <div id="post2" class="tab-pane fade">
+    <%= render partial: 'images/form' %>
+  </div>
+  <div id="post3" class="tab-pane fade">
+    <%= render partial: 'links/form', locals: {model: "pets", id: @pet.id} %>
+  </div>
+</div>
+<% end %>
+<div class="postmemory">
+  <% if current_user %>
+  <!-- Edit -->
+
+  <!-- Story -->
+
+  <div id="linkform"></div>  
+  <% else %>
+  You must be logged in to post
+  <% end %>
+</div>
+<!-- Start Memory Feed -->
+<h3>Other users' memories</h3>
+<div id='other_peoples_memories'>    
+  <% if @pet.memories.count > 0 %>
+  <%= render partial: 'layouts/memory', collection: @memories.order(ranking: :desc), locals: {frompage: "petpage"} %>
+  <% end %>
+  <%= will_paginate @memories %>
+</div>
+
+<% if @pet.images.count > 0 %>
+<div class="images">
+  <h2>Images of <%= @pet.name %></h2>
+  <%= render partial: 'layouts/thumbnails', collection: @pet.images, as: :image %>
+</div>
+<%#= link_to("Slide Show", slideshow_pet_path(@pet), class: "btn btn-primary") %>
+<% end %>
+
+
+<% if @pet.links.count > 0 %>
+<h2>Links about <%= @pet.name %></h2>
+<ul id='linkslist'>
+  <% @pet.links.order(:linktype_id).each do |link| %>
+  <%= render partial: 'layouts/link', object: link %>
+  <% end %>
+</ul>
+<% end %>
+<%= link_to('Edit', edit_pet_path(@pet), class: "btn btn-primary") if @pet.can_admin(current_user) %>
+<%= link_to 'Back', pet_path, class: "btn btn-primary" %>

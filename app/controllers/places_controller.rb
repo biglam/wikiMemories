@@ -52,7 +52,7 @@ load_and_authorize_resource
   # PATCH/PUT /places/1.json
   def update
     # binding.pry;''
-    @place.administrators << User.find(params[:adminstrator])
+    @place.administrators << User.find(params[:adminstrator]) if params[:adminstrator]
     respond_to do |format|
       if @place.update(place_params)
         format.html { redirect_to @place, notice: 'Place was successfully updated.' }
