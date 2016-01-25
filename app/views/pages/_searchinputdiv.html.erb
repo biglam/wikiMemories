@@ -11,9 +11,9 @@
   </div> 
 
   <div id='placessearchdiv'>
-  <%= form_tag places_path, :method => :get, :id => 'placessearchform', :remote => true do %>
-    <%= text_field_tag :search, params[:search], :id => 'placesinput', :placeholder => "Search Places" %>
-    <%= submit_tag 'Go' %>
+  <%= form_tag "/search/place", :method => :get, :id => 'placessearchform', :format => :json, :remote => true do %>
+    <%= text_field_tag :q, params[:q], :id => 'placesinput', :placeholder => "Search Places" %>
+    <%= submit_tag 'Go', id: 'placego' %>
     <% end %>
 
     <div id='placesresultsdiv'></div>
@@ -22,7 +22,7 @@
   <div id='petssearchdiv'>
   <%= form_tag pets_path, :method => :get, :id => 'petssearchform', :remote => true do %>
     <%= text_field_tag :search, params[:search], :id => 'petsinput', :placeholder => "Search Pets" %>
-    <%= submit_tag 'Go' %>
+    <%= submit_tag 'Go', id: 'petgo' %>
     <% end %>
     <div id='petsresultsdiv'></div>
   </div> 
@@ -30,7 +30,7 @@
   <div id='occasionssearchdiv'>
   <%= form_tag occasions_path, :method => :get, :id => 'occasionssearchform', :remote => true do %>
     <%= text_field_tag :search, params[:search], :id => 'occasionsinput', :placeholder => "Search Occasions" %>
-    <%= submit_tag 'Go' %>
+    <%= submit_tag 'Go', id: 'occsgo' %>
     <% end %>
     <div id='occasionsresultsdiv'></div>
   </div> 

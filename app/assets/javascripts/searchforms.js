@@ -13,7 +13,6 @@ $(function() {
   });
 
   // front page people search
-
   $('#pplgo').click(function() {
     value = $('#peopleinput').val();
     window.location.href = "/search/person?q=" + value;
@@ -24,23 +23,43 @@ $(function() {
   });
   $('#peoplesearchform').on('ajax:success', function(evt, data, status, xhr) {
     console.log(data);
-    // $('#side_memories').html(data);
     var name = $('#peopleinput').val();
     var newperson = '<div id="searchresult">Not here? <a href="/people/new?name='+name+'">Create '+name+'</a></div>'
     $('#peopleresultsdiv').html(data);
     $('#peopleresultsdiv').append(newperson);
     $('#affiliateform').click(function (e) {
     e.preventDefault();
-    // console.log(e.target.id);
     addItem(memid, "people", e.target.id);
-
   });
-
-
   }).
   on('ajax:error', function(xhr, status, error) {
     console.log('failed: ' + error);
   });
+
+    // front page place search
+  $('#placego').click(function() {
+    value = $('#placesinput').val();
+    window.location.href = "/search/place?q=" + value;
+  });
+  $('#placesinput').keyup(function() {
+    value = $('#placesinput').val();
+    $('#placessearchform').submit();
+  });
+  $('#placessearchform').on('ajax:success', function(evt, data, status, xhr) {
+    console.log(data);
+    var name = $('#placesinput').val();
+    var newplace = '<div id="searchresult">Not here? <a href="/places/new?name='+name+'">Create '+name+'</a></div>'
+    $('#placesresultsdiv').html(data);
+    $('#placesresultsdiv').append(newplace);
+    $('#affiliateform').click(function (e) {
+    e.preventDefault();
+    addItem(memid, "places", e.target.id);
+  });
+  }).
+  on('ajax:error', function(xhr, status, error) {
+    console.log(error);
+  });
+
 
 
   //new adminsitrator / username search

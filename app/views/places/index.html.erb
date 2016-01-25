@@ -2,14 +2,14 @@
 
 <h1>Listing Places</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Placetype</th>
-      <th>Lat</th>
-      <th>Lng</th>
-      <th colspan="3"></th>
+<!--       <th>Lat</th>
+      <th>Lng</th> -->
+      <th colspan="3"><%= link_to('New', new_place_path, class: "btn btn-info") %></th>
     </tr>
   </thead>
 
@@ -18,16 +18,14 @@
       <tr>
         <td><%= place.name %></td>
         <td><%= place.placetype.placetype unless place.placetype == nil %></td>
-        <td><%= place.lat %></td>
-        <td><%= place.lng %></td>
         <td><%= link_to 'Show', place %></td>
-        <td><%= link_to 'Edit', edit_place_path(place) %></td>
-        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= link_to 'Edit', edit_place_path(place) %></td>
+        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } if current_user && current_user.role == "owner" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+  <%= will_paginate @places %>
 <br>
 
 <%= link_to 'New Place', new_place_path %>
