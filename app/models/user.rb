@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :administered_places, through: :place_administrators, source: :place
   has_many :pets_administrations, foreign_key: "administrator_id"
   has_many :administered_pets, through: :pets_administrations, source: :pet
+  has_many :occasions_administrations, foreign_key: "administrator_id"
+  has_many :administered_occasions, through: :occasions_administrations, source: :occasion
   has_and_belongs_to_many :messages
 
   validates :username, presence: true

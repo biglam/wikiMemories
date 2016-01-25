@@ -6,6 +6,9 @@ class Link < ActiveRecord::Base
   has_many :places, through: :links_places
   has_many :links_pets
   has_many :pets, through: :links_pets
+  has_many :links_occasions
+  has_many :occasions, through: :links_occasions
+
   belongs_to :linktype
   belongs_to :user
   validates :title, presence: true

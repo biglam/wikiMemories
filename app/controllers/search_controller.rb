@@ -30,6 +30,12 @@ end
     end
   end
 
+  def occasion
+    search do
+      Occasion.where("lower(name) like ?", "%#{params[:q]}%")
+    end
+  end
+
 
 private
 
