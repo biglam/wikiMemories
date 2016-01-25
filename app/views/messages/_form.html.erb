@@ -9,8 +9,7 @@
     <%= f.text_area :message %>
   </div>
   <%= f.hidden_field :sender_id, :value => current_user.id %>
-  <%= f.hidden_field :reciever_id, :value => :to %>
-
+  <%= f.hidden_field :reciever_id, :value => "#{to}" %>
   <%= f.submit %>
 <% end %>
   <div id="msgstatus"></div>
