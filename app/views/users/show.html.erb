@@ -12,33 +12,87 @@
 </ul>
 
 
-<% if @user.adminstered_people.count > 0 %>
-  <h2 id="peoplink">People Adminstered - <%= @user.adminstered_people.count %></h2>
-  <div id="peoplist">
-  <%= render partial: 'people/peoplelist', locals: {people: @user.adminstered_people} %>
+
+<!-- accordian -->
+
+
+
+ 
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <% if @user.adminstered_people.count > 0 %>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          People Adminstered - <%= @user.adminstered_people.count %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <%= render partial: 'people/peoplelist', locals: {people: @user.adminstered_people} %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+
+  <% if @user.administered_places.count > 0 %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Places Adminstered - <%= @user.administered_places.count %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <%= render partial: 'places/placelist' %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.administered_pets.count > 0 %>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Pets Adminstered - <%= @user.administered_pets.count %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <%= render partial: 'pets/petlist' %>
+      </div>
+    </div>
   </div>
 <% end %>
 
-<% if @user.administered_places.count > 0 %>
-  <h2 id="placlink">Places Adminstered - <%= @user.administered_places.count %></h2>
-  <div id="placlist">
-  <%= render partial: 'places/placelist' %>
-  </div>
-<% end %>
-
-<% if @user.administered_pets.count > 0 %>
-  <h2 id="petlink">Pets Adminstered - <%= @user.administered_pets.count %></h2>
-  <div id="petlist">
-  <%= render partial: 'pets/petlist' %>
-  </div>
-<% end %>
 
 <% if @user.administered_occasions.count > 0 %>
-  <h2 id="occasionlink">Occasions Adminstered - <%= @user.administered_occasions.count %></h2>
-  <div id="occasionlist">
-  <%= render partial: 'occasions/occasionlist' %>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFour">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Occasions Adminstered - <%= @user.administered_occasions.count %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body">
+        <%= render partial: 'occasions/occasionlist' %>
+      </div>
+    </div>
   </div>
-<% end %>
+  <% end %>
+</div>
+
 
 <% if @user.memories.count > 0 %>
   <h2 id='memlink'>Memories - <%= @user.memories.count %></h2>
