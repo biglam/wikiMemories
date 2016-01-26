@@ -12,6 +12,7 @@ $(function() {
     $('#searchform').submit();
   });
 
+// DRY up cos this is shiz baby
   // front page people search
   $('#pplgo').click(function() {
     value = $('#peopleinput').val();

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     member do
       post 'add_link'
       post 'add_memory'
+      get 'slideshow'
       delete 'remove_administrator'
     end
   end

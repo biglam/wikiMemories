@@ -1,10 +1,15 @@
 <h1>Add somewhere</h1>
 
 <div class="row">
-	 <div class="col-xs-6"><%= render 'form' %></div>
+	 <div class="col-xs-6"><%= render 'form' %><button id="currentlocation">Current Location</button></div>
   <div class="col-xs-6">
 
+  <div id="map"></div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&signed_in=true&callback=initMap"
+          async defer>
 
+          
+      </script>
   </div>
   </div>
 </div>

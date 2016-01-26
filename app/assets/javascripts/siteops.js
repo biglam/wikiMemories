@@ -101,6 +101,14 @@ $('#replybut').click(function() {
 });
 
 
+$('#currentlocation').click(function() {
+  console.log(pos);
+  $('#place_lat').val(pos['lat']);
+  $('#place_lng').val(pos['lng']);
+});
+
+
+
 });
 
   // function initMap(lat, lng) {
@@ -156,6 +164,7 @@ postFlag = function(message, userid, memory_id) {
 }
 
 addAdmin = function(itemid, adminid, controllername) {
+  // change to use mdoel
   $.ajax({
     type: "PATCH",
     url: '/' + controllername + '/'+ itemid + '.json',
