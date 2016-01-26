@@ -11,13 +11,32 @@
 <li><strong>Average Ranking: </strong> <%= @user.average_ranking %></li>
 </ul>
 
-Click to expand -
 
 <% if @user.adminstered_people.count > 0 %>
   <h2 id="peoplink">People Adminstered - <%= @user.adminstered_people.count %></h2>
-  <%#= render partial: 'layouts/showhide', locals: {trig: '#peoplink', tog: '#peoplist'} %>
   <div id="peoplist">
   <%= render partial: 'people/peoplelist', locals: {people: @user.adminstered_people} %>
+  </div>
+<% end %>
+
+<% if @user.administered_places.count > 0 %>
+  <h2 id="placlink">Places Adminstered - <%= @user.administered_places.count %></h2>
+  <div id="placlist">
+  <%= render partial: 'places/placelist' %>
+  </div>
+<% end %>
+
+<% if @user.administered_pets.count > 0 %>
+  <h2 id="petlink">Pets Adminstered - <%= @user.administered_pets.count %></h2>
+  <div id="petlist">
+  <%= render partial: 'pets/petlist' %>
+  </div>
+<% end %>
+
+<% if @user.administered_occasions.count > 0 %>
+  <h2 id="occasionlink">Occasions Adminstered - <%= @user.administered_occasions.count %></h2>
+  <div id="occasionlist">
+  <%= render partial: 'occasions/occasionlist' %>
   </div>
 <% end %>
 

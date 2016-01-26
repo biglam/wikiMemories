@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :people_adminstrations, foreign_key: "adminstrator_id"
   has_many :adminstered_people, through: :people_adminstrations, source: :person
   has_many :place_administrations, foreign_key: "administrator_id"
-  has_many :administered_places, through: :place_administrators, source: :place
+  has_many :administered_places, through: :place_administrations, source: :place
   has_many :pets_administrations, foreign_key: "administrator_id"
   has_many :administered_pets, through: :pets_administrations, source: :pet
   has_many :occasions_administrations, foreign_key: "administrator_id"

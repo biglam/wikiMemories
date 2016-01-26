@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.administered_occasions.each do |occasion| %>
+      <tr>
+        <td><%= occasion.name %></td>
+        <td><%= occasion.date %></td>
+        <td><%= occasion.time %></td>
+        <td><%= link_to 'Show', occasion, class: "btn btn-info" %></td>
+        <td><%#= link_to 'Edit', edit_occasion_path(occasion), class: "btn btn-info" %></td>
+        <td><%= link_to 'Destroy', occasion, method: :delete, data: { confirm: 'Are you sure?' } if current_user && current_user.role == "owner"  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
