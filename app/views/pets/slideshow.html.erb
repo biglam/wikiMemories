@@ -1,0 +1,27 @@
+<h1>Slideshow</h1>
+<h2><%= @pet.name %></h2>
+<div class="owl-carousel" id='owl-demo'>
+
+<% @images.each do |image| %>
+<div class="imgframe item">
+<%= image_tag(image.image.url) %>
+</div>
+<% end %>
+</div>
+<script>
+	
+$(document).ready(function() {
+ 
+  $("#owl-demo").owlCarousel({
+ 
+      navigation : true, // Show next and prev buttons
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem:true
+  });
+ 
+});
+
+</script>
+
+<%= link_to('Back', pet_path(@place)) %>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post 'add_link'
       post 'add_memory'
       delete 'remove_administrator'
+      get 'slideshow'
     end
   end
   resources :charities
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       post 'add_link'
       post 'add_memory'
       delete 'remove_administrator'
+      get 'slideshow'
     end
   end
   resources :places do
@@ -39,6 +41,7 @@ Rails.application.routes.draw do
       post 'add_link'
       post 'add_memory'
       delete 'remove_administrator'
+      get 'slideshow'
     end
   end
   resources :images do
