@@ -11,8 +11,9 @@
     <%= text_field_tag :address %>
   </div>
   <div class="field">
-    <%#= label :linktype_id, "linktype" %><br>
-    <%#= collection_select :linktype_id, Linktype.all.order(:linktype),:id,:linktype, :selected => params['linktype_id'] %>
+    <%= label :linktype_id, "linktype" %><br>
+    <%#= collection_select_tag :linktype_id, Linktype.all.order(:linktype),:id,:linktype, :selected => params['linktype_id'] %>
+    <%= select_tag 'linktype_id', options_for_select(Linktype.all.collect{ |linktype| [linktype.linktype, linktype.id] }) %>
   </div>
   <%= hidden_field :user_id, :value => current_user.id %>
   <%#= hidden_field :person_id, :value => @person.id %>

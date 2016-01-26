@@ -94,7 +94,7 @@ class PeopleController < ApplicationController
   end
 
   def add_link
-    link = @person.links.create(title: params[:title], address: params[:address], user: current_user)
+    link = @person.links.create(title: params[:title], address: params[:address], user: current_user, linktype_id: params[:linktype_id])
     @person.save
     render :json =>  link.to_json
   end

@@ -90,7 +90,7 @@ load_and_authorize_resource
   end
 
   def add_link
-    link = @occasion.links.create(title: params[:title], address: params[:address], user: current_user)
+    link = @occasion.links.create(title: params[:title], address: params[:address], user: current_user, linktype_id: params[:linktype_id])
     @occasion.save
     render :json =>  link.to_json
   end
