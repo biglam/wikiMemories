@@ -16,6 +16,23 @@ Species.delete_all
 User.delete_all 
 Vote.delete_all
 
+# def fill_data(modeltype)
+# 	num_of_memories = rand(25)
+# 	num_of_memories.times do 
+# 		send(modeltype).memories << Memory.find(mem_ids.sample)
+# 	end
+
+# 	num_of_links = rand(5)
+# 	num_of_links.times do 
+# 		send(modeltype).links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
+# 	end
+
+# 	num_of_admins = rand(5)
+# 	num_of_admins.times do 
+# 		send(modeltype).administrators << User.find(user_ids.sample) unless modeltype == "person"
+# 	end 
+# end
+
 # create users
 owner = User.create(email: "owner@owner.example", username: "owner", password: 'password', role: 'owner')
 admin = User.create(email: "admin@admin.example", username: "admin", password: 'password', role: 'admin')
@@ -73,17 +90,29 @@ mem_ids = Memory.all.map { |p| p.id }
 	person.died_of = Faker::Company.catch_phrase
 	person.save
 	
-	fill_data("person")
+	# fill_data("person")
 
-	num_of_images = rand(5)
-	num_of_images.times do 
-		person.images.create(remote_image_url: "http://lorempixel.com/500/500/people")
+	num_of_memories = rand(25)
+	num_of_memories.times do 
+		person.memories << Memory.find(mem_ids.sample)
+	end
+
+	num_of_links = rand(5)
+	num_of_links.times do 
+		person.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
 	end
 
 	num_of_admins = rand(5)
 	num_of_admins.times do 
 		person.adminstrators << User.find(user_ids.sample)
 	end 
+
+
+	num_of_images = rand(5)
+	num_of_images.times do 
+		person.images.create(remote_image_url: "http://lorempixel.com/500/500/people")
+	end
+
 	person.save
 end
 people_id_samples = Person.all.map { |p| p.id }
@@ -99,10 +128,26 @@ people_id_samples = Person.all.map { |p| p.id }
 	pet.died = Faker::Date.between(dob, Date.today) if rand(10) > 4
 	pet.save
 
-	fill_data("pet")
+	# fill_data("pet")
+
+	num_of_memories = rand(25)
+	num_of_memories.times do 
+		pet.memories << Memory.find(mem_ids.sample)
+	end
+
+	num_of_links = rand(5)
+	num_of_links.times do 
+		pet.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
+	end
+
+	num_of_admins = rand(5)
+	num_of_admins.times do 
+		pet.administrators << User.find(user_ids.sample)
+	end 
+
 	num_of_images = rand(5)
 	num_of_images.times do 
-		pet.images.create(remote_image_url: (["http://lorempixel.com/500/500/animals", "http://lorempixel.com/500/500/cats"].sample)
+		pet.images.create(remote_image_url: (["http://lorempixel.com/500/500/animals", "http://lorempixel.com/500/500/cats"].sample))
 	end
 
 	pet.save
@@ -118,7 +163,20 @@ end
 	place.lng = Faker::Address.longitude
 	place.save
 
-	fill_data("place")
+	num_of_memories = rand(25)
+	num_of_memories.times do 
+		place.memories << Memory.find(mem_ids.sample)
+	end
+
+	num_of_links = rand(5)
+	num_of_links.times do 
+		place.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
+	end
+
+	num_of_admins = rand(5)
+	num_of_admins.times do 
+		place.administrators << User.find(user_ids.sample)
+	end 
 	num_of_images = rand(5)
 	num_of_images.times do 
 		place.images.create(remote_image_url: ["http://lorempixel.com/500/500/city", "http://lorempixel.com/500/500/nature"].sample)
@@ -134,7 +192,21 @@ end
 	occasion.time = Faker::Time.between(200.days.ago, Time.now, :all)
 	occasion.save
 
-	fill_data("occasion")
+	num_of_memories = rand(25)
+	num_of_memories.times do 
+		occasion.memories << Memory.find(mem_ids.sample)
+	end
+
+	num_of_links = rand(5)
+	num_of_links.times do 
+		occasion.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
+	end
+
+	num_of_admins = rand(5)
+	num_of_admins.times do 
+		occasion.administrators << User.find(user_ids.sample)
+	end 
+
 	num_of_images = rand(5)
 	num_of_images.times do 
 		occasion.images.create(remote_image_url: ["http://lorempixel.com/500/500/sport", "http://lorempixel.com/500/500/nightlife"].sample)
@@ -143,33 +215,25 @@ end
 end
 
 # Vote
-
 1000.times do
 	Memory.find(mem_ids.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
 end
 image_id_samples = Image.all.map { |p| p.id }
 500.times do
-	Image.find(img_ids.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
+	Image.find(image_id_samples.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
 end
 
 # Flag
 200.times do 
-	Memory.find(mem_ids.sample).flags.create(user_id: user_ids.sample, message: Faker::Hacker.say_something_smart)
+	mem = Memory.find(mem_ids.sample)
+	mem.flags.create(user_id: user_ids.sample, message: Faker::Hacker.say_something_smart)
+	mem.add_flag
 end
 
-def fill_data(modeltype)
-	num_of_memories = rand(25)
-	num_of_memories.times do 
-		modeltype.memories << Memory.find(mem_ids.sample)
-	end
+Memory.all.each do |mem|
+	mem.update_ranking_from_votes unless memory.votes.count == 0
+end
 
-	num_of_links = rand(5)
-	num_of_links.times do 
-		modeltype.links.create (title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
-	end
-
-	num_of_admins = rand(5)
-	num_of_admins.times do 
-		modeltype.administrators << User.find(user_ids.sample) unless modeltype == "person"
-	end 
+Image.all.each do |img|
+	img.update_ranking_from_votes unless img.votes.count == 0
 end
