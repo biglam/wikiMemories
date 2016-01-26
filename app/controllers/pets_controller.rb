@@ -99,9 +99,6 @@ load_and_authorize_resource
     render :json =>  link.to_json
   end
 
-  def slideshow
-    @images = @occasion.images
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

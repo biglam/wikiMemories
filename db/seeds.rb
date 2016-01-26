@@ -231,7 +231,7 @@ end
 end
 
 Memory.all.each do |mem|
-	mem.update_ranking_from_votes unless memory.votes.count == 0
+	mem.update_ranking_from_votes unless mem.votes.count == 0
 end
 
 Image.all.each do |img|
