@@ -5,10 +5,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Placetype</th>
-<!--       <th>Lat</th>
-      <th>Lng</th> -->
+      <th><%= sortable "name" %></th>
+      <th><%= sortable "placetype_id", "Place Type" %></th>
       <th colspan="3"><%= link_to('New', new_place_path, class: "btn btn-info") %></th>
     </tr>
   </thead>

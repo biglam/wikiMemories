@@ -5,9 +5,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Dob</th>
-      <th>Died</th>
+      <th><%= sortable "name" %></th>
+      <th><%= sortable "dob", "Born" %></th>
+      <th><%= sortable "died" %></th>
       <th colspan="3"><%= link_to('New', new_pet_path, class: "btn btn-info") %></th>
     </tr>
   </thead>

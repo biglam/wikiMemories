@@ -1,13 +1,14 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
 load_and_authorize_resource
+helper_method :sort_column, :sort_direction
   # GET /pets
   # GET /pets.json
   def index
     if params[:search]
       @pets_search_result = Pet.where("name like ?", "%#{params[:search]}%").limit(5) if params[:search] < ""
     else
-      @pets = Pet.all.paginate(:page => params[:page], :per_page => 25)
+      @pets = Pet.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 25)
     end
     render @pets_search_result, layout: false if request.xhr?
 
@@ -110,4 +111,12 @@ load_and_authorize_resource
     def pet_params
       params.require(:pet).permit(:name, :dob, :died, :species_id)
     end
+
+  def sort_column
+    Pet.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end

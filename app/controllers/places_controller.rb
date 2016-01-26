@@ -1,13 +1,14 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 load_and_authorize_resource
+helper_method :sort_column, :sort_direction
   # GET /places
   # GET /places.json
   def index
     if params[:search]
       @places_search_result = Place.where("name like ?", "%#{params[:search]}%").limit(5) if params[:search] < ""
     else
-      @places = Place.all.paginate(:page => params[:page], :per_page => 25)
+      @places = Place.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 25)
     end
     render @places_search_result, layout: false if request.xhr?
   end
@@ -117,4 +118,12 @@ load_and_authorize_resource
     def place_params
       params.require(:place).permit(:name, :placetype, :placetype_id, :lat, :lng, :address)
     end
+
+  def sort_column
+    Place.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end
