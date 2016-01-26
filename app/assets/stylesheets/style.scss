@@ -177,4 +177,8 @@ and (min-device-width: 768px) {
     // background-color: red;
     width: 300px; 
   }
+
+  .field textarea, .field input {
+    width: 400px;
+  }
 }
