@@ -168,8 +168,8 @@ postFlag = function(message, userid, memory_id) {
 addAdmin = function(itemid, adminid, controllername) {
   // change to use mdoel
   $.ajax({
-    type: "PATCH",
-    url: '/' + controllername + '/'+ itemid + '.json',
+    type: "PUT",
+    url: '/' + controllername + '/'+ itemid + '/add_administrator.json',
     data: {
         adminstrator: adminid,
         person: {id: itemid},
@@ -178,8 +178,9 @@ addAdmin = function(itemid, adminid, controllername) {
         occasion: {item: itemid}
     },
     dataType: 'json',
-    success: function(msg, data) {
-          alert("New admin added");
+    success: function(data, msg) {
+          var htmlstring = '<tr><td>' + data.username + '</td><td><a href="#" class="btn btn-default">Added</a></td></tr>';
+          $('#adminlistoptions').prepend(htmlstring);
         }
       });
 

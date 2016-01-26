@@ -72,6 +72,12 @@ class PeopleController < ApplicationController
     @merged = Person.new
   end
 
+  def add_administrator
+      admin = User.find(params[:adminstrator])
+      @person.adminstrators << admin
+      @person.save
+      render :json => admin.to_json
+  end
 
   def remove_administrator
     # binding.pry;''

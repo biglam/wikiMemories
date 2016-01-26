@@ -10,7 +10,7 @@
 			<th>Username</th>
 			<th>Options</th>
 		</tr> 
-		<tbody>
+		<tbody id='adminlistoptions'>
 		<% @place.administrators.each do |admin| %>
 			<tr id='adminrow_<%= admin.id %>'>
 				<td><%= admin.username %></td>

@@ -47,8 +47,6 @@ load_and_authorize_resource
   # PATCH/PUT /pets/1
   # PATCH/PUT /pets/1.json
   def update
-    # binding.pry;''
-    @pet.administrators << User.find(params[:adminstrator]) if params[:adminstrator]
     respond_to do |format|
       if @pet.update(pet_params)
         format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }
@@ -70,6 +68,12 @@ load_and_authorize_resource
     end
   end
 
+  def add_administrator
+      admin = User.find(params[:adminstrator])
+      @pet.administrators << admin
+      @pet.save
+      render :json => admin.to_json
+  end
 
   def remove_administrator
     admin = User.find(params[:admin])

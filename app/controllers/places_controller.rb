@@ -74,6 +74,13 @@ load_and_authorize_resource
     end
   end
 
+  def add_administrator
+      admin = User.find(params[:adminstrator])
+      @place.administrators << admin
+      @place.save
+      render :json => admin.to_json
+  end
+
   def remove_administrator
     admin = User.find(params[:admin])
     # person.remove_item(admin)

@@ -1,103 +1,175 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-User.delete_all
-Person.delete_all
+# Clear database
+
+Charity.delete_all
+Flag.delete_all
+Image.delete_all
+Link.delete_all
+Linktype.delete_all
 Memory.delete_all
+Message.delete_all
+Occasion.delete_all
+Person.delete_all
+Pet.delete_all
 Place.delete_all
 Placetype.delete_all
-Pet.delete_all
-Charity.delete_all
 Species.delete_all
+User.delete_all 
+Vote.delete_all
 
-
-admin = User.create(email: "admin@admin.example", username: "admin", password: "password", role: "admin")
-normaluser = User.create(email: "user@user.example", username: "user", password: "password")
-
-mychar = Charity.create(name: "Feed Lam")
-
-Person.create(firstname: "Joe", lastname: "Bloggs", dob: "2015/01/01")
-dd = Person.create(firstname: "Dead", lastname: "Dude", dob: "1920/01/01", died: "1965/03/25")
-
-mychar.people << dd
-Memory.create(title: "My First Memory", story: "Once upon a time...", ranking: 2, user_id: admin.id)
-
-["Home", "Town", "Restaurant or Bar", "Areena", "Sports Hall or Stadium", "Landmark", "Countryside"].each do |placetype|
-	Placetype.create(placetype: "#{placetype}")
-end
-
-Pet.create(name: "Bob")
-pub = Place.create(name: "The Pub")
-pub.placetype = Placetype.first
-pub.save
-
-20.times do 
-	Charity.create(name: Faker::Company.name)
-end
-
-100.times do 
-	mem = Memory.create(title: Faker::App.name, story: Faker::Lorem.paragraph(2, false, 4), ranking: 1, user_id: admin.id)
-end
-
-spec = ['dog', 'cat', 'bird', 'rodent','fish', 'reptile', 'other']
-spec.each do |species|
-  Species.create(name: species)
-end
-
-50.times do |i|
-  if rand(10) >= 5 
-    p = Person.create(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name, dob: Faker::Date.between(200.years.ago, Date.today))
-  else
-    born = Faker::Date.between(200.years.ago, Date.today)
-    charity = Charity.limit(1).order("RANDOM()")[0]
-    p = Person.create(firstname: Faker::Name.first_name, middlenames: "The #{Faker::Name.title}", lastname: Faker::Name.last_name, dob: born, died: Faker::Date.between(born, Date.today))
-  	p.charity = charity
-  end
-  mem = Memory.limit(rand(3)).order("RANDOM()")
-  p.memories << mem
-end
-
+# create users
+owner = User.create(email: "owner@owner.example", username: "owner", password: 'password', role: 'owner')
+admin = User.create(email: "admin@admin.example", username: "admin", password: 'password', role: 'admin')
 50.times do
-	born = Faker::Date.between(200.years.ago, Date.today)
-	spec = Species.limit(1).order("RANDOM()")[0]
-	pet = Pet.create(name: Faker::Name.first_name, dob: born, died: Faker::Date.between(born, Date.today))
-	pet.species = spec
+	User.create(username: Faker::Internet.user_name, email: Faker::Internet.email, password: 'password')
+end
+user_ids = User.all.map { |p| p.id }
+
+# Placetype
+['Home', 'Town', 'City', 'Restaurant', 'Bar', 'Arena', 'Sports Stadium', 'Landmark', 'Countryside', 'Office'].each do |placetypename|
+	Placetype.create(placetype: placetypename)
+end
+placetype_ids = Placetype.all.map { |p| p.id }
+
+# Species
+
+['Cat', 'Dog', 'Rodent', 'Bird', 'Reptile', 'Mammal', 'Other'].each do |pettype|
+	Species.create(name: pettype)
+end
+species_ids = Species.all.map { |p| p.id }
+
+# Charity
+
+['Cancer Research', 'Dogs Trust', 'Cat Rescue', 'British Heart Foundation', 'Shelter'].each do |charity|
+	Charity.create(name: charity)
+end
+charity_ids = Charity.all.map { |p| p.id }
+# Linktype
+['Obituary', 'Profile', 'Artical', 'Other'].each do |lt|
+	Linktype.create(linktype: lt)
+end
+linktype_ids = Linktype.all.map { |p| p.id }
+# Message
+200.times do
+	Message.create(sender_id: user_ids.sample, reciever_id: user_ids.sample, read: true, title: Faker::Book.title, message: Faker::Lorem.paragraph)
+end
+
+# Memory
+500.times do 
+	Memory.create(title: Faker::Book.title, story: Faker::Lorem.paragraph, user_id: user_ids.sample)
+end
+mem_ids = Memory.all.map { |p| p.id }
+
+# Person
+250.times do
+	person = Person.new
+	person.firstname = Faker::Name.first_name
+	person.middlenames = Faker::Name.name if rand(10)>4
+	person.lastname = Faker::Name.last_name
+	person.charity_id = charity_ids.sample
+	dob = Faker::Date.between(200.years.ago, Date.today)
+	person.dob = dob
+	person.died = Faker::Date.between(dob, Date.today) if rand(10) > 4
+	person.place_of_birth = Faker::Address.city
+	person.died_of = Faker::Company.catch_phrase
+	person.save
+	
+	fill_data("person")
+
+	num_of_images = rand(5)
+	num_of_images.times do 
+		person.images.create(remote_image_url: "http://lorempixel.com/500/500/people")
+	end
+
+	num_of_admins = rand(5)
+	num_of_admins.times do 
+		person.adminstrators << User.find(user_ids.sample)
+	end 
+	person.save
+end
+people_id_samples = Person.all.map { |p| p.id }
+
+
+# Pet
+250.times do
+	pet = Pet.new
+	pet.name = Faker::Name.name
+	pet.species_id = species_ids.sample
+	dob = Faker::Date.between(200.years.ago, Date.today)
+	pet.dob = dob
+	pet.died = Faker::Date.between(dob, Date.today) if rand(10) > 4
+	pet.save
+
+	fill_data("pet")
+	num_of_images = rand(5)
+	num_of_images.times do 
+		pet.images.create(remote_image_url: (["http://lorempixel.com/500/500/animals", "http://lorempixel.com/500/500/cats"].sample)
+	end
+
 	pet.save
 end
 
-50.times do
-	ptid = Placetype.limit(1).order("RANDOM()")[0].id
-	lat = Faker::Address.latitude
-	lng = Faker::Address.longitude
-	Place.create(name: Faker::Company.name, placetype_id: ptid, address: Faker::Address.street_address, lat: "#{lat}", lng: "#{lng}")
-end
+# Place
+250.times do
+	place = Place.new
+	place.name = Faker::Address.street_name
+	place.placetype_id = placetype_ids.sample
+	place.address = Faker::Address.street_address
+	place.lat = Faker::Address.latitude
+	place.lng = Faker::Address.longitude
+	place.save
 
-20.times do
-	if rand(10) >= 5
-		Occasion.create(date: Faker::Date.between(100.years.ago, Date.today), name: Faker::Lorem.word)
-	else
-		date = Faker::Time.between(100.years.ago, Date.today)
-		Occasion.create(date: date, time: date, name: Faker::Lorem.word)
+	fill_data("place")
+	num_of_images = rand(5)
+	num_of_images.times do 
+		place.images.create(remote_image_url: ["http://lorempixel.com/500/500/city", "http://lorempixel.com/500/500/nature"].sample)
 	end
+	place.save
 end
 
-200.times do
-	g = Group.new
-	g.name = Faker::Lorem.word
-	g.about = Faker::Lorem.sentences
+# Occasion
+250.times do
+	occasion = Occasion.new
+	occasion.name = Faker::Address.street_name
+	occasion.date = Faker::Date.between(200.years.ago, Date.today)
+	occasion.time = Faker::Time.between(200.days.ago, Time.now, :all)
+	occasion.save
 
-	ppl = Person.limit(rand(3)).order("RANDOM()")
-	plc = Place.limit(rand(3)).order("RANDOM()")
-	occ = Occasion.limit(rand(3)).order("RANDOM()")
-	pet = Pet.limit(rand(3)).order("RANDOM()")
+	fill_data("occasion")
+	num_of_images = rand(5)
+	num_of_images.times do 
+		occasion.images.create(remote_image_url: ["http://lorempixel.com/500/500/sport", "http://lorempixel.com/500/500/nightlife"].sample)
+	end
+	occasion.save
+end
 
-	g.people << ppl unless ppl==nil
-	g.places << plc unless plc==nil
-	g.occasions << occ unless occ==nil
-	g.pets << pet unless pet ==nil
-	g.save
+# Vote
+
+1000.times do
+	Memory.find(mem_ids.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
+end
+image_id_samples = Image.all.map { |p| p.id }
+500.times do
+	Image.find(img_ids.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
+end
+
+# Flag
+200.times do 
+	Memory.find(mem_ids.sample).flags.create(user_id: user_ids.sample, message: Faker::Hacker.say_something_smart)
+end
+
+def fill_data(modeltype)
+	num_of_memories = rand(25)
+	num_of_memories.times do 
+		modeltype.memories << Memory.find(mem_ids.sample)
+	end
+
+	num_of_links = rand(5)
+	num_of_links.times do 
+		modeltype.links.create (title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
+	end
+
+	num_of_admins = rand(5)
+	num_of_admins.times do 
+		modeltype.administrators << User.find(user_ids.sample) unless modeltype == "person"
+	end 
 end

@@ -23,7 +23,7 @@ Note: personal details can only be edited by site owner. If you feel something s
 			<th>Username</th>
 			<th>Options</th>
 		</tr> 
-		<tbody>
+		<tbody id='adminlistoptions'>
 		<% @person.adminstrators.each do |admin| %>
 			<tr id='adminrow_<%= admin.id %>'>
 				<td><%= admin.username %></td>
