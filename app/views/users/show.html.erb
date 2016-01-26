@@ -143,6 +143,7 @@
 
 
 </div>
+<% if current_user %>
   <div class="col-xs-6 col-md-4">  <div class="panel panel-info">
   	  <div class="panel-heading">
     <h3 class="panel-title">Message <%= @user.username %></h3>
@@ -152,5 +153,6 @@
   </div>
   </div>
 </div>
+<% end %>
 </div>
 

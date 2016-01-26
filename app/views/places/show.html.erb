@@ -66,7 +66,7 @@ You are an admistrator. <%= link_to("Edit", edit_place_path(@place)) %>
   <h2>Images of <%= @place.name %></h2>
   <%= render partial: 'layouts/thumbnails', collection: @place.images, as: :image %>
 </div>
-<%#= link_to("Slide Show", slideshow_place_path(@place), class: "btn btn-primary") %>
+<%= link_to("Slide Show", slideshow_place_path(@place), class: "btn btn-primary") %>
 <% end %>
 
 

@@ -21,8 +21,8 @@
         <td class='onlyscreen'><%= person.died %></td>
         <td class='onlyscreen'><%= person.charity.name unless !person.charity %></td>
         <td><%= link_to 'Show', person, class: "btn btn-primary" %></td>
-        <td><%= link_to 'Edit', edit_person_path(person), class: "btn btn-primary" if current_user.role=="admin" || current_user.role == "owner"%></td>
-        <td><%= link_to 'Destroy', person, method: :delete, class: "btn btn-danger",data: { confirm: 'Are you sure?' } if current_user.role=="admin" || current_user.role == "owner" %></td>
+        <td><%= link_to 'Edit', edit_person_path(person), class: "btn btn-primary" if current_user && (current_user.role=="admin" || current_user.role == "owner")%></td>
+        <td><%= link_to 'Destroy', person, method: :delete, class: "btn btn-danger",data: { confirm: 'Are you sure?' } if current_user && (current_user.role=="admin" || current_user.role == "owner") %></td>
       </tr>
     <% end %>
   </tbody>
