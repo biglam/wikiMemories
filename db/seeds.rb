@@ -228,6 +228,7 @@ end
 	mem = Memory.find(mem_ids.sample)
 	mem.flags.create(user_id: user_ids.sample, message: Faker::Hacker.say_something_smart)
 	mem.add_flag
+	mem.save
 end
 
 Memory.all.each do |mem|
