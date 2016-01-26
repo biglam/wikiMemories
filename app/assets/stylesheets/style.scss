@@ -96,6 +96,14 @@ tr.even {
   border-radius: 10px;
 }
 
+.pretty th .asc {
+  background-image: image-url("uparrow.png");
+}
+
+.pretty th .desc {
+  background-image: image-url("downarrow.png");
+}
+
 @media only screen
 and (max-device-width: 767px) {
 .onlyscreen {

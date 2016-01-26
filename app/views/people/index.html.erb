@@ -5,12 +5,12 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Surname</th>
-      <th class='onlyscreen'>First Name</th>
+      <th><%= sortable "lastname", "Last Name" %></th>
+      <th class='onlyscreen'><%= sortable "firstname", "First Name" %></th>
       <th class='onlymob'>Full Name</th>
-      <th class='onlyscreen'>Dob</th>
-      <th class='onlyscreen'>Died</th>
-      <th class='onlyscreen'>Charity</th>
+      <th class='onlyscreen'><%= sortable "dob", "Born" %></th>
+      <th class='onlyscreen'><%= sortable "died", "Died" %></th>
+      <th class='onlyscreen'><%= sortable "charity_id", "Charity" %></th>
       <th colspan="3"><%= link_to('New', new_person_path, class: "btn btn-info") %></th>
     </tr>
   </thead>
