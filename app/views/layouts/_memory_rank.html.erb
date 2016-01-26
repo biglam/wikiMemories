@@ -10,7 +10,7 @@
 
 
 
-<div class="rankdiv">Raking: <span id="rank_<%= memory.id %>"><%= memory.ranking %></span></div>
+<div class="rankdiv">Ranking: <span id="rank_<%= memory.id %>"><%= memory.ranking %></span></div>
 <div class="rankdiv">
   <% if can? :create, Vote %>
   <%= link_to rank_down_memory_path(memory), class: 'btn btn-warning', remote: true, method: :post do %>
