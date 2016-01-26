@@ -30,6 +30,7 @@ def create
 
   def show
   	@image = Image.find(params[:id])
+    render layout: 'layouts/image'
   end
 
   def rank_up
