@@ -4,29 +4,14 @@
 
 <div class="row">
   <div class="row">
-    <div class="col-xs-12 col-md-6"><%= render partial: 'searchinputdiv' %><%= render partial: 'highestranked' %><%= render partial: 'justadded' %></div>
-    <div class="col-xs-12 col-md-6"><%= render partial: 'lastupdated' %><%= render partial: 'yourmemories' %></div>
-  </div>
-</div>
-
-
-In your area
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
+    <div class="col-xs-12 col-md-6"><%= render partial: 'searchinputdiv' %><%= render partial: 'highestranked' %><%= render partial: 'lastupdated' %></div>
+    <div class="col-xs-12 col-md-6"><%= render partial: 'justadded' %><%= render partial: 'yourmemories' %><br>
+    <h2>In your area</h2>
     <div id="map">
       
     </div>
-    <script>
-      // var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 3, lng: 3},
-          zoom: 16
-        });
-      }
-      initMap();
-    </script>
-    <ul>
-      <li>Dead dude 1</li>
-      <li>Dead dude 2</li>
-      <li>Dead dude 3</li>
-    </ul>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&signed_in=true&callback=initMap" async defer>
+</script>
+ </div>
+  </div>
+</div>

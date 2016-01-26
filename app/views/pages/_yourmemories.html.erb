@@ -5,7 +5,7 @@
 <% @yourmems.each do |memory| %>
   <tr>
     <th>Title</th>
-    <th><%= memory.title %></th>
+    <th><%= link_to memory.title, memory %></th>
   </tr>
   <tr>
     <td>Rank: <%= memory.ranking %></td>

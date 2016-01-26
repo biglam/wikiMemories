@@ -8,7 +8,7 @@
 </tr>
 <% @justadded.each do |person| %>
 <tr>
-	<td><%= person.fullname %></td>
+	<td><%= link_to person.fullname, person %></td>
 	<td><%= person.dob %></td>
 	<td><%= person.died if person.died %></td>
 </tr>
