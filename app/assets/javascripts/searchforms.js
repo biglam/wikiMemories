@@ -13,102 +13,11 @@ $(function() {
   });
 
 // DRY up cos this is shiz baby
-  // front page people search
-  $('#pplgo').click(function() {
-    value = $('#peopleinput').val();
-    window.location.href = "/search/person?q=" + value;
-  });
-  $('#peopleinput').keyup(function() {
-    value = $('#peopleinput').val();
-    $('#peoplesearchform').submit();
-  });
-  $('#peoplesearchform').on('ajax:success', function(evt, data, status, xhr) {
-    console.log(data);
-    var name = $('#peopleinput').val();
-    var newperson = '<div id="searchresult">Not here? <a href="/people/new?name='+name+'">Create '+name+'</a></div>'
-    $('#peopleresultsdiv').html(data);
-    $('#peopleresultsdiv').append(newperson);
-    $('#affiliateform').click(function (e) {
-    e.preventDefault();
-    console.log(e.target.id);
-    addItem(memid, "people", e.target.id);
-  });
-  }).
-  on('ajax:error', function(xhr, status, error) {
-    console.log('failed: ' + error);
-  });
-
-    // front page place search
-  $('#placego').click(function() {
-    value = $('#placesinput').val();
-    window.location.href = "/search/place?q=" + value;
-  });
-  $('#placesinput').keyup(function() {
-    value = $('#placesinput').val();
-    $('#placessearchform').submit();
-  });
-  $('#placessearchform').on('ajax:success', function(evt, data, status, xhr) {
-    console.log(data);
-    var name = $('#placesinput').val();
-    var newplace = '<div id="searchresult">Not here? <a href="/places/new?name='+name+'">Create '+name+'</a></div>'
-    $('#placesresultsdiv').html(data);
-    $('#placesresultsdiv').append(newplace);
-    $('#affiliateform').click(function (e) {
-    e.preventDefault();
-    addItem(memid, "places", e.target.id);
-  });
-  }).
-  on('ajax:error', function(xhr, status, error) {
-    console.log(error);
-  });
-
-  // front page pets search
-    $('#petgo').click(function() {
-    value = $('#petsinput').val();
-    window.location.href = "/search/pet?q=" + value;
-  });
-  $('#petsinput').keyup(function() {
-    value = $('#petsinput').val();
-    $('#petssearchform').submit();
-  });
-  $('#petssearchform').on('ajax:success', function(evt, data, status, xhr) {
-    console.log(data);
-    var name = $('#petsinput').val();
-    var newplace = '<div id="searchresult">Not here? <a href="/pets/new?name='+name+'">Create '+name+'</a></div>'
-    $('#petsresultsdiv').html(data);
-    $('#petsresultsdiv').append(newplace);
-    $('#affiliateform').click(function (e) {
-    e.preventDefault();
-    addItem(memid, "pets", e.target.id);
-  });
-  }).
-  on('ajax:error', function(xhr, status, error) {
-    console.log(error);
-  });
-
-  // front page occasions search
-    $('#occasiongo').click(function() {
-    value = $('#occasionsinput').val();
-    window.location.href = "/search/occasion?q=" + value;
-  });
-  $('#occasionsinput').keyup(function() {
-    value = $('#occasionsinput').val();
-    $('#occasionssearchform').submit();
-  });
-  $('#occasionssearchform').on('ajax:success', function(evt, data, status, xhr) {
-    console.log(data);
-    var name = $('#occasionsinput').val();
-    var newplace = '<div id="searchresult">Not here? <a href="/occasions/new?name='+name+'">Create '+name+'</a></div>'
-    $('#occasionsresultsdiv').html(data);
-    $('#occasionsresultsdiv').append(newplace);
-    $('#affiliateform').click(function (e) {
-    e.preventDefault();
-    addItem(memid, "occasions", e.target.id);
-  });
-  }).
-  on('ajax:error', function(xhr, status, error) {
-    console.log(error);
-  });
+// Hows that Michael? 96 lines down to 4 :P
+frontPageForm('person', 'people');
+frontPageForm('place', 'places');
+frontPageForm('pet', 'pets');
+frontPageForm('occasion', 'occasions');
 
   //new adminsitrator / username search
   $('#adminusername').keyup(function() {
@@ -207,3 +116,29 @@ $(function() {
 
 
 });
+
+
+frontPageForm = function(singular, plural) {
+  $('#' + singular + 'go').click(function() {
+    value = $('#' + plural + 'input').val();
+    window.location.href = "/search/' + singular + '?q=" + value;
+  });
+  $('#' + plural + 'input').keyup(function() {
+    value = $('#' + plural + 'input').val();
+    $('#' + plural + 'searchform').submit();
+  });
+  $('#' + plural + 'searchform').on('ajax:success', function(evt, data, status, xhr) {
+    console.log(data);
+    var name = $('#' + plural + 'input').val();
+    var newplace = '<div id="searchresult">Not here? <a href="/' + plural + '/new?name='+name+'">Create '+name+'</a></div>'
+    $('#' + plural + 'resultsdiv').html(data);
+    $('#' + plural + 'resultsdiv').append(newplace);
+    $('#affiliateform').click(function (e) {
+    e.preventDefault();
+    addItem(memid, "' + plural + '", e.target.id);
+  });
+  }).
+  on('ajax:error', function(xhr, status, error) {
+    console.log(error);
+  });
+}
