@@ -152,11 +152,26 @@ class MemoriesController < ApplicationController
   end
 
   def additem
+    # another reason for memories to be polymorphic
+    # binding.pry;''
     case params[:type]
+
     when "people"
       person = Person.find(params[:itemid])
       @memory.people << person
       render :json => person.to_json
+    when "places"
+      place = Place.find(params[:itemid])
+      @memory.places << place
+      render :json => place.to_json
+    when "pets"
+      pet = Pet.find(params[:itemid])
+      @memory.pets << pet
+      render :json => pet.to_json
+    when "occasions"
+      occasion = Occasion.find(params[:itemid])
+      @memory.occasions << occasion
+      render :json => occasion.to_json
     end
     @memory.save
 

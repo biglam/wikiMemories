@@ -30,6 +30,7 @@ $(function() {
     $('#peopleresultsdiv').append(newperson);
     $('#affiliateform').click(function (e) {
     e.preventDefault();
+    console.log(e.target.id);
     addItem(memid, "people", e.target.id);
   });
   }).
@@ -198,8 +199,8 @@ $(function() {
       dataType: 'json',
       success: function(msg) {
         console.log(msg);
-        var htmlstring = "<li><a href='/" + itemtype + "/" + itemid + "/'>" + msg.firstname + " " + msg.lastname + "</a></li>";
-        $('#' + itemtype + 'list').append(htmlstring);
+        // var htmlstring = "<li><a href='/" + itemtype + "/" + itemid + "/'>" + msg.firstname + " " + msg.lastname + "</a></li>";
+        // $('#' + itemtype + 'list').append(htmlstring);
       }
     });
   };

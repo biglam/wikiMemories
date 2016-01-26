@@ -187,7 +187,7 @@ addAdmin = function(itemid, adminid, controllername) {
 
   $('#affiliateform').click(function (e) {
     // e.preventDefault();
-    console.log(e);
+    // console.log(e);
   });
 
 
