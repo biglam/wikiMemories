@@ -1,3 +1,9 @@
+$(function(){
+
+});
+
+
+
 var pos = {
   lat: 0,
   lng: 0
@@ -10,6 +16,14 @@ function initMap() {
   });
   var infoWindow = new google.maps.InfoWindow({map: map});
 
+  google.maps.event.addListener(map, 'click', function( event ){
+    // alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() );
+    pos = { lat: event.latLng.lat(), 
+      lng: event.latLng.lng() };
+      $('#currentlocation').hide();
+      $('#place_lat').val(pos['lat']);
+      $('#place_lng').val(pos['lng']); 
+  });
 
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
@@ -19,8 +33,8 @@ function initMap() {
         lng: position.coords.longitude
       };
 
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Location found.');
+      // infoWindow.setPosition(pos);
+      // infoWindow.setContent('Location found.');
       map.setCenter(pos);
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
