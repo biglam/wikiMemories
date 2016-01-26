@@ -29,14 +29,14 @@ class Memory < ActiveRecord::Base
     end
   end
 
-  def remove_item(item)
-    self.people.delete(item) if item.class==Person
-    self.images.delete(item) if item.class==Image
-    self.pets.delete(item) if item.class==Pet
-    self.occasions.delete(item) if item.class==Occasion
-    self.places.delete(item) if item.class==Placea
-    self.save
-  end
+  # def remove_item(item)
+  #   self.people.delete(item) if item.class==Person
+  #   self.images.delete(item) if item.class==Image
+  #   self.pets.delete(item) if item.class==Pet
+  #   self.occasions.delete(item) if item.class==Occasion
+  #   self.places.delete(item) if item.class==Placea
+  #   self.save
+  # end
 
   def add_flag
     self.flagcount += 1

@@ -48,7 +48,7 @@
 		<td><%= memory.title %></td>
 		<td><%= memory.story %></td>
 		<td><%= memory.ranking %></td>
-		<td><%= link_to("Remove", remove_item_memories_path(memory: memory.id, place: @place.id), remote: true, class: "btn btn-danger", :confirm => "Are you sure?") %></td>
+		<td><%= link_to("Remove", remove_item_memory_path(memory, item: @place, type: 'places'), method: :post, remote: true, class: "btn btn-danger", :confirm => "Are you sure?") %></td>
 	</tr>
 	<% end %>
 </table>

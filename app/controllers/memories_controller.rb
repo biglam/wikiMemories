@@ -133,15 +133,22 @@ class MemoriesController < ApplicationController
     render :json =>  @memory
    end
 
-   def remove_item
-    @memory = Memory.find(params[:memory])
-    item = Person.find(params[:person]) if params[:person]
-    item = Pet.find(params[:pet]) if params[:pet]
-    item = Occasion.find(params[:occasion]) if params[:occasion]
-    item = Place.find(params[:place]) if params[:place]
-    # binding.pry;''
-    @memory.remove_item(item)
-    render 'remove_item', layout: false if request.xhr?
+  #  def remove_item
+  #   @memory = Memory.find(params[:memory])
+  #   item = Person.find(params[:person]) if params[:person]
+  #   item = Pet.find(params[:pet]) if params[:pet]
+  #   item = Occasion.find(params[:occasion]) if params[:occasion]
+  #   item = Place.find(params[:place]) if params[:place]
+  #   # binding.pry;''
+  #   @memory.remove_item(item)
+  #   render 'remove_item', layout: false if request.xhr?
+  # end
+
+  def remove_item
+    item = @memory.send(params[:type]).find(params[:item])
+    @memory.send(params[:type]).delete(item)
+    @memory.save
+    render :json => @memory.to_json
   end
 
   def additem

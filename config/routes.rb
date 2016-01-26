@@ -57,7 +57,7 @@ Rails.application.routes.draw do
       get 'list_flagged'
       get 'list_orphaned'
       get 'delete_all_orphans'
-      get 'remove_item'
+      # get 'remove_item'
     end
     member do
       post 'flag_memory'
@@ -65,6 +65,7 @@ Rails.application.routes.draw do
       post 'rank_down'
       post 'additem'
       post 'reset_flag_count'
+      post 'remove_item'
     end
 
   end

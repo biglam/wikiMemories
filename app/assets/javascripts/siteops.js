@@ -32,7 +32,7 @@ $(document).ready(function(){
 
   $('#adminlist').on('ajax:success', function(evt, data, status, xhr) {
      // console.log(evt.target.id);
-     // console.log(data);
+     console.log(data);
      var user_id = parseInt(data.id);
      $('#adminrow_' + user_id).hide();
    }).
@@ -49,10 +49,12 @@ $(document).ready(function(){
 //   console.log(event.target)
 // });
 
-$('#editmemstable').on('ajax:success', function(data) {
-  var searchstring= (data.target.search);
-  var memoryid = parseInt(searchstring.replace('?memory=', ''));
-  $('#mem_' + memoryid).hide();
+$('#editmemstable').on('ajax:success', function(evt, data) {
+  // console.log(data);
+  // var searchstring= (data.target.search);
+  // var memoryid = parseInt(searchstring.replace('?memory=', ''));
+  // console.log(('#mem_' + data.id));
+  $('#mem_' + data.id).hide();
 });
 
 $('#new_link').on('ajax:success', function(ev, data) {
