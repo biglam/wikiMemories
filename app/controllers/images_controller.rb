@@ -19,7 +19,7 @@ def create
     @image.image_item = Occasion.find(params[:image][:occasion_id]) if params[:image][:occasion_id]
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.html { redirect_to @image.image_item, notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }
