@@ -13,6 +13,7 @@ class Person < ActiveRecord::Base
 
 
 	validates :lastname, presence: true
+	# validates 
 	def fullname
 		if middlenames == nil 
 			"#{firstname} #{lastname}"
