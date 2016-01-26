@@ -1,13 +1,14 @@
 class OccasionsController < ApplicationController
   before_action :set_occasion, only: [:show, :edit, :update, :destroy]
 load_and_authorize_resource
+helper_method :sort_column, :sort_direction
   # GET /occasions
   # GET /occasions.json
   def index
     if params[:search]
       @occasions_search_result = Occasion.where("name like ?", "%#{params[:search]}%").limit(5) if params[:search] < ""
     else
-      @occasions = Occasion.all.paginate(:page => params[:page], :per_page => 25)
+      @occasions = Occasion.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 25)
     end
     render @occasions_search_result, layout: false if request.xhr?
 
@@ -115,4 +116,13 @@ load_and_authorize_resource
     def occasion_params
       params.require(:occasion).permit(:name, :date, :time)
     end
+
+  def sort_column
+    Occasion.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
 end
