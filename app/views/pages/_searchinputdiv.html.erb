@@ -3,7 +3,7 @@
   <h2>Search...</h2>
   <div id='peoplesearchdiv'>
   <%= form_tag "/search/person", :method => :get, :id => 'peoplesearchform', :format => :json, :remote => true do %>
-    <%= text_field_tag :q, params[:q], :id => 'peopleinput', :placeholder => "Search People" %>
+    <%= text_field_tag :q, params[:q], :id => 'peopleinput', :placeholder => "Search People", :autocomplete => "off" %>
     <%= submit_tag 'Go', id: 'pplgo' %>
     <% end %>
     <!-- <button id='pplgo'>Go</button> -->
@@ -12,7 +12,7 @@
 
   <div id='placessearchdiv'>
   <%= form_tag "/search/place", :method => :get, :id => 'placessearchform', :format => :json, :remote => true do %>
-    <%= text_field_tag :q, params[:q], :id => 'placesinput', :placeholder => "Search Places" %>
+    <%= text_field_tag :q, params[:q], :id => 'placesinput', :placeholder => "Search Places", :autocomplete => "off" %>
     <%= submit_tag 'Go', id: 'placego' %>
     <% end %>
 
@@ -21,7 +21,7 @@
 
   <div id='petssearchdiv'>
   <%= form_tag "/search/pet", :method => :get, :id => 'petssearchform', :format => :json, :remote => true do %>
-    <%= text_field_tag :q, params[:q], :id => 'petsinput', :placeholder => "Search Pets" %>
+    <%= text_field_tag :q, params[:q], :id => 'petsinput', :placeholder => "Search Pets", :autocomplete => "off" %>
     <%= submit_tag 'Go', id: 'petgo' %>
     <% end %>
     <div id='petsresultsdiv'></div>
@@ -29,7 +29,7 @@
 
   <div id='occasionssearchdiv'>
   <%= form_tag "/search/occasion", :method => :get, :id => 'occasionssearchform', :format => :json, :remote => true do %>
-    <%= text_field_tag :q, params[:q], :id => 'occasionsinput', :placeholder => "Search Occasions" %>
+    <%= text_field_tag :q, params[:q], :id => 'occasionsinput', :placeholder => "Search Occasions", :autocomplete => "off" %>
     <%= submit_tag 'Go', id: 'occsgo' %>
     <% end %>
     <div id='occasionsresultsdiv'></div>
