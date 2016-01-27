@@ -1,6 +1,4 @@
-<%# image.each do |image| %>
 <div class="thumbnailview">
-	<%#= link_to(image_tag(image.image.thumb.url, :class => "thumbnail", :id => "image_#{image.id}"), image.image.large.url) %>
   <%= link_to(image_tag(image.image.thumb.url, :class => "thumbnail", :id => "image_#{image.id}"), image_path(image), target: '_blank') %>
 <div id="imgranking">          
     <div class="rankdiv">
@@ -21,4 +19,3 @@
 </div>
 </div>
 </div>
-<%# end %>

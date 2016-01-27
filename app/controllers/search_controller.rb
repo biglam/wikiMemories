@@ -69,8 +69,6 @@ def search(&block)
         if params[:page] == nil
         render json: @results.first(10)
       else
-        # render partial: 'return', collection: @results
-        # render json: {div: render_to_string(partial: 'return', collection: @results, locals: {group: params[:group]})}
         render json: {div: render_to_string(partial: 'layouts/searchitem.html.erb', object: @results, locals: {group: params[:group]})}
       end
       }

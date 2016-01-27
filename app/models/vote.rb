@@ -8,14 +8,6 @@ class Vote < ActiveRecord::Base
   validates :user_id, presence: :true
   validate :vote_is_eligable
 
-  # def self.new_for_item(item, user, value)
-  #   # binding.pry;''
-  #   vote = new(user: user, value: value)
-  #   vote.memory = item if item.is_a? Memory
-  #   vote.image = item if item.is_a? Image
-  #   vote
-  # end
-
   def user_has_voted(item, user)
     item.votes.where(user_id: user.id).count > 0 if user
   end

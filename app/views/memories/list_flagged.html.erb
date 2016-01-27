@@ -1,7 +1,5 @@
 <% if @memories.count > 0 %>
   <h2>Flagged Memories</h2>
-  <%# @user.memories.each do |memory| %>
    	<%= render partial: 'layouts/memory', collection: @memories, locals: {frompage: "flagpage"} %>
     
-  <%# end %>
 <% end %>

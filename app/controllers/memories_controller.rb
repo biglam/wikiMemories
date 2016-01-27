@@ -47,7 +47,6 @@ class MemoriesController < ApplicationController
   end
 
   def destroy
-    # binding.pry;''
     @memory.destroy
     respond_to do |format|
       format.html { redirect_to memories_url, notice: 'Memory was successfully destroyed.' }
@@ -59,7 +58,6 @@ class MemoriesController < ApplicationController
      @memory = Memory.find(params[:id])
      @memory.votes.create(user: current_user, value: 1)
      @memory.update_ranking_from_votes
-     # vote = Vote.new_for_item(@memory, current_user, 1)
      if @memory.save 
        @memory.update_ranking_from_votes
        render :json =>  @memory.to_json
@@ -73,7 +71,6 @@ class MemoriesController < ApplicationController
      @memory = Memory.find(params[:id])
      @memory.votes.create(user: current_user, value: -1)
      @memory.update_ranking_from_votes
-     # vote = Vote.new_for_item(@memory, current_user, -1)
      if @memory.save
        @memory.update_ranking_from_votes
        render :json => @memory.to_json
@@ -133,17 +130,6 @@ class MemoriesController < ApplicationController
     render :json =>  @memory
    end
 
-  #  def remove_item
-  #   @memory = Memory.find(params[:memory])
-  #   item = Person.find(params[:person]) if params[:person]
-  #   item = Pet.find(params[:pet]) if params[:pet]
-  #   item = Occasion.find(params[:occasion]) if params[:occasion]
-  #   item = Place.find(params[:place]) if params[:place]
-  #   # binding.pry;''
-  #   @memory.remove_item(item)
-  #   render 'remove_item', layout: false if request.xhr?
-  # end
-
   def remove_item
     item = @memory.send(params[:type]).find(params[:item])
     @memory.send(params[:type]).delete(item)
@@ -153,7 +139,6 @@ class MemoriesController < ApplicationController
 
   def additem
     # another reason for memories to be polymorphic
-    # binding.pry;''
     case params[:type]
 
     when "people"
@@ -173,8 +158,6 @@ class MemoriesController < ApplicationController
       @memory.occasions << occasion
       render :json => occasion.to_json
     end
-    @memory.save
-
   end
 
   private

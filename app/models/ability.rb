@@ -13,9 +13,6 @@ class Ability
             can :update, Memory
             can :manage, Vote
 
-            # can :create, Vote do |vote|
-            #   vote.memory.user != current_user
-            # end
           end
 
 

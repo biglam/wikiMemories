@@ -85,9 +85,7 @@ class PeopleController < ApplicationController
 
   def remove_administrator
     # binding.pry;''
-    # person = Person.find(params[:person])
     admin = User.find(params[:admin])
-    # person.remove_item(admin)
     @person.adminstrators.delete(admin)
     @person.save
     render json: admin.to_json, layout: false if request.xhr?

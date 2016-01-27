@@ -1,8 +1,6 @@
 class Image < ActiveRecord::Base
   belongs_to :user
   has_many :votes, as: :voted_item
-  # has_many :images_people
-  # has_many :people, through: :images_people
 
   belongs_to :image_item, :polymorphic => true
 
