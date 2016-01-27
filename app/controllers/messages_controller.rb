@@ -6,10 +6,13 @@ class MessagesController < ApplicationController
 	end
 
 	def show
-		other_person = @message.sender_id
-		@conversation = Message.all.where("sender_id = #{other_person} OR reciever_id = #{other_person}").order(created_at: :DESC)
+    # binding.pry;''
+		other_person = current_user == @message.sender ? @message.reciever : @message.sender
+    # messages = Message.where("sender_id = #{@message.sender_id} OR reciever_id = #{@message.sender_id}").order(created_at: :DESC)
+		@conversation = current_user.conversation_with(other_person)
 		@message.read = true
 		@message.save
+    # @message = @conversation
 	end
 
   def create

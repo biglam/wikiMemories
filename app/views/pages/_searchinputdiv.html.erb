@@ -4,7 +4,7 @@
   <div id='peoplesearchdiv'>
   <%= form_tag "/search/person", :method => :get, :id => 'peoplesearchform', :format => :json, :remote => true do %>
     <%= text_field_tag :q, params[:q], :id => 'peopleinput', :placeholder => "Search People", :autocomplete => "off" %>
-    <%= submit_tag 'Go', id: 'pplgo' %>
+    <%= submit_tag 'Go', id: 'persongo' %>
     <% end %>
     <!-- <button id='pplgo'>Go</button> -->
     <div id='peopleresultsdiv'></div>

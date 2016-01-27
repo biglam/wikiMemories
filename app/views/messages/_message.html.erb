@@ -1,4 +1,5 @@
 <div class="privatemessage <%= (message.sender==current_user) ? "bg-info" : "bg-success" %>">
+  <a name="<%= message.id %>"></a> 
 	<strong>From:</strong> <%= message.sender.username %><br>
 	<strong>Sent:</strong> <%= message.created_at %><br>
 	<strong>Title:</strong> <%= message.title %><br>

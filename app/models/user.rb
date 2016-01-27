@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :administered_pets, through: :pets_administrations, source: :pet
   has_many :occasions_administrations, foreign_key: "administrator_id"
   has_many :administered_occasions, through: :occasions_administrations, source: :occasion
-  has_and_belongs_to_many :messages
+  # has_and_belongs_to_many :messages
 
   validates :username, presence: true
   validates :email, presence: true
@@ -34,12 +34,20 @@ class User < ActiveRecord::Base
   end
 
   def messages
-    Message.where("messages.sender_id = :id OR messages.reciever_id = :id", id: id).order(:created_at)
+    Message.with(self)
+  end
+
+  def received_messages
+    messages.received(self)
+  end
+
+  def conversation_with(user)
+    messages.with(user)
   end
 
   def unread_message_count
     # Message.where("messages.reciever_id = :id AND messages.read = false", id: id).count
-    self.messages.where(read: false).count
+    received_messages.unread.count
   end
 
 end

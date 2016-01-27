@@ -18,7 +18,7 @@
 		<td><%= message.title %></td>
 		<td><%= message.sender.username %></td>
 		<td><%= message.created_at %></td>
-		<td><%= link_to("Show", message_path(message)) %></td>
+		<td><%= link_to("Show", message_path(message, anchor: message.id)) %></td>
 	</tr>
 	<% end %>
 	</table>

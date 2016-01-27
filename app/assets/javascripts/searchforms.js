@@ -121,7 +121,8 @@ frontPageForm('occasion', 'occasions');
 frontPageForm = function(singular, plural) {
   $('#' + singular + 'go').click(function() {
     value = $('#' + plural + 'input').val();
-    window.location.href = "/search/' + singular + '?q=" + value;
+    window.location.href = '/search/' + singular + '?q=' + value;
+    // window.location.href = '/' + plural + '/?q=' + value;
   });
   $('#' + plural + 'input').keyup(function() {
     value = $('#' + plural + 'input').val();
