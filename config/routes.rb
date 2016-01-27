@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       delete 'remove_administrator'
       get 'slideshow'
       put 'add_administrator'
+       post 'remove_item'
     end
   end
   resources :charities
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
       put 'add_administrator'
       delete 'remove_administrator'
       get 'slideshow'
+       post 'remove_item'
     end
   end
   resources :places do
@@ -33,6 +35,7 @@ Rails.application.routes.draw do
       put 'add_administrator'
       get 'slideshow'
       delete 'remove_administrator'
+       post 'remove_item'
     end
   end
   resources :messages
@@ -50,7 +53,7 @@ Rails.application.routes.draw do
       post 'add_memory'
       delete 'remove_administrator'
       get 'slideshow'
-            post 'remove_item'
+      post 'remove_item'
     end
   end
   resources :images do

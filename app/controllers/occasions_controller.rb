@@ -106,6 +106,16 @@ helper_method :sort_column, :sort_direction
     @images = @occasion.images
   end
 
+    def remove_item
+    # should be polymorphic to be DRY
+    # binding.pry;''
+    item = Image.find(params[:image_id]) if params[:image_id]
+    item = Link.find(params[:link_id]) if params[:link_id]
+    @occasion.images.delete(item)  if params[:image_id]
+    @occasion.links.delete(item)  if params[:link_id]
+    render :json => item.to_json
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_occasion

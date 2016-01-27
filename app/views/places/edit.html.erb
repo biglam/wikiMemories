@@ -52,7 +52,32 @@
 	</tr>
 	<% end %>
 </table>
+<table class="table table-collapsed" id='imgtable'>
+<tr>
+	<th>image</th>
+	<th>delete</th>
+</tr>
+<% @place.images.each do |image| %>
+<tr id='img<%= image.id %>'>
+	<td><%= image_tag(image.image.thumb.url) %></td>
+	<td><%= link_to("Remove", remove_item_place_path(image_id: image.id), method: :post, remote: true, class: "btn btn-danger", :confirm => "Are you sure?") %></td>
+</tr>
+<% end %>
 
+<table class='table table-collapsed' id='linktable'>
+	<tr>
+		<th>Link Title</th>
+		<th>Link URL</th>
+		<th>Delete</th>
+	</tr>
+	<% @place.links.each do |link| %>
+	<tr id='lnk<%=link.id%>'>
+	<td><%= link.title %></td>
+	<td><%= link_to(link.address, link.address) %></td>
+	<td><%= link_to("Remove", remove_item_place_path(link_id: link.id), method: :post, remote: true, class: "btn btn-danger", :confirm => "Are you sure?") %></td>
+	</tr>
+	<% end %>
+</table>
 
 <%= link_to 'Show', @place %> |
 <%= link_to 'Back', places_path %>

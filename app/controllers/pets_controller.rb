@@ -100,6 +100,16 @@ helper_method :sort_column, :sort_direction
     render :json =>  link.to_json
   end
 
+    def remove_item
+    # should be polymorphic to be DRY
+    # binding.pry;''
+    item = Image.find(params[:image_id]) if params[:image_id]
+    item = Link.find(params[:link_id]) if params[:link_id]
+    @pet.images.delete(item)  if params[:image_id]
+    @pet.links.delete(item)  if params[:link_id]
+    render :json => item.to_json
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
