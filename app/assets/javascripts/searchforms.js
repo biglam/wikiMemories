@@ -127,7 +127,11 @@ frontPageForm = function(singular, plural) {
   });
   $('#' + plural + 'input').keyup(function() {
     value = $('#' + plural + 'input').val();
-    $('#' + plural + 'searchform').submit();
+    if (value.length >= 2) {
+      $('#' + plural + 'searchform').submit();
+    } else {
+      $('#' + plural + 'resultsdiv').html(' ');
+    }
   });
   $('#' + plural + 'searchform').on('ajax:success', function(evt, data, status, xhr) {
     console.log(data);
