@@ -119,6 +119,11 @@ $('#linktable').on('ajax:success', function(ev, data) {
   $('#lnk' + data.id).hide();
 });
 
+$('#grouplist').on('ajax:success', function(ev, data) {
+  console.log(data);
+  $('#itm' + data.id).hide();
+});
+
 });
 
   // function initMap(lat, lng) {

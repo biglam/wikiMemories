@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :groups do
     member do
+      put 'add_item'
       put 'remove_item'
     end
   end
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
       delete 'remove_administrator'
       get 'slideshow'
       put 'add_administrator'
-       post 'remove_item'
+      post 'remove_item'
     end
   end
   resources :charities

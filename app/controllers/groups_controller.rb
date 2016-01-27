@@ -61,9 +61,14 @@ class GroupsController < ApplicationController
     end
   end
 
-  def remove_item
+  def add_item
     binding.pry;''
+  end
 
+  def remove_item
+    item = GroupItem.find(params[:item])
+    @group.group_items.delete(item)
+    render :json => item.to_json
   end
 
   private

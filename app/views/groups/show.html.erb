@@ -14,17 +14,17 @@
 	<strong>Associations:</strong>
 </p>
 
-<table class="table">
+<table class="table" id='grouplist'>
 	<tr>
 		<th>Name</th>
 		<th>Type</th>
 		<th>Options</th>
 	</tr>
 <% @group.group_items.each do |item| %>
-<tr>
+<tr id='itm<%=item.id%>'>
 	<td><%= item.item_name %></td>
 	<td><%= item.groupable_type %></td>
-	<td><%= link_to 'Show', item.groupable%> <%#= link_to 'Delete', remove_item_group_path, :item_id => item.id,  method: :put %></td>
+	<td><%= link_to 'Show', item.groupable%> <%= link_to('Delete', remove_item_group_path(:item => item.id), method: :put, remote: true)%></td>
 </tr>
 <% end %>
 </table>
