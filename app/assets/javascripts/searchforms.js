@@ -19,6 +19,7 @@ frontPageForm('place', 'places');
 frontPageForm('pet', 'pets');
 frontPageForm('occasion', 'occasions');
 frontPageForm('all', 'all');
+frontPageForm('groupadd', 'groupadds');
 
   //new adminsitrator / username search
   $('#adminusername').keyup(function() {

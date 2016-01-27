@@ -63,7 +63,7 @@ def search(&block)
           render @results 
         end
       }
-      format.json { render json: @results.first(5) }
+      format.json { render json: @results.first(10) }
     end
   else
 

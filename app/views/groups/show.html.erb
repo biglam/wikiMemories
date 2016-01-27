@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
-
-<p>
+<div class="row">
+  <div class="col-md-6">
+  <p>
   <strong>Name:</strong>
   <%= @group.name %>
 </p>
@@ -24,10 +25,22 @@
 <tr id='itm<%=item.id%>'>
 	<td><%= item.item_name %></td>
 	<td><%= item.groupable_type %></td>
-	<td><%= link_to 'Show', item.groupable%> <%= link_to('Delete', remove_item_group_path(:item => item.id), method: :put, remote: true)%></td>
+	<td><%= link_to 'Show', item.groupable, class: 'btn btn-primary'%></td>
 </tr>
 <% end %>
 </table>
-
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
+  </div>
+  <div class="col-md-6">
+  	<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Panel title</h3>
+  </div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>
+  </div>
+</div>
+
