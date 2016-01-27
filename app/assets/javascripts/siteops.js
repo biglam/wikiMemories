@@ -109,7 +109,15 @@ $('#currentlocation').click(function() {
   $('#place_lng').val(pos['lng']);
 });
 
+$('#imgtable').on('ajax:success', function(ev, data) {
+  console.log(data);
+  $('#img' + data.id).hide();
+});
 
+$('#linktable').on('ajax:success', function(ev, data) {
+  console.log(data);
+  $('#lnk' + data.id).hide();
+});
 
 });
 

@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       post 'add_memory'
       delete 'remove_administrator'
       get 'slideshow'
+            post 'remove_item'
     end
   end
   resources :images do

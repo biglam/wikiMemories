@@ -4,6 +4,9 @@ class PeopleController < ApplicationController
   load_and_authorize_resource
   helper_method :sort_column, :sort_direction
 
+
+# ALL METHODS SHOLD HAVE BEEN IN REST
+
   def index
     if params[:search]
       @people_search_result = Person.where("lastname like ?", "%#{params[:search]}%").limit(5) if params[:search] > ""
@@ -104,6 +107,16 @@ class PeopleController < ApplicationController
     link = @person.links.create(title: params[:title], address: params[:address], user: current_user, linktype_id: params[:linktype_id])
     @person.save
     render :json =>  link.to_json
+  end
+
+  def remove_item
+    # should be polymorphic to be DRY
+    # binding.pry;''
+    item = Image.find(params[:image_id]) if params[:image_id]
+    item = Link.find(params[:link_id]) if params[:link_id]
+    @person.images.delete(item)  if params[:image_id]
+    @person.links.delete(item)  if params[:link_id]
+    render :json => item.to_json
   end
 
   private
