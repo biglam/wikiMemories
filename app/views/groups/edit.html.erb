@@ -33,6 +33,7 @@
 
 	<%= form_tag "/search/all", :method => :get, :id => 'groupaddsearchform', :format => :json, :remote => true do %>
     <%= text_field_tag :q, params[:q], :id => 'groupaddinput', :placeholder => "Search wikiMemories", :autocomplete => "off" %>
+    <%= hidden_field :page, :value => "group" %>
     <%= submit_tag 'Go', id: 'groupaddgo' %>
     <% end %>
     <div id='groupaddresultsdiv'></div>
@@ -41,7 +42,11 @@
   	<tr>
   		<th>Name</th>
   		<th>Info</th>
+  		<th>Add</th>
   	</tr>
+  	<tbody id='tablelist'>
+
+  	</tbody>
   	</table>
   	</div>
 	</div>
@@ -66,26 +71,26 @@
   $.ajax({
       type: "GET",
       url: '/search/all.json',
+      cache: false,
       data: { 
-        q: query 
+        q: query,
+        group: <%= @group.id %>,
+        page: 'group'
       },
       dataType: 'json',
       success: function(msg) {
-      	console.log(msg)
+      	console.log(msg['div']);
+      	$('#tablelist').html(msg['div']);
+      },
+      error: function(msg) {
+      	// console.log(msg);
+      	// this is terrible code and a very bad workaround but don't knwo why 200 code isn't triggering success
+      	$('#tablelist').html(msg.responseText);
+      	$('#tablelist').html(msg['div']);
       }
     });
 }
 
-	buildTable = function(items) {
-
-		htmlstring = "<tr>";
-			
-		htmlstring += "</tr>";
-
-	}
-
-	renderPerson = function(person) {
-		return "<td>" + person.firstname + " " + person.lastname + "</td><td>Born " + person.dob + " " + person.brief_description + "</td>";
-	}
 
 </script>
+

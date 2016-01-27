@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
+  skip_before_action :verify_authenticity_token
   # GET /groups
   # GET /groups.json
   def index
@@ -62,7 +63,21 @@ class GroupsController < ApplicationController
   end
 
   def add_item
-    binding.pry;''
+    # binding.pry;''
+    # item = send(params[:class]).find(params[:itemid])
+    item = case params[:class]
+    when "Person"
+      Person.find(params[:itemid])
+    when "Pet"
+      Pet.find(params[:itemid])
+    when "Occasion"
+      Occasion.find(params[:itemid])
+    when "Place"
+      Place.find(params[:itemid])
+    end
+    @group.group_items.create(groupable: item)
+    @group.save
+    render :json => item.to_json
   end
 
   def remove_item

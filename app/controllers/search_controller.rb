@@ -38,6 +38,7 @@ end
 
   def all
     search do
+
       results = Person.where("lower(lastname) like ? OR lower(firstname) like ?", "%#{params[:q]}%", "%#{params[:q]}%" )
       results += Place.where("lower(name) like ?", "%#{params[:q]}%")
       results += Pet.where("lower(name) like ?", "%#{params[:q]}%")
@@ -63,7 +64,16 @@ def search(&block)
           render @results 
         end
       }
-      format.json { render json: @results.first(10) }
+      format.json { 
+        # binding.pry;''
+        if params[:page] == nil
+        render json: @results.first(10)
+      else
+        # render partial: 'return', collection: @results
+        # render json: {div: render_to_string(partial: 'return', collection: @results, locals: {group: params[:group]})}
+        render json: {div: render_to_string(partial: 'layouts/searchitem.html.erb', object: @results, locals: {group: params[:group]})}
+      end
+      }
     end
   else
 

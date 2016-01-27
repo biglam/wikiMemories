@@ -1,0 +1,19 @@
+<%# binding.pry;'' %>
+<% @results.each do |result| %>
+<tr id='<%= result.id %>'> 
+<td>
+    <%= result.try(:name)  %>
+    <%= result.try(:fullname) %>
+</td>
+<td>
+    <%= result.try(:dob) %>
+</td>
+<td>
+
+    <%= link_to('Add', "/groups/#{group}/add_item?class=#{result.class}&itemid=#{result.id}", method: :post, class: 'btn btn-info', remote: true)%>
+
+</td>
+
+</tr>
+
+<% end %>

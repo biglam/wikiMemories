@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :groups do
     member do
-      put 'add_item'
+      post 'add_item'
       put 'remove_item'
     end
   end

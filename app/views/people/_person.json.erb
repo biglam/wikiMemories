@@ -1,0 +1,6 @@
+<tr>
+<td><%= person.fullname %></td>
+<td>Born - <%= person.dob %> <%= person.place_of_birth if person.place_of_birth %></td>
+<%# binding.pry;'' %>
+<td><form action="/group/<%= @group.id %>/add_item" method="post"><button class='btn btn-primary' type='submit'>Add</button></a></td>
+</tr>
