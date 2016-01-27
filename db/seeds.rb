@@ -24,7 +24,7 @@ Vote.delete_all
 
 # 	num_of_links = rand(5)
 # 	num_of_links.times do 
-# 		send(modeltype).links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
+# 		send(modeltype).links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample, user_id: user_ids.sample)
 # 	end
 
 # 	num_of_admins = rand(5)
@@ -99,7 +99,7 @@ mem_ids = Memory.all.map { |p| p.id }
 
 	num_of_links = rand(5)
 	num_of_links.times do 
-		person.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
+		person.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample, user_id: user_ids.sample)
 	end
 
 	num_of_admins = rand(5)
@@ -137,7 +137,7 @@ people_id_samples = Person.all.map { |p| p.id }
 
 	num_of_links = rand(5)
 	num_of_links.times do 
-		pet.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
+		pet.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample, user_id: user_ids.sample)
 	end
 
 	num_of_admins = rand(5)
@@ -170,7 +170,7 @@ end
 
 	num_of_links = rand(5)
 	num_of_links.times do 
-		place.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
+		place.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample, user_id: user_ids.sample)
 	end
 
 	num_of_admins = rand(5)
@@ -199,7 +199,7 @@ end
 
 	num_of_links = rand(5)
 	num_of_links.times do 
-		occasion.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample)
+		occasion.links.create(title: Faker::Book.title, address: Faker::Internet.url, linktype_id: linktype_ids.sample, user_id: user_ids.sample)
 	end
 
 	num_of_admins = rand(5)
@@ -209,7 +209,7 @@ end
 
 	num_of_images = rand(5)
 	num_of_images.times do 
-		occasion.images.create(remote_image_url: ["http://lorempixel.com/500/500/sport", "http://lorempixel.com/500/500/nightlife"].sample)
+		occasion.images.create(remote_image_url: ["http://lorempixel.com/500/500/nightlife"].sample)
 	end
 	occasion.save
 end
