@@ -113,6 +113,11 @@ and (max-device-width: 767px) {
 .onlymob {
   display: block;
 }
+
+  #logo {
+    height: 35px;
+  }
+
 }
 
 @media only screen
@@ -202,4 +207,8 @@ and (min-device-width: 768px) {
   // #sidesearch input[name="commit"] {
   //   display: none;
   // }
+
+  #logo {
+    width: 150px;
+  }
 }
