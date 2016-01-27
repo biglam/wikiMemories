@@ -1,6 +1,6 @@
-<h1 id='msgpage'>Messages</h1>
+<h1 id='msgpage'>Conversation with <%= @other_person.username %></h1>
 
-<%= render partial: 'message', object: @message, :locals => {:to => @message.sender_id} %>
+<%#= render partial: 'message', object: @message, :locals => {:to => @message.sender_id} %>
 <button class="btn btn-info" id='replybut'>Reply</button>
 <div class="reply panel panel-info">
  <div class="panel-heading">
