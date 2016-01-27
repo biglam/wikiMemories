@@ -18,6 +18,7 @@ frontPageForm('person', 'people');
 frontPageForm('place', 'places');
 frontPageForm('pet', 'pets');
 frontPageForm('occasion', 'occasions');
+frontPageForm('all', 'all');
 
   //new adminsitrator / username search
   $('#adminusername').keyup(function() {
@@ -133,7 +134,9 @@ frontPageForm = function(singular, plural) {
     var name = $('#' + plural + 'input').val();
     var newplace = '<div id="searchresult">Not here? <a href="/' + plural + '/new?name='+name+'">Create '+name+'</a></div>'
     $('#' + plural + 'resultsdiv').html(data);
+    if (singular != "all") {
     $('#' + plural + 'resultsdiv').append(newplace);
+    }
     $('#affiliateform').click(function (e) {
     e.preventDefault();
     addItem(memid, "' + plural + '", e.target.id);

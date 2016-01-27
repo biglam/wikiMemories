@@ -1,6 +1,7 @@
 class Pet < ActiveRecord::Base
 	has_and_belongs_to_many :memories
-	has_and_belongs_to_many :groups
+	# has_and_belongs_to_many :groups
+  has_many :group_items, :as => :groupable
   	belongs_to :species
 
   has_many :pets_administrations

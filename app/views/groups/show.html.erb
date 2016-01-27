@@ -10,51 +10,24 @@
   <%= @group.about %>
 </p>
 
-<% if @group.people.count != 0 %>
-	<p>Associated People:</p>
-	<ul>
-		<% @group.people.each do |person| %>
-		<li><%= link_to(person.fullname, person_path(person.id)) %></li>
-		<% end %>
-	</ul>
-<% end %>
+<p>
+	<strong>Associations:</strong>
+</p>
 
-<% if @group.places.count != 0 %>
-	<p>Associated Places:</p>
-	<ul>
-		<% @group.places.each do |place| %>
-		<li><%= link_to(place.name, place_path(place.id)) %></li>
-		<% end %>
-	</ul>
+<table class="table">
+	<tr>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Options</th>
+	</tr>
+<% @group.group_items.each do |item| %>
+<tr>
+	<td><%= item.item_name %></td>
+	<td><%= item.groupable_type %></td>
+	<td><%= link_to 'Show', item.groupable%> <%#= link_to 'Delete', remove_item_group_path, :item_id => item.id,  method: :put %></td>
+</tr>
 <% end %>
-
-<% if @group.occasions.count != 0 %>
-	<p>Associated Occasions:</p>
-	<table class="eventstable">
-		<tr>
-			<th>Date</th>
-			<th>Time</th>
-			<th>Event</th>
-		</tr>
-		<% @group.occasions.each do |occasion| %>
-		<tr>
-			<td><%= occasion.date %></td>
-			<td><%= occasion.time %></td>
-			<td><%= occasion.name %></td>
-		</tr>
-		<% end %>
-	</table>
-<% end %>
-
-<% if @group.pets.count != 0 %>
-	<p>Associated Pets:</p>
-	<ul>
-		<% @group.pets.each do |pet| %>
-		<li><%= link_to(pet.name, pet_path(pet.id)) %></li>
-		<% end %>
-	</ul>
-<% end %>
-
+</table>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

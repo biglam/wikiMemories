@@ -1,6 +1,7 @@
 class Occasion < ActiveRecord::Base
 	has_and_belongs_to_many :memories
-	has_and_belongs_to_many :groups
+	# has_and_belongs_to_many :groups
+	has_many :group_items, :as => :groupable
 
 	has_many :occasions_administrations
 	has_many :administrators, through: :occasions_administrations

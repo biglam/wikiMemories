@@ -36,6 +36,17 @@ end
     end
   end
 
+  def all
+    search do
+      results = Person.where("lower(lastname) like ? OR lower(firstname) like ?", "%#{params[:q]}%", "%#{params[:q]}%" )
+      results += Place.where("lower(name) like ?", "%#{params[:q]}%")
+      results += Pet.where("lower(name) like ?", "%#{params[:q]}%")
+      results += Occasion.where("lower(name) like ?", "%#{params[:q]}%")
+
+      results
+    end
+  end
+
 
 private
 

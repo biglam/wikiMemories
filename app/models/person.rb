@@ -3,13 +3,12 @@ class Person < ActiveRecord::Base
 
 	has_many :people_adminstrations
 	has_many :adminstrators, through: :people_adminstrations
-	# has_many :images_people
-	# has_many :images, through: :images_people
 	has_many :images, :as => :image_item
 	has_many :links_people
 	has_many :links, through: :links_people
 	has_and_belongs_to_many :memories
-	has_and_belongs_to_many :groups
+	has_many :group_items, :as => :groupable
+	has_many :groups, through: :group_items
 
 
 	validates :lastname, presence: true

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :groups
+  resources :groups do
+    member do
+      put 'remove_item'
+    end
+  end
   resources :occasions do 
      resources :images
     member do

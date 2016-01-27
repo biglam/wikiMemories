@@ -1,8 +1,13 @@
 <div class="topmenu">
-<%= form_tag people_path, :method => :get, :id => 'searchform', :remote => true do %>
-  <%= text_field_tag :search, params[:search], :id => 'search-field' %>
-  <%= submit_tag 'Go' %>
-<% end %>
+
+  <div id='allsearchdiv'>
+  <%= form_tag "/search/all", :method => :get, :id => 'allsearchform', :format => :json, :remote => true do %>
+    <%= text_field_tag :q, params[:q], :id => 'allinput', :placeholder => "Search wikiMemories", :autocomplete => "off" %>
+    <%= submit_tag 'Go', id: 'allgo' %>
+    <% end %>
+    <div id='allresultsdiv'></div>
+  </div> 
+
 	<ul class="sidemenu">
 	<div id="side_memories">
 	<%= render @people_search_result if @people_search_result %>
