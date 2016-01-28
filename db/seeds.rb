@@ -66,7 +66,7 @@ charity_ids = Charity.all.map { |p| p.id }
 end
 linktype_ids = Linktype.all.map { |p| p.id }
 # Message
-200.times do
+500.times do
 	Message.create(sender_id: user_ids.sample, reciever_id: user_ids.sample, read: true, title: Faker::Book.title, message: Faker::Lorem.paragraph)
 end
 

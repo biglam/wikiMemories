@@ -26,6 +26,10 @@ class MessagesController < ApplicationController
     end
   end
 
+  def edit
+    render :json => @messages = current_user.messages.order(created_at: :DESC)[0].to_json
+  end
+
 private
 
       def message_params

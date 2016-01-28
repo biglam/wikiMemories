@@ -20,3 +20,18 @@
 <% end %>
 
 </div>
+
+<script>
+// TERRIBLE code but this is 9:30 on thursday so don't have a lot of time
+var firstid = <%= current_user.messages.order(created_at: :DESC)[0].id %>;
+
+window.setInterval(function(){
+  jsondata = $.get( "<%= @message.id %>/edit.json", function( data ) {
+    console.log(data.id);
+    if (firstid != data.id) {
+      window.location.reload(1);
+    };
+    });
+ }, 2000);
+ 
+</script>
