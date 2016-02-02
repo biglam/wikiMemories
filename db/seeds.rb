@@ -108,10 +108,10 @@ mem_ids = Memory.all.map { |p| p.id }
 	end 
 
 
-	num_of_images = rand(5)
-	num_of_images.times do 
-		person.images.create(remote_image_url: "http://lorempixel.com/500/500/people")
-	end
+	# num_of_images = rand(5)
+	# num_of_images.times do 
+	# 	person.images.create(remote_image_url: "http://lorempixel.com/500/500/people")
+	# end
 
 	person.save
 end
@@ -145,10 +145,10 @@ people_id_samples = Person.all.map { |p| p.id }
 		pet.administrators << User.find(user_ids.sample)
 	end 
 
-	num_of_images = rand(5)
-	num_of_images.times do 
-		pet.images.create(remote_image_url: (["http://lorempixel.com/500/500/animals", "http://lorempixel.com/500/500/cats"].sample))
-	end
+	# num_of_images = rand(5)
+	# num_of_images.times do 
+	# 	pet.images.create(remote_image_url: (["http://lorempixel.com/500/500/animals", "http://lorempixel.com/500/500/cats"].sample))
+	# end
 
 	pet.save
 end
@@ -177,10 +177,10 @@ end
 	num_of_admins.times do 
 		place.administrators << User.find(user_ids.sample)
 	end 
-	num_of_images = rand(5)
-	num_of_images.times do 
-		place.images.create(remote_image_url: ["http://lorempixel.com/500/500/city", "http://lorempixel.com/500/500/nature"].sample)
-	end
+	# num_of_images = rand(5)
+	# num_of_images.times do 
+	# 	place.images.create(remote_image_url: ["http://lorempixel.com/500/500/city", "http://lorempixel.com/500/500/nature"].sample)
+	# end
 	place.save
 end
 
@@ -207,10 +207,10 @@ end
 		occasion.administrators << User.find(user_ids.sample)
 	end 
 
-	num_of_images = rand(5)
-	num_of_images.times do 
-		occasion.images.create(remote_image_url: ["http://lorempixel.com/500/500/nightlife"].sample)
-	end
+	# num_of_images = rand(5)
+	# num_of_images.times do 
+	# 	occasion.images.create(remote_image_url: ["http://lorempixel.com/500/500/nightlife"].sample)
+	# end
 	occasion.save
 end
 
@@ -218,10 +218,10 @@ end
 1000.times do
 	Memory.find(mem_ids.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
 end
-image_id_samples = Image.all.map { |p| p.id }
-500.times do
-	Image.find(image_id_samples.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
-end
+# image_id_samples = Image.all.map { |p| p.id }
+# 500.times do
+# 	Image.find(image_id_samples.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
+# end
 
 # Flag
 200.times do 
@@ -235,6 +235,6 @@ Memory.all.each do |mem|
 	mem.update_ranking_from_votes unless mem.votes.count == 0
 end
 
-Image.all.each do |img|
-	img.update_ranking_from_votes unless img.votes.count == 0
-end
+# Image.all.each do |img|
+# 	img.update_ranking_from_votes unless img.votes.count == 0
+# end
