@@ -36,7 +36,7 @@ Vote.delete_all
 # create users
 owner = User.create(email: "owner@owner.example", username: "owner", password: 'password', role: 'owner')
 admin = User.create(email: "admin@admin.example", username: "admin", password: 'password', role: 'admin')
-50.times do
+20.times do
 	User.create(username: Faker::Internet.user_name, email: Faker::Internet.email, password: 'password')
 end
 user_ids = User.all.map { |p| p.id }
@@ -66,7 +66,7 @@ charity_ids = Charity.all.map { |p| p.id }
 end
 linktype_ids = Linktype.all.map { |p| p.id }
 # Message
-500.times do
+50.times do
 	Message.create(sender_id: user_ids.sample, reciever_id: user_ids.sample, read: true, title: Faker::Book.title, message: Faker::Lorem.paragraph)
 end
 
@@ -77,7 +77,7 @@ end
 mem_ids = Memory.all.map { |p| p.id }
 
 # Person
-250.times do
+150.times do
 	person = Person.new
 	person.firstname = Faker::Name.first_name
 	person.middlenames = Faker::Name.name if rand(10)>4
@@ -108,7 +108,7 @@ mem_ids = Memory.all.map { |p| p.id }
 	end 
 
 
-	num_of_images = rand(5)
+	num_of_images = rand(3)
 	num_of_images.times do 
 		person.images.create(remote_image_url: "http://lorempixel.com/500/500/people")
 	end
@@ -119,7 +119,7 @@ people_id_samples = Person.all.map { |p| p.id }
 
 
 # Pet
-250.times do
+50.times do
 	pet = Pet.new
 	pet.name = Faker::Name.name
 	pet.species_id = species_ids.sample
@@ -145,7 +145,7 @@ people_id_samples = Person.all.map { |p| p.id }
 		pet.administrators << User.find(user_ids.sample)
 	end 
 
-	num_of_images = rand(5)
+	num_of_images = rand(2)
 	num_of_images.times do 
 		pet.images.create(remote_image_url: (["http://lorempixel.com/500/500/animals", "http://lorempixel.com/500/500/cats"].sample))
 	end
@@ -154,7 +154,7 @@ people_id_samples = Person.all.map { |p| p.id }
 end
 
 # Place
-250.times do
+20.times do
 	place = Place.new
 	place.name = Faker::Address.street_name
 	place.placetype_id = placetype_ids.sample
@@ -177,7 +177,7 @@ end
 	num_of_admins.times do 
 		place.administrators << User.find(user_ids.sample)
 	end 
-	num_of_images = rand(5)
+	num_of_images = rand(2)
 	num_of_images.times do 
 		place.images.create(remote_image_url: ["http://lorempixel.com/500/500/city", "http://lorempixel.com/500/500/nature"].sample)
 	end
@@ -185,7 +185,7 @@ end
 end
 
 # Occasion
-250.times do
+50.times do
 	occasion = Occasion.new
 	occasion.name = Faker::Address.street_name
 	occasion.date = Faker::Date.between(200.years.ago, Date.today)
@@ -207,7 +207,7 @@ end
 		occasion.administrators << User.find(user_ids.sample)
 	end 
 
-	num_of_images = rand(5)
+	num_of_images = rand(2)
 	num_of_images.times do 
 		occasion.images.create(remote_image_url: ["http://lorempixel.com/500/500/nightlife"].sample)
 	end
@@ -215,16 +215,16 @@ end
 end
 
 # Vote
-1000.times do
+500.times do
 	Memory.find(mem_ids.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
 end
-image_id_samples = Image.all.map { |p| p.id }
-500.times do
-	Image.find(image_id_samples.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
-end
+# image_id_samples = Image.all.map { |p| p.id }
+# 500.times do
+# 	Image.find(image_id_samples.sample).votes.create(user_id: user_ids.sample, value: (rand(3))-1)
+# end
 
 # Flag
-200.times do 
+10.times do 
 	mem = Memory.find(mem_ids.sample)
 	mem.flags.create(user_id: user_ids.sample, message: Faker::Hacker.say_something_smart)
 	mem.add_flag
@@ -235,6 +235,6 @@ Memory.all.each do |mem|
 	mem.update_ranking_from_votes unless mem.votes.count == 0
 end
 
-Image.all.each do |img|
-	img.update_ranking_from_votes unless img.votes.count == 0
-end
+# Image.all.each do |img|
+# 	img.update_ranking_from_votes unless img.votes.count == 0
+# end
