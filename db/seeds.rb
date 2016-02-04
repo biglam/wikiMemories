@@ -77,7 +77,7 @@ end
 mem_ids = Memory.all.map { |p| p.id }
 
 # Person
-150.times do
+70.times do
 	person = Person.new
 	person.firstname = Faker::Name.first_name
 	person.middlenames = Faker::Name.name if rand(10)>4
@@ -119,7 +119,7 @@ people_id_samples = Person.all.map { |p| p.id }
 
 
 # Pet
-50.times do
+40.times do
 	pet = Pet.new
 	pet.name = Faker::Name.name
 	pet.species_id = species_ids.sample
@@ -185,7 +185,7 @@ end
 end
 
 # Occasion
-50.times do
+40.times do
 	occasion = Occasion.new
 	occasion.name = Faker::Address.street_name
 	occasion.date = Faker::Date.between(200.years.ago, Date.today)
