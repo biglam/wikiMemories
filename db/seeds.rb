@@ -108,7 +108,7 @@ mem_ids = Memory.all.map { |p| p.id }
 	end 
 
 
-	num_of_images = rand(3)
+	num_of_images = rand(2)
 	num_of_images.times do 
 		person.images.create(remote_image_url: "http://lorempixel.com/500/500/people")
 	end
@@ -145,7 +145,7 @@ people_id_samples = Person.all.map { |p| p.id }
 		pet.administrators << User.find(user_ids.sample)
 	end 
 
-	num_of_images = rand(2)
+	num_of_images = rand(1)
 	num_of_images.times do 
 		pet.images.create(remote_image_url: (["http://lorempixel.com/500/500/animals", "http://lorempixel.com/500/500/cats"].sample))
 	end
@@ -177,7 +177,7 @@ end
 	num_of_admins.times do 
 		place.administrators << User.find(user_ids.sample)
 	end 
-	num_of_images = rand(2)
+	num_of_images = rand(1)
 	num_of_images.times do 
 		place.images.create(remote_image_url: ["http://lorempixel.com/500/500/city", "http://lorempixel.com/500/500/nature"].sample)
 	end
